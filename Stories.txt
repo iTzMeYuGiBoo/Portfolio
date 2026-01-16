@@ -1,0 +1,222 @@
+Epic 1: Infrastructure & Deployment (CRITICAL)
+Goal: Restore site availability and ensure search engines can read the content.
+
+Story 1.1: Fix 404 Routing Error on GitHub Pages
+Heading: [Infra] Resolve React Router vs. GitHub Pages 404 Refresh Issue
+
+Priority: P0 - Critical (Blocker)
+
+Story Points: 3
+
+Acceptance Criteria:
+
+User can navigate to a sub-route (e.g., /projects), refresh the page, and NOT see a 404 error.
+
+Direct links to sub-pages open correctly in Incognito mode.
+
+Solution uses HashRouter OR a 404.html redirect hack in the public/ folder.
+
+Type: Bug
+
+Story 1.2: Implement Dynamic Meta Tags for SEO
+Heading: Integrate react-helmet-async for Social Sharing Cards
+
+Priority: P1 - High
+
+Story Points: 2
+
+Acceptance Criteria:
+
+Sharing the portfolio link on LinkedIn/WhatsApp displays a preview image, title, and description.
+
+Each page (Home, Projects) has a unique <title> tag in the browser tab.
+
+meta name="description" is present and unique for every route.
+
+Type: New Development
+
+Story 1.3: Enable Static Pre-rendering
+Heading: [Performance] Configure Pre-rendering for Crawler Visibility
+
+Priority: P1 - High
+
+Story Points: 5
+
+Acceptance Criteria:
+
+View Source (Ctrl+U) on the deployed site shows actual text content (not just <div id="root">).
+
+react-snap or similar tool runs during the npm build process.
+
+Google Lighthouse SEO score increases to >90.
+
+Type: New Development
+
+Epic 2: Content Strategy & Branding
+Goal: Align the portfolio with the "Full-Stack Data Engineer" persona.
+
+Story 2.1: Create "Thesis Case Study" Page
+Heading: [Content] Develop Dedicated Page for "Dublin Housing Prices" Thesis
+
+Priority: P0 - Critical
+
+Story Points: 8 (Large story - consider breaking down if needed)
+
+Acceptance Criteria:
+
+New route /thesis created.
+
+Page includes a summary of the 88% accuracy Random Forest model.
+
+Includes a visual chart (using Recharts or Chart.js) representing the housing data.
+
+Link to download the full PDF is available but not auto-loaded.
+
+Type: New Development
+
+Story 2.2: Rewrite Project Descriptions (STAR Method)
+Heading: [Content] Update Project Descriptions to STAR Format
+
+Priority: P2 - Medium
+
+Story Points: 2
+
+Acceptance Criteria:
+
+"Flashcard App" description mentions the Google Gemini API integration and specific efficiency gains.
+
+"CSV Tool" description quantifies the impact (e.g., "Reduced manual errors by 50%").
+
+All generic text replaced with result-oriented engineering language.
+
+Type: Content Update
+
+Story 2.3: Add "Writer" Persona Section
+Heading: [Content] Implement "Writing & Perspectives" Section
+
+Priority: P3 - Low
+
+Story Points: 3
+
+Acceptance Criteria:
+
+New section added to Home or About page.
+
+Displays cover art/links for "Unfinished Conversations".
+
+Uses a serif font family to visually distinguish it from technical work.
+
+Type: New Development
+
+Epic 3: UI/UX Refactoring
+Goal: Fix visual hierarchy and mobile responsiveness.
+
+Story 3.1: Global Navigation & Resume CTA
+Heading: [UX] Add Sticky Navigation with "Download Resume" CTA
+
+Priority: P1 - High
+
+Story Points: 3
+
+Acceptance Criteria:
+
+Navigation bar remains accessible when scrolling.
+
+"Download Resume" button is visible on mobile and desktop at all times.
+
+Button links directly to the PDF file.
+
+Active menu item is highlighted (e.g., "Projects" is bold when viewing projects).
+
+Type: New Development
+
+Story 3.2: Mobile Responsive Layout Fixes
+Heading: Implement Fluid Typography and Fix Horizontal Scroll
+
+Priority: P1 - High
+
+Story Points: 5
+
+Acceptance Criteria:
+
+No horizontal scrollbar appears on screens width < 400px.
+
+Font sizes use clamp() or relative units (rem/em), not fixed px.
+
+Touch targets (buttons/links) are at least 44x44px on mobile.
+
+Type: Bug Fix
+
+Story 3.3: Bento Grid Layout for Projects
+Heading: Refactor Project List into Bento Grid
+
+Priority: P2 - Medium
+
+Story Points: 5
+
+Acceptance Criteria:
+
+"Thesis" project card spans 2 columns (is visually dominant).
+
+Smaller utility apps (Flashcards) take up single 1x1 slots.
+
+Layout uses CSS Grid (display: grid).
+
+Type: Refactoring
+
+Epic 4: Technical Quality & Accessibility
+Goal: Ensure professional-grade code and WCAG compliance.
+
+Story 4.1: Semantic HTML Migration
+Heading: [A11y] Replace Generic Divs with Semantic Landmarks
+
+Priority: P2 - Medium
+
+Story Points: 3
+
+Acceptance Criteria:
+
+Main wrapper uses <main> tag.
+
+Header uses <header> and Footer uses <footer>.
+
+Project titles use correct Heading hierarchy (H1 -> H2 -> H3), no skipped levels.
+
+WAVE Accessibility Tool shows 0 "Structure" errors.
+
+Type: Refactoring
+
+Story 4.2: Code Splitting & Lazy Loading
+Heading: [Performance] Implement Route-Based Code Splitting
+
+Priority: P3 - Medium
+
+Story Points: 3
+
+Acceptance Criteria:
+
+Initial JS bundle size reduced by >30%.
+
+Components use React.lazy() and <Suspense>.
+
+Loading state (spinner/skeleton) appears while navigating between heavy pages.
+
+Type: Technical Debt / Optimization
+
+Story 4.3: Keyboard Navigation Support
+Heading: [A11y] Fix Focus Traps and Interactive Elements
+
+Priority: P1 - High
+
+Story Points: 3
+
+Acceptance Criteria:
+
+User can navigate the entire site using only Tab, Enter, and Esc keys.
+
+All interactive divs (like cards that flip) are replaced with <button> or have tabIndex="0" and role="button".
+
+Focus ring is visible on all active elements.
+
+Type: Bug Fix
+
