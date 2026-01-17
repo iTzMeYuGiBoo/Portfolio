@@ -1,15 +1,40 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import './NotFoundPage.css';
 
 const NotFoundPage = () => {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    requestAnimationFrame(() => setAnimate(true));
+  }, []);
+
   return (
     <div className="not-found-page">
       <div className="container">
-        <div className="not-found-content">
-          <h1>404</h1>
-          <h2>Page Not Found</h2>
-          <p>Oops! The page you're looking for doesn't exist or has been moved.</p>
-          <Link to="/" className="button">Go to Homepage</Link>
+        <div className={`not-found-content fade-in-up ${animate ? 'run' : ''}`}>
+          <div className="error-illustration">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              {/* 404 Text with style */}
+              <text x="200" y="150" fontSize="120" fontWeight="700" textAnchor="middle" fill="var(--primary)" className="error-number">
+                404
+              </text>
+              {/* Decorative elements */}
+              <circle cx="100" cy="100" r="15" fill="var(--primary)" opacity="0.3" />
+              <circle cx="300" cy="200" r="20" fill="var(--accent)" opacity="0.3" />
+              <rect x="50" y="220" width="30" height="30" fill="var(--primary)" opacity="0.2" />
+              <rect x="320" y="80" width="25" height="25" fill="var(--accent)" opacity="0.2" />
+            </svg>
+          </div>
+          <h1>Oops! Page Not Found</h1>
+          <h2>404 Error</h2>
+          <p>The page you're looking for doesn't exist or may have been moved. Don't worry, you can navigate back to the homepage and continue exploring.</p>
+          <div className="not-found-actions">
+            <Link to="/" className="button">
+              ← Back to Homepage
+            </Link>
+            <p className="secondary-text">or use the navigation menu above to explore other sections</p>
+          </div>
         </div>
       </div>
     </div>
