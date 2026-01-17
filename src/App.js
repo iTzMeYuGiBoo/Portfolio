@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="app">
       {!isNotFound && <Header />}
-      <main>
+      <main id="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />

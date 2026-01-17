@@ -61,8 +61,11 @@
   position: relative;
   color: var(--foreground);
   font-weight: 500;
-  padding: var(--space-2) 0;
+  padding: var(--space-2) var(--space-2);
   transition: color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .nav-item a:hover {

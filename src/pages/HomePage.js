@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
+import useJSONLD from '../hooks/useJSONLD';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -13,6 +14,9 @@ const HomePage = () => {
     url: 'https://iTzMeYuGiBoo.github.io/Portfolio',
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop',
   });
+
+  // Add JSON-LD structured data for SEO
+  useJSONLD();
 
   /* launch animations after first paint */
   useEffect(() => {
@@ -65,10 +69,10 @@ const HomePage = () => {
         <div className="container">
           <div className={`hero-content fade-in-up ${animate ? 'run' : ''}`}>
             <h1>Hi, I'm Yugandhar “Yugi” Reddy Bana</h1>
-            <h2>
+            <p className="hero-tagline">
               A data-savvy front-end engineer who turns numbers into
               pixel-perfect products.
-            </h2>
+            </p>
 
             {/* achievements */}
             <div className="achievements">
@@ -81,7 +85,7 @@ const HomePage = () => {
                     key={id}
                     className={`achievement-card fade-in-up ${animate ? 'run' : ''}`}
                   >
-                    <h3>{title}</h3>
+                    <h2>{title}</h2>
                     <p>{copy}</p>
                   </li>
                 ))}

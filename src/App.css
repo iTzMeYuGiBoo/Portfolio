@@ -5,13 +5,40 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* Skip to Main Content Link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-600, #2563eb);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+  font-weight: 600;
 }
-.logo:hover {
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* Global Focus Styles - Ensure all interactive elements have visible focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--primary-500, #3b82f6);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove default outline on focus for interactive elements */
+*:focus {
+  outline: none;
+}
+
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
