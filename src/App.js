@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import EducationPage from './pages/EducationPage';
 import CertificationsPage from './pages/CertificationsPage';
 import ExperiencePage from './pages/ExperiencePage';
+import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ResumeAndCoverPage from './pages/ResumeAndCoverPage';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/education" element={<EducationPage />} />
           <Route path="/certifications" element={<CertificationsPage />} />
           <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/resume-and-cover" element={<ResumeAndCoverPage />} />
           <Route path="*" element={<HomePage />}  />

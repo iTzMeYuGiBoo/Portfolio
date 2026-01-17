@@ -1,9 +1,6 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 // import { motion } from 'framer-motion';
 import './ExperiencePage.css';
-import report from '../assets/report.pdf'; // Import the report fil
-import flashcard from '../assets/flashcard.png' // Import the report file
-import portfolio from '../assets/portfolio.png'; // Import the portfolio image
 
 const experiences = [
 
@@ -55,49 +52,8 @@ const experiences = [
   }
 ];
 
-const projects = [
-  {
-    id: 1,
-    title: "Dublin Housing Price Prediction",
-    description: "Created ensemble ML models (Random Forest, XGBoost, LightGBM) that predict Dublin housing prices with 88% accuracy. Integrated macroeconomic factors and location data for comprehensive analysis.",
-    technologies: ["Python", "scikit-learn", "Pandas", "Matplotlib", "Jupyter"],
-    imageUrl: "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg",
-    featured: true,
-    reportFile: report
-  },
-  {
-    id: 2,
-    title: "Personal Portfolio Website",
-    description:
-      "This very portfolio—built with React, JS, HTML and CSS. It showcases my work, CV and contact details in a responsive, animated interface.",
-    technologies: ["React", "React Router", "Redux Toolkit", "JavaScript", "CSS", "HTML", "Git", "GitHub","Responsive Design", "Accessibility",],
-    imageUrl: portfolio,
-    featured: true,
-    gitHubLink: "https://github.com/BanaYugandharReddy08/Portfolio",
-    reportFile: null,
-    projectLink: "https://banayugandharreddy08.github.io/Portfolio/"
-  },
-  {
-    id: 3,
-    title: "Flashcard App",
-    description:
-      "The project is a full-stack Flashcard App featuring a React frontend and an Express backend that generates flashcards and quiz questions using Google Generative AI.",
-    technologies: ["React", "React Router", "Redux Toolkit", "JavaScript", "CSS", "HTML","Node.js" ,"Git", "GitHub","Responsive Design", "Accessibility",],
-    imageUrl: flashcard,
-    featured: true,
-    gitHubLink: "https://github.com/BanaYugandharReddy08/Flashcard",
-    reportFile: null,
-    projectLink: "https://flashcard-1-5xj3.onrender.com/"
-  },
-];
-
-
-
 const ExperiencePage = () => {
-  const [activeTab, setActiveTab] = useState('experience');
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [animate, setAnimate] = useState(false);          // triggers CSS keyframes
-  const [canEmbed,  setCanEmbed]  = useState(true);
+  const [animate, setAnimate] = useState(false);
 
   /* start animations after first paint */
   useEffect(() => {
@@ -107,27 +63,12 @@ const ExperiencePage = () => {
   return (
     <div className="experience-page">
       <div className="container">
-        {/* ───────── header + tabs ───────── */}
+        {/* ───────── header ───────── */}
         <div className={`experience-header fade-in-up ${animate ? 'run' : ''}`}>
-          <h1>Experience &amp; Projects</h1>
+          <h1>Professional Experience</h1>
           <p className="experience-intro">
-            Browse through my professional experience and featured projects.
+            Browse through my professional experience and career journey.
           </p>
-
-          <div className="tabs">
-            <button
-              className={`tab ${activeTab === 'experience' ? 'active' : ''}`}
-              onClick={() => setActiveTab('experience')}
-            >
-              Professional Experience
-            </button>
-            <button
-              className={`tab ${activeTab === 'projects' ? 'active' : ''}`}
-              onClick={() => setActiveTab('projects')}
-            >
-              Projects
-            </button>
-          </div>
         </div>
 
         {/* ───────── timeline or grid ───────── */}
