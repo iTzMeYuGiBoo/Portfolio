@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 // import { motion } from 'framer-motion';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './ExperiencePage.css';
 
 const experiences = [
@@ -53,6 +54,14 @@ const experiences = [
 
 const ExperiencePage = () => {
   const [animate, setAnimate] = useState(false);
+
+  // Set SEO meta tags for Experience page
+  useSEOMetaTags({
+    title: 'Professional Experience | Yugandhar Reddy Bana',
+    description: 'View my professional experience as a Frontend Engineer at Verizon, Chef at Skylon Hotel, and Security Officer. 3+ years of full-stack development with React, Node.js, and Java.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/experience',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop',
+  });
 
   /* start animations after first paint */
   useEffect(() => {

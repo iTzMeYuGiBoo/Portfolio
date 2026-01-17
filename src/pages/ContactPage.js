@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './ContactPage.css';
 
 const ContactPage = () => {
@@ -10,6 +11,14 @@ const ContactPage = () => {
   });
   const [formStatus, setFormStatus] = useState(null);
   const [animate, setAnimate] = useState(false);   // triggers CSS keyframes
+
+  // Set SEO meta tags for Contact page
+  useSEOMetaTags({
+    title: 'Contact Me | Yugandhar Reddy Bana',
+    description: 'Get in touch with me for collaboration, freelance projects, or just to say hello. I\'m always interested in hearing about new opportunities and interesting projects.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/contact',
+    image: 'https://images.unsplash.com/photo-1516534775068-bb577a628e5b?w=1200&h=630&fit=crop',
+  });
 
   /* start animations once the component mounts */
   useEffect(() => {

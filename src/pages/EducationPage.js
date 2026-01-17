@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './EducationPage.css';
 
 const EducationPage = () => {
   const [animate, setAnimate] = useState(false);   // flips CSS animations on
+
+  // Set SEO meta tags for Education page
+  useSEOMetaTags({
+    title: 'Education | Yugandhar Reddy Bana',
+    description: 'My educational background includes MSc in Data Analytics from UCD and BSc in Computer Science. Specialized in machine learning, data visualization, and full-stack development.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/education',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f70504cbf?w=1200&h=630&fit=crop',
+  });
 
   /* start animations on first paint */
   useEffect(() => {

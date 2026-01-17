@@ -1,9 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './NotFoundPage.css';
 
 const NotFoundPage = () => {
   const [animate, setAnimate] = useState(false);
+
+  // Set SEO meta tags for 404 page
+  useSEOMetaTags({
+    title: '404 - Page Not Found | Yugandhar Reddy Bana',
+    description: 'The page you\'re looking for doesn\'t exist. Return to the homepage to explore my portfolio, projects, and professional experience.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/404',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop',
+  });
 
   useEffect(() => {
     requestAnimationFrame(() => setAnimate(true));
