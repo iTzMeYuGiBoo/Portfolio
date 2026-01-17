@@ -1,6 +1,6 @@
 {
   "name": "yugandhar-portfolio",
-  "homepage": "https://yugandhar-portfolio.github.io/Portfolio",
+  "homepage": "https://iTzMeYuGiBoo.github.io/Portfolio/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,6 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "node scripts/prerender.js",
     "test": "react-scripts test --coverage --watchAll=false",
     "coverage": "npm test",
     "eject": "react-scripts eject",

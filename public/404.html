@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages SPA 404 redirect handler
+      // Stores the redirect path in sessionStorage and redirects to index.html
+      (function() {
+        var l = window.location;
+        // Build the redirect URL preserving the current path
+        var redirectPath = l.pathname + l.search + l.hash;
+        
+        // Store it in sessionStorage so index.html can read and use it
+        sessionStorage.redirect = redirectPath;
+        
+        // Redirect to index.html at the root of the site
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/Portfolio/index.html'
+        );
+      })();
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
