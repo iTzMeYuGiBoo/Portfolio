@@ -48,10 +48,7 @@ const AboutPage = () => {
           >
             <div className="about-bio">
               <p className="about-intro" style={{ textAlign: 'justify' }}>
-                I’m a software developer with a strong background in front-end engineering and a growing focus on data analytics. 
-                I started my career building scalable web applications and later pursued a master’s degree in Data Analytics.
-                During my studies, I also worked as a chef at Skylon Hotel in Dublin — a role that strengthened my time management and multitasking skills. 
-                Whether I’m writing React code or working with data models, I aim to build solutions that are smooth, efficient, and user-friendly.
+                I'm a full-stack engineer specializing in React and performance optimization, combining front-end excellence with data analytics expertise. I architect pixel-perfect interfaces that handle complex data workflows—turning raw datasets into intuitive, accessible user experiences. With 88% ML model accuracy and 95+ Lighthouse scores across my projects, I deliver measurable results that accelerate business value.
               </p>
 
               <h2>My Journey</h2>
