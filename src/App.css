@@ -7,35 +7,6 @@
   width: 100%;
 }
 
-/* Skip to Main Content Link */
-.skip-to-main {
-  position: absolute;
-  top: -40px;
-  left: 16px;
-  background: var(--primary-600, #2563eb);
-  color: white;
-  padding: 12px 24px;
-  text-decoration: none;
-  z-index: 1000;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: top 200ms ease-out, box-shadow 200ms ease-out;
-  box-shadow: var(--shadow-lg);
-  line-height: 1.4;
-}
-
-.skip-to-main:focus {
-  top: 16px;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
-  outline: none;
-}
-
-.skip-to-main:focus:hover {
-  background: var(--primary-700, #1d4ed8);
-}
-}
-
 /* Global Focus Styles - Ensure all interactive elements have visible focus */
 button:focus-visible,
 a:focus-visible,
