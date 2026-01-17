@@ -6,6 +6,7 @@ import './EducationPage.css';
 const EducationPage = () => {
   const [animate, setAnimate] = useState(false);
   const [isThesisModalOpen, setIsThesisModalOpen] = useState(false);
+  const [activeLearning, setActiveLearning] = useState(0);
 
   // Set SEO meta tags for Education page
   useSEOMetaTags({
@@ -54,25 +55,13 @@ const EducationPage = () => {
     { topic: 'System Design & Scalability', progress: 50 }
   ];
 
+  /* start animations on first paint */
   useEffect(() => {
     requestAnimationFrame(() => setAnimate(true));
   }, []);
 
-  // Scroll to projects section
-  const scrollToProject = (projectName) => {
-    const projectsSection = document.querySelector('#projects-section');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="education-page">
-      {/* JSON-LD Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify(educationSchema)}
-      </script>
-
       <div className="container">
         {/* ───── header ───── */}
         <div className={`education-header fade-in-up ${animate ? 'run' : ''}`}>
@@ -83,38 +72,30 @@ const EducationPage = () => {
           </p>
         </div>
 
-        {/* ───── vertical timeline ───── */}
+        {/* ───── timeline ───── */}
         <div className="education-timeline">
-          {/* MSc card with icon */}
+          {/* MSc card */}
           <div
             className={`education-card fade-in-up ${animate ? 'run' : ''}`}
             style={{ animationDelay: '0.2s' }}
           >
-            <div className="education-icon">🎓</div>
+            <div className="education-year">2025</div>
             <div className="education-content">
               <h2>MSc Data Analytics</h2>
               <h3>National College of Ireland</h3>
-              <div className="education-year">2025</div>
 
               <section className="education-details">
                 <div className="thesis-section">
                   <h4>Thesis</h4>
                   <p>
-                    "Impact of Macroeconomic Factors on Newly Built Residential
-                    Property Prices in Dublin" (88% model accuracy)
-                  </p>
-                  <button 
+                    “Impact of Macroeconomic Factors on Newly Built Residential
+                    Property Prices in Dublin” (88% model accuracy)
+                  </p>                  <button 
                     className="view-thesis-btn"
                     onClick={() => setIsThesisModalOpen(true)}
                   >
                     📊 Click here to view thesis details
-                  </button>
-                </div>
-
-                <div className="related-projects">
-                  <h4>Related Projects</h4>
-                  <p>Capstone: <button className="project-link" onClick={() => scrollToProject('data-dashboard')}>Built predictive models using Python & TensorFlow concepts learned in Advanced ML</button></p>
-                </div>
+                  </button>                </div>
 
                 <div className="courses-section">
                   <h4>Key Modules</h4>
@@ -144,16 +125,15 @@ const EducationPage = () => {
             </div>
           </div>
 
-          {/* BSc card with icon */}
+          {/* BSc card */}
           <div
             className={`education-card fade-in-up ${animate ? 'run' : ''}`}
             style={{ animationDelay: '0.4s' }}
           >
-            <div className="education-icon">📚</div>
+            <div className="education-year">2021</div>
             <div className="education-content">
-              <h2>BSc Computer Science & Engineering</h2>
+              <h2>BSc Computer Science &amp; Engineering</h2>
               <h3>SASTRA University, India</h3>
-              <div className="education-year">2021</div>
 
               <section className="education-details">
                 <div className="thesis-section">
@@ -164,15 +144,10 @@ const EducationPage = () => {
                   </p>
                 </div>
 
-                <div className="related-projects">
-                  <h4>Related Projects</h4>
-                  <p>Capstone: <button className="project-link" onClick={() => scrollToProject('flashcard-app')}>Facial Recognition system built using Java & OpenCV from Database & Web Technologies modules</button></p>
-                </div>
-
                 <div className="courses-section">
                   <h4>Key Modules</h4>
                   <ul>
-                    <li>Data Structures & Algorithms</li>
+                    <li>Data Structures &amp; Algorithms</li>
                     <li>Object-Oriented Programming</li>
                     <li>Database Management Systems</li>
                     <li>Web Technologies</li>
@@ -197,48 +172,24 @@ const EducationPage = () => {
           </div>
         </div>
 
-        {/* ───── continuous learning widget ───── */}
+        {/* ───── continuing education ───── */}
         <div
-          className={`continuous-learning fade-in-up ${animate ? 'run' : ''}`}
-          style={{ animationDelay: '0.6s' }}
+          className={`continuing-education fade-in-up ${animate ? 'run' : ''}`}
+          style={{ animationDelay: '0.6s', marginLeft:'242px'}}
         >
-          <h2>Currently Learning</h2>
-          <p className="learning-intro">
-            Constantly upskilling through active learning and professional development
-          </p>
-
-          <div className="learning-topics">
-            {learningTopics.map((item, index) => (
-              <div key={index} className="learning-card">
-                <h4>{item.topic}</h4>
-                <div className="progress-container">
-                  <div className="progress-bar">
-                    <div className="progress-fill" style={{ width: `${item.progress}%` }}></div>
-                  </div>
-                  <span className="progress-text">{item.progress}% Complete</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ───── certifications section ───── */}
-        <div
-          className={`certifications-section fade-in-up ${animate ? 'run' : ''}`}
-          style={{ animationDelay: '0.8s'}}
-        >
-          <h2>Professional Certifications</h2>
+          <h2>Continuing Education</h2>
           <p>
-            Beyond formal education, I've earned professional certifications across
-            development, cloud technologies, and data analytics.
+            Beyond formal education, I'm committed to continuous learning
+            through professional certifications and online courses.
           </p>
 
-          <div className="certifications-content">
+          <div className="continuing-education-content">
             <a href="/certifications" className="button">
-              View All Certifications
+              View My Certifications
             </a>
             <p className="note">
-              Including Meta Front-End Development, AWS, Google, and more...
+              Full project list, semester certificates, and earlier internships
+              available on request.
             </p>
           </div>
         </div>

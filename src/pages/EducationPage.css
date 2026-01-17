@@ -1,16 +1,19 @@
 .education-page {
   padding-top: 120px;
   min-height: 100vh;
+  padding-bottom: var(--space-12);
 }
 
+/* ───── Header ───── */
 .education-header {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
 }
 
 .education-header h1 {
   font-size: var(--text-4xl);
   margin-bottom: var(--space-4);
+  color: var(--foreground);
 }
 
 .education-intro {
@@ -20,106 +23,167 @@
   font-size: var(--text-lg);
 }
 
+/* ───── Vertical Timeline ───── */
 .education-timeline {
   max-width: 900px;
-  margin: 0 auto var(--space-16);
+  margin: 0 auto var(--space-12);
   position: relative;
+  padding-left: var(--space-4);
 }
 
+/* Connecting vertical line */
 .education-timeline::before {
   content: '';
   position: absolute;
-  top: 0;
+  top: 40px;
   bottom: 0;
-  left: 120px;
-  width: 3px;
-  background-color: var(--primary-200);
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-400), var(--primary-200));
 }
 
+/* Timeline Card */
 .education-card {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  margin-bottom: var(--space-12);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
   position: relative;
+  padding-left: var(--space-6);
 }
 
-.education-card::before {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
+/* Timeline Icon (Circle with emoji) */
+.education-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary-400), var(--secondary-400));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
   border: 3px solid var(--background);
-  left: 113px;
-  top: 10px;
-  z-index: 1;
+  position: relative;
+  z-index: 2;
+  margin-left: -34px;
+  margin-top: 12px;
 }
 
-.education-year {
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  color: var(--primary);
-  padding-top: var(--space-2);
-}
-
+/* Education Content Card */
 .education-content {
+  flex: 1;
   background-color: var(--card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border);
   padding: var(--space-6);
-  position: relative;
+  transition: all 0.3s ease;
+}
+
+.education-content:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
 }
 
 .education-content h2 {
   font-size: var(--text-2xl);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
   color: var(--foreground);
+  font-weight: 700;
 }
 
 .education-content h3 {
   font-size: var(--text-lg);
-  color: var(--muted-foreground);
-  margin-bottom: var(--space-4);
-  font-weight: 500;
-}
-
-.education-details {
-  display: grid;
-  gap: var(--space-6);
-  padding: 0;
-}
-
-.education-details h4 {
-  font-size: var(--text-base);
-  color: var(--primary);
+  color: var(--primary-600);
   margin-bottom: var(--space-2);
   font-weight: 600;
 }
 
-.thesis-section p {
-  line-height: 1.6;
+.education-year {
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--primary-50);
+  border-radius: var(--radius-md);
 }
 
+/* Education Details */
+.education-details {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.education-details h4 {
+  font-size: var(--text-base);
+  color: var(--primary-600);
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+}
+
+/* Thesis Section */
+.thesis-section p {
+  line-height: 1.6;
+  color: var(--foreground);
+  margin-bottom: var(--space-3);
+}
+
+/* Related Projects Section */
+.related-projects p {
+  line-height: 1.6;
+  color: var(--foreground);
+}
+
+.project-link {
+  background: none;
+  border: none;
+  color: var(--primary-600);
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--primary-700);
+  text-decoration-thickness: 2px;
+}
+
+.project-link:active {
+  transform: scale(0.98);
+}
+
+/* Courses Section */
 .courses-section ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2);
   margin-left: var(--space-4);
+  margin-bottom: var(--space-2);
 }
 
 .courses-section li {
   position: relative;
+  color: var(--foreground);
+  font-size: var(--text-sm);
+  line-height: 1.5;
 }
 
 .courses-section li::before {
-  content: '•';
+  content: '▸';
   position: absolute;
-  left: -15px;
-  color: var(--primary);
+  left: -16px;
+  color: var(--primary-600);
+  font-weight: 600;
 }
 
+/* Skills Tags */
 .skills-tags {
   display: flex;
   flex-wrap: wrap;
@@ -127,52 +191,28 @@
 }
 
 .skill-tag {
-  background-color: var(--primary-100);
-  color: var(--primary-800);
-  padding: 4px 8px;
+  background: linear-gradient(135deg, var(--primary-50), var(--secondary-50));
+  color: var(--primary-700);
+  padding: 6px 12px;
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
+  font-weight: 600;
+  border: 1px solid var(--primary-200);
+  transition: all 0.2s ease;
 }
 
-.continuing-education {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: var(--space-8);
-  background-color: var(--card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
+.skill-tag:hover {
+  background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
+  border-color: var(--primary-400);
+  transform: translateY(-2px);
 }
 
-.continuing-education h2 {
-  font-size: var(--text-2xl);
-  margin-bottom: var(--space-4);
-  color: var(--primary);
-}
-
-.continuing-education p {
-  margin-bottom: var(--space-6);
-}
-
-.continuing-education-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.note {
-  font-size: var(--text-sm);
-  color: var(--muted-foreground);
-  font-style: italic;
-}
-
-/* ───────── Thesis Button ───────── */
+/* ───── Thesis Button ───── */
 .view-thesis-btn {
   display: inline-block;
-  margin-top: var(--space-3);
-  padding: 10px 18px;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding: 10px 16px;
   background: linear-gradient(135deg, var(--primary), #8b5cf6);
   color: white;
   border: none;
@@ -193,46 +233,386 @@
   transform: translateY(0);
 }
 
+/* ───── Continuous Learning Widget ───── */
+.continuous-learning {
+  max-width: 900px;
+  margin: 0 auto var(--space-12);
+  padding: var(--space-8);
+  background: linear-gradient(135deg, var(--card), var(--primary-50));
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+.continuous-learning h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-2);
+  color: var(--primary-600);
+  font-weight: 700;
+}
+
+.learning-intro {
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-6);
+  font-size: var(--text-sm);
+}
+
+.learning-topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.learning-card {
+  background: var(--background);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.learning-card:hover {
+  border-color: var(--primary-400);
+  box-shadow: var(--shadow-md);
+}
+
+.learning-card h4 {
+  font-size: var(--text-base);
+  color: var(--foreground);
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--primary-400), var(--secondary-400));
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.progress-text {
+  font-size: var(--text-xs);
+  color: var(--muted-foreground);
+  font-weight: 600;
+  min-width: 70px;
+  text-align: right;
+}
+
+/* ───── Certifications Section ───── */
+.certifications-section {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-8);
+  background-color: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.certifications-section h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-4);
+  color: var(--primary-600);
+  font-weight: 700;
+}
+
+.certifications-section p {
+  margin-bottom: var(--space-6);
+  color: var(--muted-foreground);
+}
+
+.certifications-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.note {
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN - TABLET (1024px and below) */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .education-timeline {
+    padding-left: var(--space-2);
+  }
+
+  .education-timeline::before {
+    left: 12px;
+  }
+
+  .education-card {
+    gap: var(--space-5);
+  }
+
+  .education-icon {
+    margin-left: -28px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+
+  .courses-section ul {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-topics {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN - MOBILE (768px and below) */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .education-page {
+    padding-top: 100px;
+  }
+
+  .education-header h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .education-intro {
+    font-size: var(--text-base);
+  }
+
+  .education-content h2 {
+    font-size: var(--text-xl);
+  }
+
+  .education-content h3 {
+    font-size: var(--text-base);
+  }
+
+  .education-card {
+    flex-direction: column;
+    padding-left: 0;
+  }
+
+  .education-icon {
+    margin-left: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 1.125rem;
+  }
+
+  .education-timeline::before {
+    display: none;
+  }
+
+  .continuous-learning {
+    padding: var(--space-6);
+  }
+
+  .continuous-learning h2 {
+    font-size: var(--text-xl);
+  }
+
+  .certifications-section {
+    padding: var(--space-6);
+  }
+
+  .certifications-section h2 {
+    font-size: var(--text-xl);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN - MOBILE (480px and below) - iPhone SE */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .education-page {
+    padding-top: 80px;
+    padding-bottom: var(--space-8);
+  }
+
+  .education-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .education-header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .education-intro {
+    font-size: var(--text-sm);
+    padding: 0 16px;
+  }
+
+  .education-timeline {
+    margin: 0 auto var(--space-10);
+    padding-left: 0;
+    padding: 0 16px;
+  }
+
+  .education-card {
+    margin-bottom: var(--space-6);
+    gap: var(--space-3);
+  }
+
+  .education-content {
+    padding: var(--space-4);
+  }
+
+  .education-content h2 {
+    font-size: var(--text-lg);
+    margin-bottom: 4px;
+  }
+
+  .education-content h3 {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2);
+  }
+
+  .education-year {
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-3);
+  }
+
+  .education-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .education-details h4 {
+    font-size: var(--text-sm);
+  }
+
+  .courses-section ul {
+    gap: 4px;
+    margin-left: var(--space-2);
+  }
+
+  .courses-section li {
+    font-size: var(--text-xs);
+  }
+
+  .courses-section li::before {
+    left: -12px;
+  }
+
+  .skills-tags {
+    gap: var(--space-1);
+  }
+
+  .skill-tag {
+    padding: 4px 8px;
+    font-size: var(--text-xs);
+  }
+
+  .view-thesis-btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .continuous-learning {
+    margin: 0 16px var(--space-10);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+
+  .continuous-learning h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  .learning-intro {
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-4);
+  }
+
+  .learning-topics {
+    gap: var(--space-4);
+  }
+
+  .learning-card {
+    padding: var(--space-4);
+  }
+
+  .learning-card h4 {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2);
+  }
+
+  .progress-bar {
+    height: 6px;
+  }
+
+  .certifications-section {
+    margin: 0 16px;
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+
+  .certifications-section h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  .certifications-section p {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .note {
+    font-size: var(--text-xs);
+  }
+}
+
+/* ───── Animations ───── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+}
+
+.run.fade-in-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .view-thesis-btn {
     box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
   }
 
-  .view-thesis-btn:hover {
-    box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+  .education-icon {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+
+  .skill-tag {
+    border-color: var(--primary-700);
   }
 }
-
-@media (max-width: 768px) {
-  .education-timeline::before {
-    left: 80px;
-  }
-  
-  .education-card {
-    grid-template-columns: 80px 1fr;
-  }
-  
-  .education-card::before {
-    left: 73px;
-  }
-  
-  .education-year {
-    font-size: var(--text-xl);
-  }
-  
-  .education-content h2 {
-    font-size: var(--text-xl);
-  }
-  
-  .courses-section ul {
-    grid-template-columns: 1fr;
-  }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in-up { opacity: 0; }
-.run.fade-in-up { animation: fadeUp 0.5s ease-out forwards; }
