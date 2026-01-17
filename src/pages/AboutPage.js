@@ -1,34 +1,77 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
+import useJSONLD from '../hooks/useJSONLD';
 import './AboutPage.css';
 import Photo from '../assets/Photo.jpg';
 
 const AboutPage = () => {
-  const [animate, setAnimate] = useState(false);   // flips CSS keyframes on
+  const [animate, setAnimate] = useState(false);
 
-  // Set SEO meta tags for About page
   useSEOMetaTags({
-    title: 'About Me | Yugandhar Reddy Bana - Frontend Engineer',
-    description: 'Learn about Yugandhar Reddy Bana, a passionate frontend engineer with expertise in React, data visualization, and performance optimization. Based in Dublin, Ireland.',
+    title: 'About Me | Yugandhar Reddy Bana - Full-Stack Engineer',
+    description: 'Full-stack engineer specializing in React, data visualization, and performance optimization. 4+ years building scalable applications with 95+ Lighthouse scores.',
     url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about',
     image: Photo,
   });
 
-  /* launch animations on first paint */
+  // Add JSON-LD schema for About page
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Yugandhar Reddy Bana',
+    jobTitle: 'Full-Stack Engineer & Data Analyst',
+    description: 'Architecting high-performance, data-rich interfaces that solve complex problems. 4+ years building React applications with measurable impact.',
+    image: Photo,
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about',
+    email: 'yugandharreddybana@outlook.com',
+    telephone: '+353894851413',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Dublin',
+      addressCountry: 'IE',
+    },
+    alumniOf: [
+      {
+        '@type': 'EducationalOrganization',
+        name: 'National College of Ireland',
+        educationalLevel: 'Master Degree',
+      },
+      {
+        '@type': 'EducationalOrganization',
+        name: 'SASTRA University',
+        educationalLevel: 'Bachelor Degree',
+      },
+    ],
+    workHistory: [
+      {
+        '@type': 'Organization',
+        name: 'Incedo Technologies Solutions Limited',
+        position: 'Software Engineer',
+      },
+    ],
+  };
+
   useEffect(() => {
     requestAnimationFrame(() => setAnimate(true));
   }, []);
 
   return (
     <div className="about-page">
+      {/* JSON-LD Script */}
+      <script type="application/ld+json">
+        {JSON.stringify(personSchema)}
+      </script>
+
       <div className="container">
-        {/* ───── header ───── */}
+        {/* Section Header */}
         <div className={`about-header fade-in-up ${animate ? 'run' : ''}`}>
-          <h1>About Me</h1>
+          <h2 id="about-heading">Behind the Code</h2>
+          <p className="section-subtitle">Full-Stack Engineer • Data Analyst • Performance Optimizer</p>
         </div>
 
-        <div className="about-content">
-          {/* profile photo */}
+        {/* Main Content - Asymmetric Split Layout */}
+        <section id="about" aria-labelledby="about-heading" className="about-content">
+          {/* Profile Image - Left Side */}
           <div
             className={`about-image slide-in-left ${animate ? 'run' : ''}`}
             style={{ animationDelay: '0.2s' }}
@@ -36,85 +79,92 @@ const AboutPage = () => {
             <div className="about-image-container">
               <img
                 src={Photo}
-                alt="Yugandhar Reddy Bana"
+                alt="Portrait of Yugandhar Reddy Bana, a full-stack engineer smiling in a professional setting"
+                width="400"
+                height="400"
               />
             </div>
           </div>
 
-          {/* bio text */}
+          {/* Bio Text - Right Side */}
           <div
             className={`about-text slide-in-right ${animate ? 'run' : ''}`}
             style={{ animationDelay: '0.3s' }}
           >
-            <div className="about-bio">
-              <p className="about-intro" style={{ textAlign: 'justify' }}>
-                I'm a full-stack engineer specializing in React and performance optimization, combining front-end excellence with data analytics expertise. I architect pixel-perfect interfaces that handle complex data workflows—turning raw datasets into intuitive, accessible user experiences. With 88% ML model accuracy and 95+ Lighthouse scores across my projects, I deliver measurable results that accelerate business value.
+            <article className="about-bio">
+              {/* Hook - Present */}
+              <p className="about-intro">
+                I'm a <strong>full-stack engineer specializing in React and data visualization</strong>, architecting pixel-perfect interfaces that transform complex datasets into intuitive, accessible user experiences. With <strong>4+ years of professional experience</strong> and <strong>95+ Lighthouse performance scores</strong> across deployed applications, I deliver measurable impact that accelerates business value.
               </p>
 
-              <h2>My Journey</h2>
-              <p style={{ textAlign: 'justify' }}>
-                My journey into tech began with a BSc in Computer Science & Engineering from SASTRA University, 
-                where I built a strong foundation in programming and software design. After graduation, 
-                I joined Incedo Technologies Solutions Limited (client: Verizon) as a software engineer, where I worked on high-impact front-end projects, 
-                performance optimization, and scalable system architecture in a global telecom environment.
-              </p>
+              {/* Journey - Past */}
+              <section className="about-section">
+                <h3>My Journey</h3>
+                <p>
+                  I began my tech career with a <strong>BSc in Computer Science & Engineering</strong> from SASTRA University, where I built a strong foundation in full-stack development. After graduation, I joined <strong>Incedo Technologies Solutions Limited</strong> (client: Verizon) as a Software Engineer, working on high-impact frontend projects, performance optimization, and scalable system architecture in a global telecom environment.
+                </p>
+                <p>
+                  To deepen my expertise in data-driven engineering, I pursued an <strong>MSc in Data Analytics</strong> from the National College of Ireland. My thesis—"Impact of Macroeconomic Factors on Dublin Housing Prices"—achieved <strong>88% model accuracy</strong> using ensemble machine-learning techniques, combining my passion for both frontend excellence and data science.
+                </p>
+              </section>
 
-              <p style={{ textAlign: 'justify' }}>
-                Eager to deepen my understanding of data and analytics, I pursed MSc in Data Analytics at the National College of
-                Ireland, I&apos;m focused on the intersection of front-end
-                engineering and data science. My thesis on &quot;Impact of
-                Macroeconomic Factors on Newly Built Residential Property Prices
-                in Dublin&quot; achieved 88 % model accuracy using ensemble
-                machine-learning techniques.
-              </p>
+              {/* Quick Stats - Bento Grid */}
+              <div className="stats-grid">
+                <div className="stat-card">
+                  <div className="stat-number">4+</div>
+                  <div className="stat-label">Years of Experience</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-number">10+</div>
+                  <div className="stat-label">Projects Deployed</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-number">95+</div>
+                  <div className="stat-label">Lighthouse Score</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-number">88%</div>
+                  <div className="stat-label">ML Model Accuracy</div>
+                </div>
+              </div>
 
-              <p style={{ textAlign: 'justify' }}>
-                While studying, I also followed a personal interest and worked part-time as a chef at Skylon Hotel, Dublin. 
-                This hands-on experience helped me develop strong time management, multitasking, 
-                and pressure-handling skills — qualities that complement my work as a developer.
-              </p>
+              {/* Engineering Philosophy */}
+              <section className="about-section">
+                <h3>How I Work</h3>
+                <p>My engineering philosophy centers on three core principles:</p>
+                <ul className="philosophy-list">
+                  <li>
+                    <strong>User-Centric Design:</strong> I build interfaces where every interaction matters. Accessibility, performance, and intuitive design aren't afterthoughts—they're foundational.
+                  </li>
+                  <li>
+                    <strong>Clean Code:</strong> I write code for humans first, machines second. Readable, maintainable code reduces bugs and accelerates team velocity.
+                  </li>
+                  <li>
+                    <strong>Continuous Learning:</strong> Technology evolves rapidly. I stay ahead of trends through experimentation, code reviews, and knowledge sharing with teams.
+                  </li>
+                </ul>
+              </section>
 
-              <p style={{ textAlign: 'justify' }}>
-                Today, I bring together my experience in software engineering, data analytics,
-                 and the discipline of hospitality to deliver solutions that are efficient, reliable, and user-focused.
-              </p>
+              {/* Ambition - Future */}
+              <section className="about-section">
+                <h3>What's Next</h3>
+                <p>
+                  Currently, I'm seeking <strong>complex architectural challenges in fintech or data-intensive products</strong> where performance optimization and user experience directly drive business outcomes. I'm excited about building scalable systems that serve millions of users while maintaining pixel-perfect interfaces.
+                </p>
+              </section>
 
-              <h2>My Approach</h2>
-              <p style={{ textAlign: 'justify' }}>
-                I believe the best digital products are those that disappear –
-                interfaces so intuitive and responsive that users never have to
-                think about them. This philosophy guides my development process,
-                where I combine:
-              </p>
-
-              <ul className="approach-list">
-                <li>Meticulous attention to UI details and accessibility</li>
-                <li>Performance-first engineering with comprehensive testing</li>
-                <li>Data-driven decision making backed by analytics</li>
-                <li>
-                  Collaborative problem-solving with cross-functional teams
-                </li>
-              </ul>
-
-              <h2>Beyond Coding</h2>
-              <p style={{ textAlign: 'justify' }}>
-                When I&apos;m not coding, you can find me experimenting with new
-                recipes (old habits die hard!), exploring Dublin&apos;s hidden
-                corners, or diving into data-visualization projects that make
-                complex information accessible.
-              </p>
-
+              {/* Call-to-Action */}
               <div className="cta-buttons">
                 <a href="/contact" className="button">
-                  Get in Touch
+                  Start a Conversation
                 </a>
                 <a href="/experience" className="button outline">
-                  View My Work
+                  Explore My Work
                 </a>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
