@@ -50,8 +50,8 @@ const EducationPage = () => {
 
   // Continuous learning data
   const learningTopics = [
-    { topic: 'Advanced TypeScript Patterns', progress: 65 },
-    { topic: 'System Design & Scalability', progress: 50 }
+    { topic: 'Microsoft Full Stack Developer', progress: 65 },
+    { topic: 'Google Data Analytics', progress: 50 }
   ];
 
   useEffect(() => {
@@ -111,10 +111,10 @@ const EducationPage = () => {
                   </button>
                 </div>
 
-                <div className="related-projects">
+                {/* <div className="related-projects">
                   <h4>Related Projects</h4>
                   <p>Capstone: <button className="project-link" onClick={() => scrollToProject('data-dashboard')}>Built predictive models using Python & TensorFlow concepts learned in Advanced ML</button></p>
-                </div>
+                </div> */}
 
                 <div className="courses-section">
                   <h4>Key Modules</h4>
