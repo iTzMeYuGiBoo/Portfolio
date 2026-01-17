@@ -1,8 +1,10 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
   text-align: center;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Skip to Main Content Link */
