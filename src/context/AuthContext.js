@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       try {
         setUser(JSON.parse(savedUser));
       } catch (error) {
-        console.error("Failed to parse saved user", error);
+        // Failed to parse saved user - clear invalid data
         localStorage.removeItem('user');
       }
     }
@@ -58,8 +58,9 @@ export const AuthProvider = ({ children }) => {
       } else {
         // Send verification code (simulate email)
         const code = generateVerificationCode();
-        console.log(`Verification code: ${code}`); // In a real app, this would be sent via email
-        return { success: true, requireVerification: true };
+        // In a real app, this would be sent via email
+        // For demo purposes, code is stored in state and can be viewed in React DevTools
+        return { success: true, requireVerification: true, code: process.env.NODE_ENV === 'development' ? code : undefined };
       }
     } else if (email && password) {
       // For guest login

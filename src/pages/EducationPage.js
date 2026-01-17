@@ -164,10 +164,10 @@ const EducationPage = () => {
                   </p>
                 </div>
 
-                <div className="related-projects">
+                {/* <div className="related-projects">
                   <h4>Related Projects</h4>
                   <p>Capstone: <button className="project-link" onClick={() => scrollToProject('flashcard-app')}>Facial Recognition system built using Java & OpenCV from Database & Web Technologies modules</button></p>
-                </div>
+                </div> */}
 
                 <div className="courses-section">
                   <h4>Key Modules</h4>
