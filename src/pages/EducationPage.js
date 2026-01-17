@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
+import ThesisModal from '../components/layout/ThesisModal';
 import './EducationPage.css';
 
 const EducationPage = () => {
   const [animate, setAnimate] = useState(false);   // flips CSS animations on
+  const [isThesisModalOpen, setIsThesisModalOpen] = useState(false);
 
   // Set SEO meta tags for Education page
   useSEOMetaTags({
@@ -48,8 +50,12 @@ const EducationPage = () => {
                   <p>
                     “Impact of Macroeconomic Factors on Newly Built Residential
                     Property Prices in Dublin” (88% model accuracy)
-                  </p>
-                </div>
+                  </p>                  <button 
+                    className="view-thesis-btn"
+                    onClick={() => setIsThesisModalOpen(true)}
+                  >
+                    📊 Click here to view thesis details
+                  </button>                </div>
 
                 <div className="courses-section">
                   <h4>Key Modules</h4>
@@ -148,6 +154,9 @@ const EducationPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Thesis Modal */}
+      <ThesisModal isOpen={isThesisModalOpen} onClose={() => setIsThesisModalOpen(false)} />
     </div>
   );
 };
