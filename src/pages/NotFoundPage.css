@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--primary);
 }
 
 .error-illustration svg {
@@ -79,13 +80,6 @@
 .not-found-actions .button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-}
-
-.secondary-text {
-  font-size: var(--text-sm);
-  color: var(--muted-foreground);
-  margin: 0;
-  font-style: italic;
 }
 
 /* Animations */
