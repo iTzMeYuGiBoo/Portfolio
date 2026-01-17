@@ -1,9 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './HomePage.css';
 
 const HomePage = () => {
   const [animate, setAnimate] = useState(false);   // flips CSS keyframes on
+
+  // Set SEO meta tags for Home page
+  useSEOMetaTags({
+    title: 'Yugandhar Reddy Bana | Front-End Engineer & Data Analyst',
+    description: 'Data-savvy front-end engineer who turns numbers into pixel-perfect products. React specialist with expertise in performance optimization, data visualization, and full-stack development.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop',
+  });
 
   /* launch animations after first paint */
   useEffect(() => {

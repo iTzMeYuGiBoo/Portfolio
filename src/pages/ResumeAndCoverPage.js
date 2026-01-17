@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './ResumeAndCoverPage.css';
 
 /* files live in PUBLIC_URL so they work in dev & production builds */
@@ -11,6 +12,14 @@ const ResumeAndCoverPage = () => {
   const [activeTab, setActiveTab] = useState('resume');
   const [canEmbed,  setCanEmbed]  = useState(true);
   const [animate,   setAnimate]   = useState(false);
+
+  // Set SEO meta tags for CV & Cover Letter page
+  useSEOMetaTags({
+    title: 'CV & Cover Letter | Yugandhar Reddy Bana',
+    description: 'Download my professional CV/Resume and cover letter. View detailed information about my experience, skills, and qualifications as a Frontend Engineer.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/resume-and-cover',
+    image: 'https://images.unsplash.com/photo-1586281380349-f70d1b8a850d?w=1200&h=630&fit=crop',
+  });
 
   /* 1️⃣ kick-off entrance animation once */
   useEffect(() => {

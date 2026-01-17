@@ -1,9 +1,18 @@
 import { useEffect, useState } from 'react';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './AboutPage.css';
 import Photo from '../assets/Photo.jpg';
 
 const AboutPage = () => {
   const [animate, setAnimate] = useState(false);   // flips CSS keyframes on
+
+  // Set SEO meta tags for About page
+  useSEOMetaTags({
+    title: 'About Me | Yugandhar Reddy Bana - Frontend Engineer',
+    description: 'Learn about Yugandhar Reddy Bana, a passionate frontend engineer with expertise in React, data visualization, and performance optimization. Based in Dublin, Ireland.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about',
+    image: Photo,
+  });
 
   /* launch animations on first paint */
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './ProjectsPage.css';
 import report from '../assets/report.pdf';
 import flashcard from '../assets/flashcard.png';
@@ -44,6 +45,14 @@ const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [animate, setAnimate] = useState(false);
   const [canEmbed, setCanEmbed] = useState(true);
+
+  // Set SEO meta tags for Projects page
+  useSEOMetaTags({
+    title: 'Projects | Yugandhar Reddy Bana - Frontend Engineer Portfolio',
+    description: 'Explore my featured projects including ML models for housing price prediction, full-stack applications, and responsive web interfaces built with React and modern technologies.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/projects',
+    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?w=1200&h=630&fit=crop',
+  });
 
   useEffect(() => {
     requestAnimationFrame(() => setAnimate(true));

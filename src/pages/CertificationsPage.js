@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './CertificationsPage.css';
 import SoftwareEngineer from '../assets/SoftwareEngineerIntern.png'; // Import the software engineer image
 import ReactImage from '../assets/React.png'; // Import the React developer image
@@ -314,6 +315,14 @@ const CertificationsPage = () => {
   const [filter, setFilter] = useState('All');
   const { user } = useAuth();
   const [canEmbed,  setCanEmbed]  = useState(true);
+  
+  // Set SEO meta tags for Certifications page
+  useSEOMetaTags({
+    title: 'Certifications & Credentials | Yugandhar Reddy Bana',
+    description: 'View my professional certifications and academic credentials including React Developer, Software Engineer Intern, and various specialized training certifications.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/certifications',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=630&fit=crop',
+  });
   
   const categories = ['All', 'Development', 'Data', 'Cloud', 'Design', 'Academic',"Hacker Rank"];
   
