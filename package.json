@@ -17,7 +17,8 @@
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.4.3",
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "jsdom": "^26.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
