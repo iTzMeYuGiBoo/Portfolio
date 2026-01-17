@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
@@ -14,18 +14,30 @@ import ResumeAndCoverPage from './pages/ResumeAndCoverPage';
 import { useAuth } from './context/AuthContext';
 import FloatingChatBot from './pages/FloatingChatBot';
 
+// List of valid routes (excluding catch-all)
+const validRoutes = ['/', '/about', '/education', '/certifications', '/experience', '/projects', '/contact', '/resume-and-cover'];
+
 function App() {
   const location = useLocation();
   const { user } = useAuth();
-  
+  const [isNotFound, setIsNotFound] = useState(false);
+
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Check if current path is valid
+    const isValid = validRoutes.some(route => {
+      if (route === '/') return location.pathname === '/' || location.pathname === '';
+      return location.pathname === route || location.pathname.startsWith(route + '/');
+    });
+    
+    setIsNotFound(!isValid);
   }, [location.pathname]);
 
   return (
     <div className="app">
-      <Header />
+      {!isNotFound && <Header />}
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -39,8 +51,8 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      <Footer />
-      <FloatingChatBot />
+      {!isNotFound && <Footer />}
+      {!isNotFound && <FloatingChatBot />}
     </div>
   );
 }
