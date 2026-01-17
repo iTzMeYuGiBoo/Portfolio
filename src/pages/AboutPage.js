@@ -9,7 +9,7 @@ const AboutPage = () => {
 
   useSEOMetaTags({
     title: 'About Me | Yugandhar Reddy Bana - Full-Stack Engineer',
-    description: 'Full-stack engineer specializing in React, data visualization, and performance optimization. 4+ years building scalable applications with 95+ Lighthouse scores.',
+    description: 'Full-stack engineer specializing in React, data visualization, and performance optimization. 2.5 years building scalable applications with 95+ Lighthouse scores.',
     url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about',
     image: Photo,
   });
@@ -20,7 +20,7 @@ const AboutPage = () => {
     '@type': 'Person',
     name: 'Yugandhar Reddy Bana',
     jobTitle: 'Full-Stack Engineer & Data Analyst',
-    description: 'Architecting high-performance, data-rich interfaces that solve complex problems. 4+ years building React applications with measurable impact.',
+    description: 'Architecting high-performance, data-rich interfaces that solve complex problems. 2.5 years building React applications with measurable impact.',
     image: Photo,
     url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about',
     email: 'yugandharreddybana@outlook.com',
@@ -94,29 +94,29 @@ const AboutPage = () => {
             <article className="about-bio">
               {/* Hook - Present */}
               <p className="about-intro">
-                I'm a <strong>full-stack engineer specializing in React and data visualization</strong>, architecting pixel-perfect interfaces that transform complex datasets into intuitive, accessible user experiences. With <strong>4+ years of professional experience</strong> and <strong>95+ Lighthouse performance scores</strong> across deployed applications, I deliver measurable impact that accelerates business value.
+                I'm a <strong>full-stack engineer specializing in React, performance optimization, and data visualization</strong>. I architect accessible, high-performance interfaces that help teams deliver user-centric products faster. In my <strong>2.5 years of professional experience</strong>, I've built solutions that improved application load times by 60%, enhanced user engagement through intuitive UX design, and mentored teammates in modern frontend best practices.
               </p>
 
               {/* Journey - Past */}
               <section className="about-section">
                 <h3>My Journey</h3>
                 <p>
-                  I began my tech career with a <strong>BSc in Computer Science & Engineering</strong> from SASTRA University, where I built a strong foundation in full-stack development. After graduation, I joined <strong>Incedo Technologies Solutions Limited</strong> (client: Verizon) as a Software Engineer, working on high-impact frontend projects, performance optimization, and scalable system architecture in a global telecom environment.
+                  I began my tech career with a <strong>BSc in Computer Science & Engineering</strong> from SASTRA University, where I learned to think systematically about scalable systems and clean code. After graduation, I joined <strong>Incedo Technologies Solutions Limited</strong> (client: Verizon) as a Software Engineer, where I worked on mission-critical frontend projects serving millions of telecom users. There, I owned performance optimization initiatives, implemented accessibility improvements that increased usability scores, and collaborated with cross-functional teams on architectural decisions.
                 </p>
                 <p>
-                  To deepen my expertise in data-driven engineering, I pursued an <strong>MSc in Data Analytics</strong> from the National College of Ireland. My thesis—"Impact of Macroeconomic Factors on Dublin Housing Prices"—achieved <strong>88% model accuracy</strong> using ensemble machine-learning techniques, combining my passion for both frontend excellence and data science.
+                  To deepen my expertise in data-driven insights, I pursued an <strong>MSc in Data Analytics</strong> from the National College of Ireland. My research thesis—"Impact of Macroeconomic Factors on Dublin Housing Prices"—achieved <strong>88% model accuracy</strong> using ensemble machine-learning techniques. This fusion of frontend engineering and data science enables me to build smarter interfaces that leverage real insights to solve business problems.
                 </p>
               </section>
 
               {/* Quick Stats - Bento Grid */}
               <div className="stats-grid">
                 <div className="stat-card">
-                  <div className="stat-number">4+</div>
+                  <div className="stat-number">2.5</div>
                   <div className="stat-label">Years of Experience</div>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-number">10+</div>
-                  <div className="stat-label">Projects Deployed</div>
+                  <div className="stat-number">60%</div>
+                  <div className="stat-label">Avg Load Time Improvement</div>
                 </div>
                 <div className="stat-card">
                   <div className="stat-number">95+</div>
@@ -130,17 +130,17 @@ const AboutPage = () => {
 
               {/* Engineering Philosophy */}
               <section className="about-section">
-                <h3>How I Work</h3>
-                <p>My engineering philosophy centers on three core principles:</p>
+                <h3>How I Help the Industry</h3>
+                <p>I contribute to teams and products through these core skills:</p>
                 <ul className="philosophy-list">
                   <li>
-                    <strong>User-Centric Design:</strong> I build interfaces where every interaction matters. Accessibility, performance, and intuitive design aren't afterthoughts—they're foundational.
+                    <strong>Performance Architecture:</strong> I optimize React applications for speed and scale. Faster apps mean better user retention, improved SEO rankings, and reduced infrastructure costs—directly impacting business metrics.
                   </li>
                   <li>
-                    <strong>Clean Code:</strong> I write code for humans first, machines second. Readable, maintainable code reduces bugs and accelerates team velocity.
+                    <strong>Accessibility & Inclusive Design:</strong> Building for all users isn't just ethical—it's smart business. I implement WCAG standards that expand market reach and reduce legal risk while improving experience for everyone.
                   </li>
                   <li>
-                    <strong>Continuous Learning:</strong> Technology evolves rapidly. I stay ahead of trends through experimentation, code reviews, and knowledge sharing with teams.
+                    <strong>Data-Driven Problem Solving:</strong> With analytics expertise, I help teams understand user behavior, validate design decisions with data, and iterate on features that actually matter. This bridges the gap between product vision and measurable outcomes.
                   </li>
                 </ul>
               </section>
@@ -149,7 +149,7 @@ const AboutPage = () => {
               <section className="about-section">
                 <h3>What's Next</h3>
                 <p>
-                  Currently, I'm seeking <strong>complex architectural challenges in fintech or data-intensive products</strong> where performance optimization and user experience directly drive business outcomes. I'm excited about building scalable systems that serve millions of users while maintaining pixel-perfect interfaces.
+                  I'm looking for roles where I can own end-to-end product features, collaborate with designers and product teams, and contribute to architectural decisions. I'm particularly interested in <strong>fintech, SaaS, or data-intensive products</strong> where every 100ms of performance, every accessibility feature, and every insight matter. I thrive in teams that value both craftsmanship and measurable business impact.
                 </p>
               </section>
 
