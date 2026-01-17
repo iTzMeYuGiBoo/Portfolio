@@ -6,13 +6,13 @@
 /* Header Section */
 .about-header {
   text-align: center;
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-8);
 }
 
 .about-header h2 {
   font-size: var(--text-5xl);
   font-weight: 800;
-  margin-bottom: var(--space-4);
+  margin-bottom: 0;
   background: linear-gradient(to right, var(--primary-600), var(--secondary-600));
   -webkit-background-clip: text;
   background-clip: text;
@@ -30,9 +30,9 @@
 .about-content {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: var(--space-16);
+  gap: var(--space-12);
   align-items: start;
-  margin-bottom: var(--space-20);
+  margin-bottom: var(--space-12);
 }
 
 /* Profile Image Styling */
@@ -72,7 +72,7 @@
 .about-intro {
   font-size: 1.25rem;
   line-height: 1.7;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   max-width: 65ch;
   color: var(--foreground);
   font-weight: 500;
@@ -86,7 +86,7 @@
 
 /* Section Styling */
 .about-section {
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-6);
 }
 
 .about-section h3 {

@@ -65,8 +65,7 @@ const AboutPage = () => {
       <div className="container">
         {/* Section Header */}
         <div className={`about-header fade-in-up ${animate ? 'run' : ''}`}>
-          <h2 id="about-heading">Behind the Code</h2>
-          <p className="section-subtitle">Full-Stack Engineer • Data Analyst • Performance Optimizer</p>
+          <h2 id="about-heading">About Me</h2>
         </div>
 
         {/* Main Content - Asymmetric Split Layout */}
