@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './ExperiencePage.css'; // Reusing the same styles
+import './ProjectsPage.css';
 import report from '../assets/report.pdf';
 import flashcard from '../assets/flashcard.png';
 import portfolio from '../assets/portfolio.png';
