@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import './ExperiencePage.css';
 
 const experiences = [
-
   {
     id: 1,
     position: "Security Officer",
@@ -47,7 +46,7 @@ const experiences = [
       "Scaled engineering team capabilities by mentoring 10+ developers and conducting 20+ technical interviews, reducing new hire onboarding time by 20%.",
       "Led Agile delivery within distributed squads by facilitating all Scrum ceremonies and managing version control via Git, resulting in a 15% increase in sprint velocity."
     ],
-    technologies: ["React", "Node.js", "Javascript", "CI/CD", "HTML","CSS","JUnit","Java","PostgresQL","Git","Agile Scrum", "Jira", "Confluence"],
+    technologies: ["React", "Node.js", "Javascript", "CI/CD", "HTML", "CSS", "JUnit", "Java", "PostgresQL", "Git", "Agile Scrum", "Jira", "Confluence"],
     featured: true
   }
 ];
@@ -71,166 +70,40 @@ const ExperiencePage = () => {
           </p>
         </div>
 
-        {/* ───────── timeline or grid ───────── */}
-        {activeTab === 'experience' ? (
-          <div className="experience-timeline">
-            {experiences.map((exp, i) => (
-              <div
-                key={exp.id}
-                className={`experience-card ${exp.featured ? 'featured' : ''} fade-in-up ${
-                  animate ? 'run' : ''
-                }`}
-                style={{ animationDelay: `${0.1 * i + 0.2}s` }}
-              >
-                <div className="experience-period">{exp.period}</div>
-                <div className="experience-content">
-                  <div className="experience-header">
-                    <h2>{exp.position}</h2>
-                    <h3>{exp.company}</h3>
-                  </div>
-
-                  <ul className="experience-description">
-                    {exp.description.map((item, k) => (
-                      <li key={k}>{item}</li>
-                    ))}
-                  </ul>
-
-                  <div className="technologies">
-                    {exp.technologies.map((tech, k) => (
-                      <span key={k} className="tech-tag">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="projects-grid">
-            {projects.map((proj, i) => (
-              <div
-                key={proj.id}
-                className={`project-card ${proj.featured ? 'featured' : ''} fade-in-up ${
-                  animate ? 'run' : ''
-                }`}
-                style={{ animationDelay: `${0.1 * i + 0.2}s` }}
-                onClick={() => setSelectedProject(proj)}
-              >
-                <div className="project-image">
-                  <img src={proj.imageUrl} alt={proj.title} />
-                </div>
-                <div className="project-content">
-                  <h2>{proj.title}</h2>
-                  <p>{proj.description.slice(0, 100)}…</p>
-
-                  <div className="technologies">
-                    {proj.technologies.slice(0, 3).map((tech, k) => (
-                      <span key={k} className="tech-tag">
-                        {tech}
-                      </span>
-                    ))}
-                    {proj.technologies.length > 3 && (
-                      <span className="tech-tag">
-                        +{proj.technologies.length - 3}
-                      </span>
-                    )}
-                  </div>
-
-                  <button className="button outline view-project-btn">
-                    View Details
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* ───────── modal ───────── */}
-        {selectedProject && (
-          <div
-            className="project-modal"
-            onClick={() => setSelectedProject(null)}
-          >
+        {/* ───────── timeline ───────── */}
+        <div className="experience-timeline">
+          {experiences.map((exp, i) => (
             <div
-              className="project-modal-content fade-in-up run"
-              onClick={(e) => e.stopPropagation()}
+              key={exp.id}
+              className={`experience-card ${exp.featured ? 'featured' : ''} fade-in-up ${
+                animate ? 'run' : ''
+              }`}
+              style={{ animationDelay: `${0.1 * i + 0.2}s` }}
             >
-              <button
-                className="close-button"
-                onClick={() => setSelectedProject(null)}
-              >
-                ×
-              </button>
+              <div className="experience-period">{exp.period}</div>
+              <div className="experience-content">
+                <div className="experience-header">
+                  <h2>{exp.position}</h2>
+                  <h3>{exp.company}</h3>
+                </div>
 
-              <img
-                className="project-modal-image"
-                src={selectedProject.imageUrl}
-                alt={selectedProject.title}
-              />
+                <ul className="experience-description">
+                  {exp.description.map((item, k) => (
+                    <li key={k}>{item}</li>
+                  ))}
+                </ul>
 
-              <div className="project-modal-details">
-                <h2>{selectedProject.title}</h2>
-                <p>{selectedProject.description}</p>
-
-                <h3>Technologies Used</h3>
                 <div className="technologies">
-                  {selectedProject.technologies.map((tech, k) => (
+                  {exp.technologies.map((tech, k) => (
                     <span key={k} className="tech-tag">
                       {tech}
                     </span>
                   ))}
                 </div>
-                {selectedProject.reportFile && (
-                  <div className="project-report-details">
-                    <h3>Report Details</h3>
-                    {canEmbed ? (
-                      <iframe
-                        title={selectedProject.title}
-                        src={`${selectedProject.reportFile}#toolbar=0&view=FitH`}
-                        loading="lazy"
-                        style={{ width: '100%', height: '60vh', border: 'none' }}
-                      />
-                    ) : (
-                      <div className="no-preview-wrapper">
-                        <p className="no-preview">
-                          Your browser can’t display PDFs inline.
-                        </p>
-                        <a
-                          href={selectedProject.reportFile}
-                          download
-                          className="button outline download-report-btn"
-                        >
-                          Download Report
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                )}
-                {selectedProject.gitHubLink && (
-                  <div className="project-links">
-                    <a
-                      href={selectedProject.gitHubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="button outline github-link-btn"
-                    >
-                      View on GitHub
-                    </a>
-                    <a
-                      href={selectedProject.projectLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="button outline project-link-btn"
-                    >
-                      View Live Project
-                    </a>
-                   </div>
-                )}
               </div>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );
