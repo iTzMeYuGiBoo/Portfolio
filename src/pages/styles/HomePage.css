@@ -12,7 +12,7 @@
     var(--primary-50) 0%,
     var(--background) 100%
   );
-  padding: var(--space-24) 0 var(--space-16);
+  padding: 120px 0 var(--space-16);
 }
 
 .hero-content {
