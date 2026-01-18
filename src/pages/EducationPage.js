@@ -1,27 +1,78 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import ThesisModal from '../components/layout/ThesisModal';
-import './EducationPage.css';
+import './styles/EducationPage.css';
 
 const EducationPage = () => {
-  const [animate, setAnimate] = useState(false);   // flips CSS animations on
+  const [animate, setAnimate] = useState(false);
   const [isThesisModalOpen, setIsThesisModalOpen] = useState(false);
 
   // Set SEO meta tags for Education page
   useSEOMetaTags({
     title: 'Education | Yugandhar Reddy Bana',
-    description: 'My educational background includes MSc in Data Analytics from UCD and BSc in Computer Science. Specialized in machine learning, data visualization, and full-stack development.',
+    description: 'Educational background: MSc Data Analytics from National College of Ireland, BSc Computer Science from SASTRA University. Specialized in ML, data visualization, and full-stack development.',
     url: 'https://iTzMeYuGiBoo.github.io/Portfolio/education',
     image: 'https://images.unsplash.com/photo-1516321318423-f06f70504cbf?w=1200&h=630&fit=crop',
   });
 
-  /* start animations on first paint */
+  // JSON-LD Educational Credential Schema
+  const educationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Yugandhar Reddy Bana',
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'degree',
+        educationalLevel: 'Master Degree',
+        name: 'MSc Data Analytics',
+        recognizedBy: {
+          '@type': 'EducationalOrganization',
+          name: 'National College of Ireland',
+          location: 'Dublin, Ireland'
+        },
+        dateEarned: '2025'
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'degree',
+        educationalLevel: 'Bachelor Degree',
+        name: 'BSc Computer Science & Engineering',
+        recognizedBy: {
+          '@type': 'EducationalOrganization',
+          name: 'SASTRA University',
+          location: 'Thanjavur, India'
+        },
+        dateEarned: '2021'
+      }
+    ]
+  };
+
+  // Continuous learning data
+  const learningTopics = [
+    { topic: 'Microsoft Full Stack Developer', progress: 65 },
+    { topic: 'Google Data Analytics', progress: 50 }
+  ];
+
   useEffect(() => {
     requestAnimationFrame(() => setAnimate(true));
   }, []);
 
+  // Scroll to projects section
+  const scrollToProject = (projectName) => {
+    const projectsSection = document.querySelector('#projects-section');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="education-page">
+      {/* JSON-LD Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify(educationSchema)}
+      </script>
+
       <div className="container">
         {/* ───── header ───── */}
         <div className={`education-header fade-in-up ${animate ? 'run' : ''}`}>
@@ -32,30 +83,38 @@ const EducationPage = () => {
           </p>
         </div>
 
-        {/* ───── timeline ───── */}
+        {/* ───── vertical timeline ───── */}
         <div className="education-timeline">
-          {/* MSc card */}
+          {/* MSc card with icon */}
           <div
             className={`education-card fade-in-up ${animate ? 'run' : ''}`}
             style={{ animationDelay: '0.2s' }}
           >
-            <div className="education-year">2025</div>
+            <div className="education-icon">🎓</div>
             <div className="education-content">
               <h2>MSc Data Analytics</h2>
               <h3>National College of Ireland</h3>
+              <div className="education-year">2025</div>
 
               <section className="education-details">
                 <div className="thesis-section">
                   <h4>Thesis</h4>
                   <p>
-                    “Impact of Macroeconomic Factors on Newly Built Residential
-                    Property Prices in Dublin” (88% model accuracy)
-                  </p>                  <button 
+                    "Impact of Macroeconomic Factors on Newly Built Residential
+                    Property Prices in Dublin" (88% model accuracy)
+                  </p>
+                  <button 
                     className="view-thesis-btn"
                     onClick={() => setIsThesisModalOpen(true)}
                   >
                     📊 Click here to view thesis details
-                  </button>                </div>
+                  </button>
+                </div>
+
+                {/* <div className="related-projects">
+                  <h4>Related Projects</h4>
+                  <p>Capstone: <button className="project-link" onClick={() => scrollToProject('data-dashboard')}>Built predictive models using Python & TensorFlow concepts learned in Advanced ML</button></p>
+                </div> */}
 
                 <div className="courses-section">
                   <h4>Key Modules</h4>
@@ -85,15 +144,16 @@ const EducationPage = () => {
             </div>
           </div>
 
-          {/* BSc card */}
+          {/* BSc card with icon */}
           <div
             className={`education-card fade-in-up ${animate ? 'run' : ''}`}
             style={{ animationDelay: '0.4s' }}
           >
-            <div className="education-year">2021</div>
+            <div className="education-icon">📚</div>
             <div className="education-content">
-              <h2>BSc Computer Science &amp; Engineering</h2>
+              <h2>BSc Computer Science & Engineering</h2>
               <h3>SASTRA University, India</h3>
+              <div className="education-year">2021</div>
 
               <section className="education-details">
                 <div className="thesis-section">
@@ -104,10 +164,15 @@ const EducationPage = () => {
                   </p>
                 </div>
 
+                {/* <div className="related-projects">
+                  <h4>Related Projects</h4>
+                  <p>Capstone: <button className="project-link" onClick={() => scrollToProject('flashcard-app')}>Facial Recognition system built using Java & OpenCV from Database & Web Technologies modules</button></p>
+                </div> */}
+
                 <div className="courses-section">
                   <h4>Key Modules</h4>
                   <ul>
-                    <li>Data Structures &amp; Algorithms</li>
+                    <li>Data Structures & Algorithms</li>
                     <li>Object-Oriented Programming</li>
                     <li>Database Management Systems</li>
                     <li>Web Technologies</li>
@@ -132,24 +197,48 @@ const EducationPage = () => {
           </div>
         </div>
 
-        {/* ───── continuing education ───── */}
+        {/* ───── continuous learning widget ───── */}
         <div
-          className={`continuing-education fade-in-up ${animate ? 'run' : ''}`}
-          style={{ animationDelay: '0.6s', marginLeft:'242px'}}
+          className={`continuous-learning fade-in-up ${animate ? 'run' : ''}`}
+          style={{ animationDelay: '0.6s' }}
         >
-          <h2>Continuing Education</h2>
-          <p>
-            Beyond formal education, I'm committed to continuous learning
-            through professional certifications and online courses.
+          <h2>Currently Learning</h2>
+          <p className="learning-intro">
+            Constantly upskilling through active learning and professional development
           </p>
 
-          <div className="continuing-education-content">
+          <div className="learning-topics">
+            {learningTopics.map((item, index) => (
+              <div key={index} className="learning-card">
+                <h4>{item.topic}</h4>
+                <div className="progress-container">
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: `${item.progress}%` }}></div>
+                  </div>
+                  <span className="progress-text">{item.progress}% Complete</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ───── certifications section ───── */}
+        <div
+          className={`certifications-section fade-in-up ${animate ? 'run' : ''}`}
+          style={{ animationDelay: '0.8s'}}
+        >
+          <h2>Professional Certifications</h2>
+          <p>
+            Beyond formal education, I've earned professional certifications across
+            development, cloud technologies, and data analytics.
+          </p>
+
+          <div className="certifications-content">
             <a href="/certifications" className="button">
-              View My Certifications
+              View All Certifications
             </a>
             <p className="note">
-              Full project list, semester certificates, and earlier internships
-              available on request.
+              Including Meta Front-End Development, AWS, Google, and more...
             </p>
           </div>
         </div>

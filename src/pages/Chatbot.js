@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import qaData from './qaData';
-import './Chatbot.css';
+import qaData from '../data/qaData';
+import './styles/Chatbot.css';
 
 const fallback = "I'm not sure how to answer that. Try asking about my skills, education or experience.";
 

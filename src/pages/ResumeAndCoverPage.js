@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './ResumeAndCoverPage.css';
+import './styles/ResumeAndCoverPage.css';
 
 /* files live in PUBLIC_URL so they work in dev & production builds */
 const DOCS = {
@@ -33,7 +33,7 @@ const ResumeAndCoverPage = () => {
 
   /* 3️⃣ handy references */
   const { label, file } = DOCS[activeTab];
-  const fileURL = './' + file;
+  const fileURL = `${process.env.PUBLIC_URL}/${file}`;
   // console.log("The File URL is:", fileURL);
 
   return (

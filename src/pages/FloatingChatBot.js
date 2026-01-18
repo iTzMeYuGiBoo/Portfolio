@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Chatbot from './Chatbot';
-import './FloatingChatBot.css';
+import './styles/FloatingChatBot.css';
 
 const FloatingChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);

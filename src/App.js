@@ -13,6 +13,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import ResumeAndCoverPage from './pages/ResumeAndCoverPage';
 import { useAuth } from './context/AuthContext';
 import FloatingChatBot from './pages/FloatingChatBot';
+import './styles/App.css';
 
 // List of valid routes (excluding catch-all)
 const validRoutes = ['/', '/about', '/education', '/certifications', '/experience', '/projects', '/contact', '/resume-and-cover'];
@@ -38,7 +39,7 @@ function App() {
   return (
     <div className="app">
       {!isNotFound && <Header />}
-      <main>
+      <main id="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />

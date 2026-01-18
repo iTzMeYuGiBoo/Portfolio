@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import './DashboardPage.css';
+import './styles/DashboardPage.css';
 
 // Mock certificate data
 const initialCertificates = [

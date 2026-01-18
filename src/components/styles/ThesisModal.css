@@ -1,0 +1,578 @@
+/* ═════════════════════════════════════════════════════════════
+   THESIS MODAL STYLES
+   ═════════════════════════════════════════════════════════════ */
+
+:root {
+  --modal-bg: #ffffff;
+  --modal-text-primary: #1a202c;
+  --modal-text-secondary: #4a5568;
+  --modal-border: #e2e8f0;
+  --modal-header-bg: #f7fafc;
+  --accent-primary: #3b82f6;
+  --accent-secondary: #8b5cf6;
+  --success: #10b981;
+}
+
+.dark {
+  --modal-bg: #1a202c;
+  --modal-text-primary: #f7fafc;
+  --modal-text-secondary: #cbd5e0;
+  --modal-border: #4a5568;
+  --modal-header-bg: #2d3748;
+  --accent-primary: #60a5fa;
+  --accent-secondary: #a78bfa;
+  --success: #34d399;
+}
+
+.thesis-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+  color: var(--modal-text-primary);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.thesis-modal-content {
+  background: var(--modal-bg);
+  color: var(--modal-text-primary);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ───────── Header ───────── */
+.thesis-modal-header {
+  background: var(--modal-header-bg);
+  padding: 30px;
+  border-bottom: 2px solid var(--modal-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 12px 12px 0 0;
+}
+
+.thesis-modal-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.thesis-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--modal-text-secondary);
+  font-weight: 500;
+}
+
+.thesis-modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--modal-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.thesis-modal-close:hover {
+  background: var(--modal-border);
+  color: var(--modal-text-primary);
+}
+
+/* ───────── Tabs ───────── */
+.thesis-modal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--modal-border);
+  background: var(--modal-header-bg);
+  gap: 0;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  color: var(--modal-text-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  text-align: center;
+}
+
+.tab-button:hover {
+  color: var(--accent-primary);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.tab-button.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* ───────── Body ───────── */
+.thesis-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+.tab-content {
+  animation: fadeIn 0.3s ease;
+}
+
+.thesis-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.info-card {
+  background: var(--modal-header-bg);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--modal-border);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h4 {
+  font-size: 1.1rem;
+  margin: 0 0 12px 0;
+  color: var(--modal-text-primary);
+}
+
+.info-card p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: var(--modal-text-secondary);
+  line-height: 1.5;
+}
+
+.info-card strong {
+  color: var(--modal-text-primary);
+  font-weight: 600;
+}
+
+.accuracy-badge {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+.models-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.models-list li {
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: var(--modal-text-secondary);
+}
+
+.models-list li:before {
+  content: "• ";
+  color: var(--accent-primary);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.thesis-abstract {
+  background: var(--modal-header-bg);
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid var(--accent-secondary);
+  margin-top: 20px;
+}
+
+.thesis-abstract h4 {
+  margin-top: 0;
+  color: var(--modal-text-primary);
+}
+
+.thesis-abstract p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--modal-text-secondary);
+  margin: 12px 0;
+}
+
+/* ───────── Charts ───────── */
+.chart-container {
+  background: var(--modal-header-bg);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  border: 1px solid var(--modal-border);
+}
+
+.models-table {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.models-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--modal-header-bg);
+  border: 1px solid var(--modal-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.models-table th {
+  background: var(--accent-primary);
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.models-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--modal-border);
+  font-size: 0.9rem;
+  color: var(--modal-text-secondary);
+}
+
+.models-table tr:last-child td {
+  border-bottom: none;
+}
+
+.models-table tr.best-model {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.models-table tr.best-model td {
+  font-weight: 600;
+  color: var(--modal-text-primary);
+}
+
+.key-findings {
+  background: var(--modal-header-bg);
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid var(--success);
+  margin: 20px 0;
+}
+
+.key-findings h4 {
+  margin-top: 0;
+  color: var(--modal-text-primary);
+}
+
+.key-findings ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.key-findings li {
+  padding: 10px 0;
+  font-size: 0.9rem;
+  color: var(--modal-text-secondary);
+  line-height: 1.6;
+  border-bottom: 1px solid var(--modal-border);
+}
+
+.key-findings li:last-child {
+  border-bottom: none;
+}
+
+.key-findings strong {
+  color: var(--modal-text-primary);
+  font-weight: 600;
+}
+
+/* ───────── Details Section ───────── */
+.details-section {
+  margin-bottom: 25px;
+}
+
+.details-section h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--modal-text-primary);
+  margin: 0 0 15px 0;
+  border-bottom: 2px solid var(--modal-border);
+  padding-bottom: 10px;
+}
+
+.details-section ul,
+.details-section ol {
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+}
+
+.details-section li {
+  padding: 10px 0;
+  font-size: 0.9rem;
+  color: var(--modal-text-secondary);
+  line-height: 1.6;
+  border-bottom: 1px solid var(--modal-border);
+}
+
+.details-section li:last-child {
+  border-bottom: none;
+}
+
+.details-section strong {
+  color: var(--modal-text-primary);
+  font-weight: 600;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.feature-item {
+  background: var(--modal-header-bg);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--modal-border);
+  text-align: center;
+}
+
+.feature-item strong {
+  display: block;
+  color: var(--accent-primary);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.feature-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--modal-text-secondary);
+}
+
+/* ───────── Footer ───────── */
+.thesis-modal-footer {
+  padding: 20px 30px;
+  border-top: 1px solid var(--modal-border);
+  background: var(--modal-header-bg);
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.pdf-info {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--modal-text-secondary);
+}
+
+/* ───────── Scrollbar Styling ───────── */
+.thesis-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.thesis-modal-body::-webkit-scrollbar-track {
+  background: var(--modal-header-bg);
+}
+
+.thesis-modal-body::-webkit-scrollbar-thumb {
+  background: var(--modal-border);
+  border-radius: 4px;
+}
+
+.thesis-modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* ───────── Responsive Design ───────── */
+@media (max-width: 768px) {
+  .thesis-modal-content {
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+
+  .thesis-modal-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .thesis-modal-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .thesis-modal-close {
+    align-self: flex-end;
+  }
+
+  .thesis-info-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .thesis-modal-tabs {
+    overflow-x: auto;
+  }
+
+  .tab-button {
+    white-space: nowrap;
+    flex: auto;
+  }
+
+  .thesis-modal-body {
+    padding: 20px;
+  }
+
+  .models-table {
+    font-size: 0.85rem;
+  }
+
+  .models-table th,
+  .models-table td {
+    padding: 8px 10px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .feature-item {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thesis-modal-overlay {
+    padding: 10px;
+  }
+
+  .thesis-modal-content {
+    max-height: 98vh;
+  }
+
+  .thesis-modal-header {
+    padding: 20px;
+  }
+
+  .thesis-modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .thesis-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .thesis-modal-body {
+    padding: 15px;
+  }
+
+  .thesis-modal-footer {
+    padding: 15px;
+  }
+
+  .thesis-info-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .info-card {
+    padding: 15px;
+  }
+
+  .info-card h4 {
+    font-size: 0.95rem;
+  }
+
+  .info-card p {
+    font-size: 0.85rem;
+  }
+
+  .details-section h4 {
+    font-size: 1rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
