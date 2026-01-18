@@ -246,8 +246,8 @@ h6 {
 p {
   margin-bottom: var(--space-4);
   line-height: var(--leading-normal);
-  max-width: 65ch;
-  text-align: justify;
+  /* max-width: 65ch; */
+  /* text-align: justify; */
   text-justify: inter-word;
 }
 
