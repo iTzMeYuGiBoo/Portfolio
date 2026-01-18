@@ -65,7 +65,7 @@ const LoginPage = () => {
             {!isVerifying ? (
               <>
                 <div className="form-group">
-                  <label htmlFor="email">Email address</label>
+                  <label for="email" htmlFor="email">Email address</label>
                   <input
                     type="email"
                     id="email"
@@ -77,7 +77,7 @@ const LoginPage = () => {
                 
                 {!isGuestMode && (
                   <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                    <label for="password" htmlFor="password">Password</label>
                     <input
                       type="password"
                       id="password"
@@ -115,7 +115,7 @@ const LoginPage = () => {
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="verificationCode">2-factor code (see your inbox)</label>
+                  <label for="verificationCode" htmlFor="verificationCode">2-factor code (see your inbox)</label>
                   <input
                     type="text"
                     id="verificationCode"

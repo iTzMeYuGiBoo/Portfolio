@@ -15,6 +15,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@squoosh/cli": "^0.7.1",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.4.3",
