@@ -198,7 +198,7 @@ const DashboardPage = () => {
             <h2>{editingId ? 'Edit Certificate' : 'Add New Certificate'}</h2>
             <div className="certificate-form">
               <div className="form-group">
-                <label htmlFor="title">Certificate Title*</label>
+                <label for="title" htmlFor="title">Certificate Title*</label>
                 <input
                   type="text"
                   id="title"
@@ -211,7 +211,7 @@ const DashboardPage = () => {
               </div>
               
               <div className="form-group">
-                <label htmlFor="issuer">Issuing Organization*</label>
+                <label for="issuer" htmlFor="issuer">Issuing Organization*</label>
                 <input
                   type="text"
                   id="issuer"
@@ -224,7 +224,7 @@ const DashboardPage = () => {
               </div>
               
               <div className="form-group">
-                <label htmlFor="date">Date Received*</label>
+                <label for="date" htmlFor="date">Date Received*</label>
                 <input
                   type="date"
                   id="date"

@@ -36,7 +36,7 @@ const indexPath = path.join(buildDir, 'index.html');
 const nojekyllPath = path.join(buildDir, '.nojekyll');
 if (!fs.existsSync(nojekyllPath)) {
   fs.writeFileSync(nojekyllPath, '');
-  console.log('✓ Created .nojekyll file');
+  // console.log('✓ Created .nojekyll file');
 }
 
 // Read the base HTML once
@@ -47,14 +47,14 @@ if (!fs.existsSync(indexPath)) {
 
 const baseHTML = fs.readFileSync(indexPath, 'utf8');
 
-console.log('🔍 Starting pre-rendering for all routes...\n');
+// console.log('🔍 Starting pre-rendering for all routes...\n');
 
 // Process each route
 routes.forEach((route, index) => {
   try {
     if (route === '/') {
       // Root already has index.html
-      console.log(`✓ [${index + 1}/${routes.length}] Root route (/) - using default index.html`);
+      // console.log(`✓ [${index + 1}/${routes.length}] Root route (/) - using default index.html`);
       return;
     }
 
@@ -72,9 +72,9 @@ routes.forEach((route, index) => {
     const routeIndexPath = path.join(routeDir, 'index.html');
     fs.writeFileSync(routeIndexPath, baseHTML);
     
-    console.log(`✓ [${index + 1}/${routes.length}] Pre-rendered: ${route} → ${routeParts.join('/')}/index.html`);
+    // console.log(`✓ [${index + 1}/${routes.length}] Pre-rendered: ${route} → ${routeParts.join('/')}/index.html`);
   } catch (error) {
-    console.error(`✗ [${index + 1}/${routes.length}] Error pre-rendering ${route}:`, error.message);
+    // console.error(`✗ [${index + 1}/${routes.length}] Error pre-rendering ${route}:`, error.message);
   }
 });
 
@@ -85,7 +85,7 @@ try {
   
   if (fs.existsSync(source404)) {
     fs.copyFileSync(source404, target404);
-    console.log('\n✓ 404.html copied for fallback routing');
+    // console.log('\n✓ 404.html copied for fallback routing');
   }
 } catch (error) {
   console.error('Error copying 404.html:', error.message);

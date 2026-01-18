@@ -53,6 +53,7 @@ const Chatbot = () => {
         <div ref={endRef} />
       </div>
       <form className="chat-input" onSubmit={handleSubmit}>
+        <label htmlFor="chatbot-input" className="sr-only">Type your question</label>
         <input
           type="text"
           value={input}
