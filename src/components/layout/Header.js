@@ -28,12 +28,11 @@ const Header = () => {
 
   return (
     <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container">
-        <div className="header-inner">
-          <Link to="/" className="logo">
-            <span className="name">Yugandhar Reddy Bana</span>
-            <span className="title">Front-End Engineer | Data Analyst</span>
-          </Link>
+      <div className="header-inner">
+        <Link to="/" className="logo">
+          <span className="name">Yugandhar Reddy Bana</span>
+          <span className="title">Front-End Engineer | Data Analyst</span>
+        </Link>
           
           <button 
             className="mobile-menu-toggle" 
@@ -80,7 +79,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink to="/resume-and-cover" className={({ isActive }) => isActive ? 'active' : ''}>
-                  CV & Cover Letter
+                  Resume
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -124,9 +123,8 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-      </div>
-    </header>
-  );
+      </header>
+    );
 };
 
 export default Header;

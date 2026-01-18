@@ -1,11 +1,10 @@
 .contact-page {
   padding-top: 120px;
-  min-height: 100vh;
 }
 
 .contact-header {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-6);
 }
 
 .contact-header h1 {
@@ -24,7 +23,7 @@
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: var(--space-8);
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-8);
 }
 
 .contact-info-card, .contact-form-card {

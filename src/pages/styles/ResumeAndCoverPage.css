@@ -1,11 +1,10 @@
 .resume-page {
   padding-top: 120px;
-  min-height: 100vh;
 }
 
 .resume-header {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-6);
 }
 
 .resume-header h1 {
@@ -15,7 +14,7 @@
 
 .resume-intro {
   max-width: 800px;
-  margin: 0 auto var(--space-8);
+  margin: 0 auto var(--space-6);
   color: var(--muted-foreground);
   font-size: var(--text-lg);
 }

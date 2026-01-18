@@ -1,12 +1,11 @@
 .about-page {
   padding-top: 120px;
-  min-height: 100vh;
 }
 
 /* Header Section */
 .about-header {
   text-align: center;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .about-header h2 {
@@ -32,7 +31,7 @@
   grid-template-columns: 1fr 1.2fr;
   gap: var(--space-10);
   align-items: start;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
 }
 
 /* Profile Image Styling */

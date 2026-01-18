@@ -1,11 +1,10 @@
 .experience-page {
   padding-top: 120px;
-  min-height: 100vh;
 }
 
 .experience-header {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-6);
 }
 
 .experience-header h1 {
@@ -15,7 +14,7 @@
 
 .experience-intro {
   max-width: 800px;
-  margin: 0 auto var(--space-8);
+  margin: 0 auto var(--space-6);
   color: var(--muted-foreground);
   font-size: var(--text-lg);
 }

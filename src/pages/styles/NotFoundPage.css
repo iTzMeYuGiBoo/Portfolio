@@ -1,6 +1,6 @@
 .not-found-page {
   padding-top: 120px;
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
   display: flex;
   align-items: center;
   justify-content: center;
