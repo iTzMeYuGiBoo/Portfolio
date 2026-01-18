@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import ThesisModal from '../components/layout/ThesisModal';
-import './EducationPage.css';
+import './styles/EducationPage.css';
 
 const EducationPage = () => {
   const [animate, setAnimate] = useState(false);

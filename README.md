@@ -334,7 +334,14 @@ Each route has its own `index.html` with proper meta tags for crawlers.
 
 ### Optimization Techniques
 - **Code Splitting**: React.lazy() for route-based splitting
-- **Asset Optimization**: Compressed images, minified CSS/JS
+- **Asset Optimization**: 
+  - Compressed images with explicit width/height attributes (prevents CLS)
+  - Lazy loading with `loading="lazy"` attribute
+  - **🎯 Recommended WebP Conversion** (75% file size reduction):
+    - `portfolio.png` (1024×1024) → Convert to WebP for ~150KB savings
+    - `flashcard.png` (1024×1024) → Convert to WebP for ~150KB savings
+    - Use [Squoosh](https://squoosh.app/) or `cwebp` CLI tool
+  - Minified CSS/JS
 - **Caching**: Service worker for offline support (optional)
 - **Lazy Loading**: Images and components loaded on demand
 - **Bundle Size**: Optimized dependencies and tree-shaking
@@ -344,6 +351,11 @@ Each route has its own `index.html` with proper meta tags for crawlers.
 - **Accessibility**: 95+
 - **Best Practices**: 90+
 - **SEO**: 100
+
+### Core Web Vitals
+- **LCP (Largest Contentful Paint)**: < 2.5s
+- **FID (First Input Delay)**: < 100ms  
+- **CLS (Cumulative Layout Shift)**: < 0.1 ✅ (fixed with image dimensions)
 
 ---
 

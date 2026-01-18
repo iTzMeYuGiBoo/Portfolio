@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './ThesisPage.css';
+import './styles/ThesisPage.css';
 import report from '../assets/report.pdf';
 import {
   LineChart,

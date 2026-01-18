@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './NotFoundPage.css';
+import './styles/NotFoundPage.css';
 
 const NotFoundPage = () => {
   const [animate, setAnimate] = useState(false);

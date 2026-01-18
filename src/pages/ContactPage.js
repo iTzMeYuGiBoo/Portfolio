@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './ContactPage.css';
+import './styles/ContactPage.css';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({

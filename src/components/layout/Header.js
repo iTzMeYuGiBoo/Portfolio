@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
-import './Header.css';
+import '../styles/Header.css';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);

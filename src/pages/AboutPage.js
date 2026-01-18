@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import useJSONLD from '../hooks/useJSONLD';
-import './AboutPage.css';
+import './styles/AboutPage.css';
 import Photo from '../assets/Photo.jpg';
 
 const AboutPage = () => {

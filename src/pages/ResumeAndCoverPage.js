@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './ResumeAndCoverPage.css';
+import './styles/ResumeAndCoverPage.css';
 
 /* files live in PUBLIC_URL so they work in dev & production builds */
 const DOCS = {

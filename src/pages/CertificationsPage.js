@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './CertificationsPage.css';
+import './styles/CertificationsPage.css';
 
 // Certificate data with skills mapped
 const initialCertificates = [
@@ -14,7 +14,15 @@ const initialCertificates = [
     status: 'In Progress',
     skills: ['React', 'JavaScript', 'HTML/CSS', 'Git', 'UX/UI'],
     credentialUrl: 'https://coursera.org/professional-certificates/meta-front-end-developer',
-    takeaway: `Built a full front-end stack: HTML5, modern CSS (Flexbox, Grid), Mastered JavaScript ES6+, DOM manipulation & debugging techniques, learned React component model, hooks & routing; authored a capstone SPA. Applied UX/UI heuristics, wire-framing and responsive design principles. Used Git/GitHub for real-world version control and peer collaboration. Completed coding-interview prep with algorithmic problem-solving exercises.`,
+    takeaway: [
+      'Built a full front-end stack with HTML5 and modern CSS (Flexbox, Grid)',
+      'Mastered JavaScript ES6+, DOM manipulation, and debugging techniques',
+      'Learned React component model, hooks, and routing patterns',
+      'Authored a capstone Single Page Application (SPA)',
+      'Applied UX/UI heuristics, wire-framing, and responsive design principles',
+      'Used Git/GitHub for real-world version control and peer collaboration',
+      'Completed coding-interview prep with algorithmic problem-solving exercises'
+    ],
     children: [
       {
         id: '2-1',
@@ -91,7 +99,16 @@ const initialCertificates = [
     status: 'In Progress',
     skills: ['Power BI', 'DAX', 'Data Modeling', 'Excel', 'ETL'],
     credentialUrl: 'https://www.coursera.org/professional-certificates/microsoft-power-bi-data-analyst',
-    takeaway: 'Learned end-to-end analytics process from asking questions to driving decisions with data.',
+    takeaway: [
+      'Learned end-to-end analytics process from asking questions to driving decisions',
+      'Excel data cleaning, profiling, and reshaping techniques',
+      'Power BI analyst roles and data-analysis lifecycle overview',
+      'Storage modes, Power Query transforms, dataflows, and anomaly detection',
+      'Star-schema data modeling with DAX calculations and performance tuning',
+      'Built interactive visuals, reports, and dashboards for data storytelling',
+      'Created and published apps with row-level security implementation',
+      'Completed comprehensive capstone project applying all concepts'
+    ],
     children: [
       { 
         id: '3-1',
@@ -161,7 +178,14 @@ const initialCertificates = [
     status: 'Completed',
     skills: ['Excel', 'Data Analysis', 'Macros', 'VBA', 'Dashboards'],
     credentialUrl: 'https://www.coursera.org/specializations/excel',
-    takeaway: `Progressed from Excel essentials to power-user level across four courses. Built dashboards, cleaned large datasets and automated tasks with advanced formulas & macros. Applied data-validation, what-if analysis, forecasting and modelling techniques. Completed real-world business case projects using full downloadable workbooks.`,
+    takeaway: [
+      'Progressed from Excel essentials to power-user level across four courses',
+      'Built dashboards and cleaned large datasets with advanced techniques',
+      'Automated tasks using advanced formulas and macros',
+      'Applied data-validation, what-if analysis, and forecasting methods',
+      'Implemented modeling techniques for complex business scenarios',
+      'Completed real-world business case projects with downloadable workbooks'
+    ],
     children: [
       { 
         id: '4-1',
@@ -247,8 +271,14 @@ const initialCertificates = [
     category: 'Development',
     status: 'Completed',
     skills: ['Problem Solving', 'Algorithms', 'Data Structures', 'Coding'],
-    credentialUrl: '/Portfolio/assets/sei_certificate.pdf',
-    takeaway: "Demonstrated strong problem-solving abilities and core software engineering principles through HackerRank's Software Engineer Intern certification. Successfully completed algorithmic challenges and coding tasks, showcasing proficiency in data structures, coding efficiency, and real-world technical aptitude."
+    credentialUrl: `${process.env.PUBLIC_URL}/assets/sei_certificate.pdf`,
+    takeaway: [
+      'Demonstrated strong problem-solving abilities through algorithmic challenges',
+      'Applied core software engineering principles in practical coding tasks',
+      'Developed proficiency in data structures and algorithms',
+      'Improved coding efficiency and best practices',
+      'Showcased real-world technical aptitude in competitive programming'
+    ]
   },
   {
     id: '9',
@@ -259,8 +289,14 @@ const initialCertificates = [
     category: 'Development',
     status: 'Completed',
     skills: ['React', 'JSX', 'Hooks', 'State Management', 'Component Lifecycle'],
-    credentialUrl: '/Portfolio/assets/fde_react.pdf',
-    takeaway: "Validated practical skills in building modern web applications using React. This certification covered key frontend concepts including JSX, component lifecycle, hooks, state management, and routing—proving ability to develop responsive, interactive UIs in a production-like environment."
+    credentialUrl: `${process.env.PUBLIC_URL}/assets/fde_react.pdf`,
+    takeaway: [
+      'Validated practical skills in building modern web applications with React',
+      'Mastered key frontend concepts: JSX and component lifecycle',
+      'Developed expertise in React Hooks and state management patterns',
+      'Implemented React Router for multi-page application navigation',
+      'Built responsive and interactive user interfaces in production-like environments'
+    ]
   }
 ];
 
@@ -478,7 +514,15 @@ const CertificationsPage = () => {
                 
                 <div className="certificate-takeaway-section">
                   <h3>What I Learned</h3>
-                  <p>{selectedCertificate.takeaway || "No summary available."}</p>
+                  {Array.isArray(selectedCertificate.takeaway) ? (
+                    <ul className="takeaway-bullets">
+                      {selectedCertificate.takeaway.map((point, idx) => (
+                        <li key={idx}>{point}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>{selectedCertificate.takeaway || "No summary available."}</p>
+                  )}
                 </div>
 
                 {selectedCertificate.children && selectedCertificate.children.length > 0 && (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 // import { motion } from 'framer-motion';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './ExperiencePage.css';
+import './styles/ExperiencePage.css';
 
 const experiences = [
   {

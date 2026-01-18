@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import useJSONLD from '../hooks/useJSONLD';
-import './HomePage.css';
+import './styles/HomePage.css';
 
 const HomePage = () => {
   const [animate, setAnimate] = useState(false);   // flips CSS keyframes on

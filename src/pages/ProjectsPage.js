@@ -1,35 +1,21 @@
 import { useState, useEffect } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
-import './ProjectsPage.css';
+import './styles/ProjectsPage.css';
 import flashcard from '../assets/flashcard.png';
 import portfolio from '../assets/portfolio.png';
+import projectsData from '../data/projects.json';
 
-const projects = [
-  {
-    id: 1,
-    title: "Personal Portfolio Website",
-    description:
-      "Engineered a responsive, accessible portfolio using React and modern CSS to showcase projects and achievements. Implemented dark mode toggle with context-based theming, pre-rendered routes for SEO optimization, and achieved 95+ Lighthouse accessibility score. Deployed to GitHub Pages with zero-downtime routing and 20+ hours of performance optimization. Features Framer Motion animations, Recharts data visualizations, and full WCAG 2.2 AA compliance.",
-    technologies: ["React", "React Router", "Redux Toolkit", "JavaScript", "CSS", "HTML", "Git", "GitHub", "Responsive Design", "Accessibility"],
-    imageUrl: portfolio,
-    featured: true,
-    gitHubLink: "https://github.com/BanaYugandharReddy08/Portfolio",
-    reportFile: null,
-    projectLink: "https://banayugandharreddy08.github.io/Portfolio/"
-  },
-  {
-    id: 2,
-    title: "Flashcard App",
-    description:
-      "Built a full-stack intelligent flashcard application that integrates Google Generative AI for automated content generation. Architected React+Redux frontend with real-time quiz generation and Express/Node.js backend REST APIs. Reduced manual flashcard creation time by 85% through AI automation. Deployed on Render with cross-origin resource handling and implemented JWT authentication. Supports 500+ concurrent users with optimized database queries and caching strategies.",
-    technologies: ["React", "React Router", "Redux Toolkit", "JavaScript", "CSS", "HTML", "Node.js", "Git", "GitHub", "Responsive Design", "Accessibility"],
-    imageUrl: flashcard,
-    featured: true,
-    gitHubLink: "https://github.com/BanaYugandharReddy08/Flashcard",
-    reportFile: null,
-    projectLink: "https://flashcard-1-5xj3.onrender.com/"
-  },
-];
+// Map image URLs from JSON to imported images
+const imageMap = {
+  portfolio,
+  flashcard
+};
+
+// Transform project data to include actual image imports
+const projects = projectsData.map(project => ({
+  ...project,
+  imageUrl: imageMap[project.imageUrl]
+}));
 
 const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -63,7 +49,7 @@ const ProjectsPage = () => {
               onClick={() => setSelectedProject(proj)}
             >
               <div className="project-image">
-                <img src={proj.imageUrl} alt={proj.title} />
+                <img src={proj.imageUrl} alt={proj.title} width="1024" height="1024" loading="lazy" />
               </div>
               <div className="project-content">
                 <h2>{proj.title}</h2>
@@ -111,6 +97,8 @@ const ProjectsPage = () => {
                 className="project-modal-image"
                 src={selectedProject.imageUrl}
                 alt={selectedProject.title}
+                width="1024"
+                height="1024"
               />
 
               <div className="project-modal-details">

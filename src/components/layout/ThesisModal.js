@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import report from '../../assets/report.pdf';
-import './ThesisModal.css';
+import '../styles/ThesisModal.css';
 
 const ThesisModal = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState('overview');
