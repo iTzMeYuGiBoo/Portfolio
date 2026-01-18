@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import useJSONLD from '../hooks/useJSONLD';
 import './styles/AboutPage.css';
-import Photo from '../assets/Photo.jpg';
+import Photo from '../assets/Photo.webp';
 
 const AboutPage = () => {
   const [animate, setAnimate] = useState(false);
