@@ -8,7 +8,7 @@ export const useSEOMetaTags = ({
   title = 'Yugandhar Reddy Bana | Front-End Engineer & Data Analyst',
   description = 'Data-savvy front-end engineer who turns numbers into pixel-perfect products. React specialist with expertise in performance optimization and data visualization.',
   image = 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop',
-  url = 'https://iTzMeYuGiBoo.github.io/Portfolio',
+  url = 'https://iTzMeYuGiBoo.github.io/Portfolio/',
   type = 'website',
 } = {}) => {
   return (

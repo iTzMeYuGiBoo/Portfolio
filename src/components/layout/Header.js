@@ -26,8 +26,10 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
   return (
-    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
+    <div className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
         <Link to="/" className="logo">
           <span className="name">Yugandhar Reddy Bana</span>
@@ -53,37 +55,37 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>
+                <NavLink to="/about/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>
                   About
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/education" className={({ isActive }) => isActive ? 'active' : ''}>
+                <NavLink to="/education/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>
                   Education
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/certifications" className={({ isActive }) => isActive ? 'active' : ''}>
+                <NavLink to="/certifications/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>
                   Certifications
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/experience" className={({ isActive }) => isActive ? 'active' : ''}>
+                <NavLink to="/experience/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>
                   Experience
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/projects" className={({ isActive }) => isActive ? 'active' : ''}>
+                <NavLink to="/projects/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>
                   Projects
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/resume-and-cover" className={({ isActive }) => isActive ? 'active' : ''}>
+                <NavLink to="/resume-and-cover/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>
                   Resume
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>
+                <NavLink to="/contact/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>
                   Contact
                 </NavLink>
               </li>
@@ -123,7 +125,7 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-      </header>
+      </div>
     );
 };
 

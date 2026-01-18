@@ -10,7 +10,7 @@ const NotFoundPage = () => {
   useSEOMetaTags({
     title: '404 - Page Not Found | Yugandhar Reddy Bana',
     description: 'The page you\'re looking for doesn\'t exist. Return to the homepage to explore my portfolio, projects, and professional experience.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/404',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/404.html',
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop',
   });
 

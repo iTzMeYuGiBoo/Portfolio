@@ -175,20 +175,20 @@
   --background: var(--neutral-900);
   --foreground: var(--neutral-50);
   --muted: var(--neutral-800);
-  --muted-foreground: var(--neutral-400);
+  --muted-foreground: var(--neutral-300);
   --border: var(--neutral-700);
   --input: var(--neutral-700);
   --card: var(--neutral-800);
   --card-foreground: var(--neutral-50);
-  --primary: var(--primary-500);
+  --primary: var(--primary-400);
   --primary-foreground: var(--primary-950);
-  --secondary: var(--secondary-500);
+  --secondary: var(--secondary-400);
   --secondary-foreground: var(--secondary-950);
-  --accent: var(--accent-500);
+  --accent: var(--accent-400);
   --accent-foreground: var(--accent-950);
-  --destructive: var(--error-500);
+  --destructive: var(--error-400);
   --destructive-foreground: var(--error-950);
-  --ring: var(--primary-600);
+  --ring: var(--primary-500);
 }
 
 /* Base styles */
@@ -245,10 +245,10 @@ h6 {
 
 p {
   margin-bottom: var(--space-4);
-  line-height: var(--leading-normal);
-  /* max-width: 65ch; */
-  /* text-align: justify; */
-  text-justify: inter-word;
+  line-height: 1.6;
+  max-width: 75ch;
+  letter-spacing: -0.01em;
+  /* text-justify: inter-word; */
 }
 
 ul,

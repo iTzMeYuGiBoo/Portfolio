@@ -25,7 +25,7 @@ const ThesisPage = () => {
   useSEOMetaTags({
     title: 'Thesis Case Study - Dublin Housing Price Prediction | Yugandhar Reddy Bana',
     description: 'Comprehensive case study on Dublin housing price prediction using machine learning. 88% accuracy with Random Forest, XGBoost, and LightGBM ensemble models.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/thesis',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/thesis/',
     image: 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?w=1200&h=630&fit=crop',
   });
 
@@ -522,21 +522,21 @@ const ThesisPage = () => {
               <p>
                 This very portfolio website built with React, showcasing projects, experience, and professional profile.
               </p>
-              <a href="/projects" className="related-link">View Projects →</a>
+              <a href="/projects/" className="related-link">View Projects →</a>
             </div>
             <div className="related-card">
               <h4>Data Analysis & Visualization</h4>
               <p>
                 Machine learning and data science projects including predictive modeling and statistical analysis.
               </p>
-              <a href="/projects" className="related-link">Explore →</a>
+              <a href="/projects/" className="related-link">Explore →</a>
             </div>
             <div className="related-card">
               <h4>Skills & Technologies</h4>
               <p>
                 Deep expertise in Python, machine learning frameworks, data visualization, and statistical analysis.
               </p>
-              <a href="/about" className="related-link">Learn More →</a>
+              <a href="/about/" className="related-link">Learn More →</a>
             </div>
           </div>
         </section>

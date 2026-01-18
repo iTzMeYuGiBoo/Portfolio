@@ -310,7 +310,7 @@ const CertificationsPage = () => {
   useSEOMetaTags({
     title: 'Professional Certifications & Credentials | Yugandhar Reddy Bana',
     description: 'Browse my professional certifications in React, AWS, Power BI, Data Analytics, and more. Verified credentials from Meta, Microsoft, HackerRank, and leading universities.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/certifications',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/certifications/',
     image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=630&fit=crop',
   });
   
