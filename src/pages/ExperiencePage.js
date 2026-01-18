@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 // import { motion } from 'framer-motion';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import './styles/ExperiencePage.css';
@@ -52,14 +52,91 @@ const experiences = [
   }
 ];
 
+const techMeta = {
+  React: 'type: UI Library • version: 18.x',
+  'Node.js': 'type: Runtime • version: 20.x',
+  Java: 'type: Language • version: 17',
+  'Spring Boot': 'type: Framework • version: 3.x',
+  JUnit: 'type: Testing • version: 5',
+  PostgresQL: 'type: Database • version: 15',
+  Git: 'type: VCS • version: 2.x',
+  Jira: 'type: Project Mgmt • version: Cloud',
+  HTML: 'type: Markup • version: 5',
+  CSS: 'type: Styling • version: 3',
+  Javascript: 'type: Language • version: ES2023',
+  'Agile Scrum': 'type: Process • cadence: 2 weeks',
+  Confluence: 'type: Docs • version: Cloud',
+  'CI/CD': 'type: Automation • provider: Jenkins',
+};
+
+const keywordClass = (word) => <span className="syntax-keyword">{word}</span>;
+const stringClass = (value) => <span className="syntax-string">{value}</span>;
+const commentClass = (value) => <span className="syntax-comment">{value}</span>;
+
+const renderTechTag = (tech) => (
+  <span
+    key={tech}
+    className="syntax-tech"
+    data-tooltip={techMeta[tech] || 'type: Skill • version: current'}
+  >
+    {stringClass(`"${tech}"`)}
+  </span>
+);
+
+const buildExperienceCode = (exp) => {
+  const techs = exp.technologies.slice(0, 8);
+  const summaryLines = exp.description.slice(0, 4);
+  const experienceLabel = `${exp.position} @ ${exp.company}`;
+
+  const lines = [
+    [keywordClass('import'), ' ', stringClass('{ Experience }'), ' ', keywordClass('from'), ' ', stringClass("'career'"), ';'],
+    [keywordClass('export'), ' ', keywordClass('interface'), ' ', 'Experience', ' {'],
+    ['  ', 'company', ': ', 'string', ';'],
+    ['  ', 'role', ': ', 'string', ';'],
+    ['  ', 'period', ': ', 'string', ';'],
+    ['  ', 'stack', ': ', 'string[]', ';'],
+    ['  ', 'achievements', ': ', '() => string[]', ';'],
+    ['}'],
+    [''],
+    [keywordClass('const'), ' company = ', stringClass(`"${exp.company}"`), ';'],
+    [keywordClass('const'), ' role = ', stringClass(`"${exp.position}"`), ';'],
+    [commentClass(`// ${exp.period}`)],
+    [keywordClass('const'), ' stack = [', ...techs.map((tech, index) => [
+      renderTechTag(tech),
+      index < techs.length - 1 ? ', ' : ''
+    ]), '];'],
+    [''],
+    [keywordClass('const'), ' achievements = () => {'],
+    ['  ', keywordClass('return'), ' ['],
+    ...summaryLines.map((line, index) => [
+      '    ', stringClass(`"${line}"`),
+      index < summaryLines.length - 1 ? ',' : ''
+    ]),
+    ['  ];'],
+    ['};'],
+    [''],
+    [keywordClass('class'), ' ExperienceService {'],
+    ['  ', 'getSummary()', ' {'],
+    ['    ', keywordClass('return'), ' ', stringClass(`"${experienceLabel}"`), ';'],
+    ['  }'],
+    ['}'],
+    [''],
+    [keywordClass('export'), ' ', keywordClass('default'), ' { company, role, stack, achievements };'],
+  ];
+
+  return lines;
+};
+
 const ExperiencePage = () => {
   const [animate, setAnimate] = useState(false);
+  const [activeId, setActiveId] = useState(experiences[0]?.id || 1);
+  const [isCodeView, setIsCodeView] = useState(true);
 
   // Set SEO meta tags for Experience page
   useSEOMetaTags({
     title: 'Professional Experience | Yugandhar Reddy Bana',
     description: 'View my professional experience as a Frontend Engineer at Verizon, Chef at Skylon Hotel, and Security Officer. 3+ years of full-stack development with React, Node.js, and Java.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/experience',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/experience/',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop',
   });
 
@@ -68,10 +145,19 @@ const ExperiencePage = () => {
     requestAnimationFrame(() => setAnimate(true));
   }, []);
 
+  const activeExperience = useMemo(
+    () => experiences.find((exp) => exp.id === activeId) || experiences[0],
+    [activeId]
+  );
+
+  const codeLines = useMemo(
+    () => buildExperienceCode(activeExperience),
+    [activeExperience]
+  );
+
   return (
     <div className="experience-page">
       <div className="container">
-        {/* ───────── header ───────── */}
         <div className={`experience-header fade-in-up ${animate ? 'run' : ''}`}>
           <h1>Professional Experience</h1>
           <p className="experience-intro">
@@ -79,40 +165,94 @@ const ExperiencePage = () => {
           </p>
         </div>
 
-        {/* ───────── timeline ───────── */}
-        <div className="experience-timeline">
-          {experiences.map((exp, i) => (
-            <div
-              key={exp.id}
-              className={`experience-card ${exp.featured ? 'featured' : ''} fade-in-up ${
-                animate ? 'run' : ''
-              }`}
-              style={{ animationDelay: `${0.1 * i + 0.2}s` }}
-            >
-              <div className="experience-period">{exp.period}</div>
-              <div className="experience-content">
-                <div className="experience-header">
-                  <h2>{exp.position}</h2>
-                  <h3>{exp.company}</h3>
-                </div>
-
-                <ul className="experience-description">
-                  {exp.description.map((item, k) => (
-                    <li key={k}>{item}</li>
-                  ))}
-                </ul>
-
-                <div className="technologies">
-                  {exp.technologies.map((tech, k) => (
-                    <span key={k} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+        <section className="ide-shell" aria-label="Experience code editor">
+          <header className="ide-header">
+            <div className="window-controls" aria-hidden="true">
+              <span className="control control-red" />
+              <span className="control control-yellow" />
+              <span className="control control-green" />
             </div>
-          ))}
-        </div>
+            <div className="tab-bar">
+              <span className="tab-pill">experience.tsx</span>
+              <span className="tab-pill active">{activeExperience?.position?.toLowerCase().replace(/\s+/g, '-')}.tsx</span>
+            </div>
+            <div className="view-toggle">
+              <span className="view-label">Code View</span>
+              <button
+                type="button"
+                className={`toggle-switch ${isCodeView ? 'active' : ''}`}
+                aria-pressed={isCodeView}
+                onClick={() => setIsCodeView((prev) => !prev)}
+              >
+                <span className="toggle-thumb" />
+              </button>
+              <span className="view-label">Reader View</span>
+            </div>
+          </header>
+
+          <div className="ide-body">
+            <aside className="ide-sidebar" aria-label="Experience files">
+              {experiences.map((exp) => (
+                <button
+                  key={exp.id}
+                  type="button"
+                  className={`file-item ${activeId === exp.id ? 'active' : ''}`}
+                  onClick={() => setActiveId(exp.id)}
+                >
+                  <span className="file-dot" aria-hidden="true" />
+                  <span className="file-name">{exp.position.toLowerCase().replace(/\s+/g, '-')}.tsx</span>
+                </button>
+              ))}
+            </aside>
+
+            <main className="ide-content">
+              {isCodeView ? (
+                <pre
+                  className="code-editor"
+                  aria-label={`Job Description for ${activeExperience?.position} at ${activeExperience?.company}`}
+                >
+                  <code>
+                    {codeLines.map((line, index) => (
+                      <div className="code-line" key={`line-${index}`}>
+                        <span className="line-number">{index + 1}</span>
+                        <span className="line-content">
+                          {line}
+                          {index === codeLines.length - 1 && (
+                            <span className="cursor" aria-hidden="true">|</span>
+                          )}
+                        </span>
+                      </div>
+                    ))}
+                  </code>
+                </pre>
+              ) : (
+                <div className="reader-view" aria-label="Reader view of experience">
+                  <div className="reader-header">
+                    <h2>{activeExperience?.position}</h2>
+                    <h3>{activeExperience?.company}</h3>
+                    <p className="reader-period">{activeExperience?.period}</p>
+                  </div>
+                  <ul className="reader-list">
+                    {activeExperience?.description.map((item, idx) => (
+                      <li key={`reader-${idx}`}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className="reader-tech">
+                    {activeExperience?.technologies.map((tech) => (
+                      <span
+                        key={`reader-tech-${tech}`}
+                        className="reader-tech-tag"
+                        data-tooltip={techMeta[tech] || 'type: Skill • version: current'}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </main>
+          </div>
+        </section>
       </div>
     </div>
   );

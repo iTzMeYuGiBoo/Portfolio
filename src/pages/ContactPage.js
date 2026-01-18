@@ -16,7 +16,7 @@ const ContactPage = () => {
   useSEOMetaTags({
     title: 'Contact Me | Yugandhar Reddy Bana',
     description: 'Get in touch with me for collaboration, freelance projects, or just to say hello. I\'m always interested in hearing about new opportunities and interesting projects.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/contact',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/contact/',
     image: 'https://images.unsplash.com/photo-1516534775068-bb577a628e5b?w=1200&h=630&fit=crop',
   });
 
@@ -206,6 +206,7 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      aria-required="true"
                     />
                   </div>
 
@@ -218,6 +219,7 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      aria-required="true"
                     />
                   </div>
                 </div>
@@ -242,6 +244,7 @@ const ContactPage = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                   ></textarea>
                 </div>
 

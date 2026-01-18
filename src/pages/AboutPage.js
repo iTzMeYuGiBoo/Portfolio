@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useSEOMetaTags from '../hooks/useSEOMetaTags';
 import useJSONLD from '../hooks/useJSONLD';
 import './styles/AboutPage.css';
-import Photo from '../assets/Photo.jpg';
+import Photo from '../assets/Photo.webp';
 
 const AboutPage = () => {
   const [animate, setAnimate] = useState(false);
@@ -10,7 +10,7 @@ const AboutPage = () => {
   useSEOMetaTags({
     title: 'About Me | Yugandhar Reddy Bana - Full-Stack Engineer',
     description: 'Full-stack engineer specializing in React, data visualization, and performance optimization. 2.5 years building scalable applications with 95+ Lighthouse scores.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about/',
     image: Photo,
   });
 
@@ -22,7 +22,7 @@ const AboutPage = () => {
     jobTitle: 'Full-Stack Engineer & Data Analyst',
     description: 'Architecting high-performance, data-rich interfaces that solve complex problems. 2.5 years building React applications with measurable impact.',
     image: Photo,
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/about/',
     email: 'yugandharreddybana@outlook.com',
     telephone: '+353894851413',
     address: {
@@ -154,10 +154,10 @@ const AboutPage = () => {
 
               {/* Call-to-Action */}
               <div className="cta-buttons">
-                <a href="/contact" className="button">
+                <a href="/contact/" className="button">
                   Start a Conversation
                 </a>
-                <a href="/experience" className="button outline">
+                <a href="/experience/" className="button outline">
                   Explore My Work
                 </a>
               </div>

@@ -3,7 +3,7 @@
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   position: relative;
@@ -12,11 +12,11 @@
     var(--primary-50) 0%,
     var(--background) 100%
   );
-  padding: 120px 0 var(--space-16);
+  padding: 120px 0 var(--space-8);
 }
 
 .hero-content {
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 0 auto;
 }
 
@@ -36,7 +36,7 @@
   font-weight: 500;
   margin-bottom: var(--space-8);
   color: var(--foreground);
-  max-width: 800px;
+  /* max-width: 800px; */
   animation: fadeIn 0.8s ease-out 0.2s backwards;
   line-height: var(--leading-normal);
 }
@@ -105,7 +105,7 @@
 
 .hero-cta {
   font-size: var(--text-xl);
-  max-width: 800px;
+  /* max-width: 800px; */
   margin-bottom: var(--space-8);
   animation: fadeIn 0.8s ease-out 0.4s backwards;
 }
@@ -118,7 +118,7 @@
 
 .section-heading {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
 }
 
 .section-heading h2 {
@@ -139,31 +139,31 @@
 }
 
 .home-about {
-  padding: var(--space-20) 0;
+  padding: var(--space-12) 0;
   background-color: var(--card);
 }
 
 .home-about-content {
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 0 auto;
   text-align: center;
 }
 
 .home-about-content p {
   font-size: var(--text-xl);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   line-height: 1.6;
 }
 
 .featured-work {
-  padding: var(--space-20) 0;
+  padding: var(--space-12) 0;
 }
 
 .work-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-6);
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
 }
 
 .work-item {
@@ -217,7 +217,7 @@
 }
 
 .contact-cta {
-  padding: var(--space-20) 0;
+  padding: var(--space-12) 0;
   background: linear-gradient(
     135deg,
     var(--primary-600) 0%,
@@ -227,7 +227,7 @@
 }
 
 .contact-cta-content {
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 0 auto;
   text-align: center;
 }
@@ -235,12 +235,12 @@
 .contact-cta h2 {
   color: white;
   font-size: var(--text-4xl);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 
 .contact-cta p {
   font-size: var(--text-xl);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   color: rgba(255, 255, 255, 0.9);
 }
 

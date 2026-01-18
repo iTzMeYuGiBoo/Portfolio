@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import EducationPage from './pages/EducationPage';
@@ -38,21 +39,29 @@ function App() {
 
   return (
     <div className="app">
-      {!isNotFound && <Header />}
-      <main id="main">
+      <ScrollToTop />
+      {!isNotFound && <header><Header /></header>}
+      <main id="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/about/" element={<AboutPage />} />
           <Route path="/education" element={<EducationPage />} />
+          <Route path="/education/" element={<EducationPage />} />
           <Route path="/certifications" element={<CertificationsPage />} />
+          <Route path="/certifications/" element={<CertificationsPage />} />
           <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/experience/" element={<ExperiencePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/" element={<ProjectsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contact/" element={<ContactPage />} />
           <Route path="/resume-and-cover" element={<ResumeAndCoverPage />} />
+          <Route path="/resume-and-cover/" element={<ResumeAndCoverPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      {!isNotFound && <Footer />}
+      {!isNotFound && <footer><Footer /></footer>}
       {!isNotFound && <FloatingChatBot />}
     </div>
   );

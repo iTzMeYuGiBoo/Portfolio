@@ -1,11 +1,10 @@
 .projects-page {
   padding-top: 120px;
-  min-height: 100vh;
 }
 
 .projects-page .experience-header {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-6);
 }
 
 .projects-page .experience-header h1 {
@@ -15,7 +14,7 @@
 
 .projects-page .experience-intro {
   max-width: 800px;
-  margin: 0 auto var(--space-8);
+  margin: 0 auto var(--space-6);
   color: var(--muted-foreground);
   font-size: var(--text-lg);
 }
@@ -25,7 +24,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-6);
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-6);
 }
 
 .project-card {

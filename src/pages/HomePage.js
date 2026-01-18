@@ -11,7 +11,7 @@ const HomePage = () => {
   useSEOMetaTags({
     title: 'Yugandhar Reddy Bana | Front-End Engineer & Data Analyst',
     description: 'Data-savvy front-end engineer who turns numbers into pixel-perfect products. React specialist with expertise in performance optimization, data visualization, and full-stack development.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/',
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop',
   });
 
@@ -97,10 +97,10 @@ const HomePage = () => {
             </p>
 
             <div className="hero-buttons">
-              <Link to="/contact" className="button">
+              <Link to="/contact/" className="button">
                 Get in touch
               </Link>
-              <Link to="/experience" className="button outline">
+              <Link to="/experience/" className="button outline">
                 View my work
               </Link>
             </div>
@@ -123,7 +123,7 @@ const HomePage = () => {
 
               Whether I'm coding, analyzing, or collaborating with a team, I focus on clarity, creativity, and delivering meaningful digital experiences.
             </p>
-            <Link to="/about" className="button">
+            <Link to="/about/" className="button">
               Learn more about me
             </Link>
           </div>
@@ -173,7 +173,7 @@ const HomePage = () => {
           </div>
 
           <div className="section-cta">
-            <Link to="/experience" className="button">
+            <Link to="/experience/" className="button">
               View all projects
             </Link>
           </div>
@@ -188,7 +188,7 @@ const HomePage = () => {
             <p>
               I bring 2.5 years of front-end development experience, a keen eye for detail, and a mindset focused on continuous learning. I’m open to full-time, remote, or part-time roles — and currently exploring data analytics to round out my skillset.
             </p>
-            <Link to="/contact" className="button">
+            <Link to="/contact/" className="button">
               Contact me
             </Link>
           </div>

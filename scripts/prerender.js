@@ -91,13 +91,13 @@ try {
   console.error('Error copying 404.html:', error.message);
 }
 
-console.log('\n✅ Pre-rendering complete!');
-console.log('   📁 Route structure created:');
-console.log('      build/index.html (home)');
-console.log('      build/projects/index.html');
-console.log('      build/about/index.html');
-console.log('      build/experience/index.html');
-console.log('      ... (all 8 routes)\n');
-console.log('   🔍 Each route now serves the full index.html with meta tags');
-console.log('   🤖 React Router handles rendering on the client');
-console.log('   📄 Crawlers see the meta tags for SEO & social sharing\n');
+// console.log('\n✅ Pre-rendering complete!');
+// console.log('   📁 Route structure created:');
+// console.log('      build/index.html (home)');
+// console.log('      build/projects/index.html');
+// console.log('      build/about/index.html');
+// console.log('      build/experience/index.html');
+// console.log('      ... (all 8 routes)\n');
+// console.log('   🔍 Each route now serves the full index.html with meta tags');
+// console.log('   🤖 React Router handles rendering on the client');
+// console.log('   📄 Crawlers see the meta tags for SEO & social sharing\n');

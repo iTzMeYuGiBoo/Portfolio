@@ -22,6 +22,13 @@ const ProjectsPage = () => {
   const [animate, setAnimate] = useState(false);
   const [canEmbed, setCanEmbed] = useState(true);
 
+  useSEOMetaTags({
+    title: 'Projects | Yugandhar Reddy Bana',
+    description: 'Explore featured projects in React, data analytics, and full-stack development, including case studies and technical highlights.',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/projects/',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop',
+  });
+
   useEffect(() => {
     requestAnimationFrame(() => setAnimate(true));
   }, []);

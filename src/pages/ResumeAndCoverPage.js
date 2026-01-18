@@ -17,7 +17,7 @@ const ResumeAndCoverPage = () => {
   useSEOMetaTags({
     title: 'CV & Cover Letter | Yugandhar Reddy Bana',
     description: 'Download my professional CV/Resume and cover letter. View detailed information about my experience, skills, and qualifications as a Frontend Engineer.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/resume-and-cover',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/resume-and-cover/',
     image: 'https://images.unsplash.com/photo-1586281380349-f70d1b8a850d?w=1200&h=630&fit=crop',
   });
 

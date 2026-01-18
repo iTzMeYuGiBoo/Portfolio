@@ -11,7 +11,7 @@ const EducationPage = () => {
   useSEOMetaTags({
     title: 'Education | Yugandhar Reddy Bana',
     description: 'Educational background: MSc Data Analytics from National College of Ireland, BSc Computer Science from SASTRA University. Specialized in ML, data visualization, and full-stack development.',
-    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/education',
+    url: 'https://iTzMeYuGiBoo.github.io/Portfolio/education/',
     image: 'https://images.unsplash.com/photo-1516321318423-f06f70504cbf?w=1200&h=630&fit=crop',
   });
 
@@ -234,7 +234,7 @@ const EducationPage = () => {
           </p>
 
           <div className="certifications-content">
-            <a href="/certifications" className="button">
+            <a href="/certifications/" className="button">
               View All Certifications
             </a>
             <p className="note">

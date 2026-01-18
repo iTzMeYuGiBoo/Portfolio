@@ -2,19 +2,23 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   z-index: var(--z-50);
   padding: var(--space-4) 0;
   transition: background-color var(--transition-normal),
               padding var(--transition-normal),
               box-shadow var(--transition-normal);
-  background-color: transparent;
+  background-color: var(--background) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--border);
 }
 
 .site-header.scrolled {
-  background-color: var(--background);
-  padding: var(--space-2) 0;
-  box-shadow: var(--shadow-md);
+  background-color: var(--background) !important;
+  padding: var(--space-2) 0 var(--space-4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--border);
 }
 
 .header-inner {
@@ -23,6 +27,10 @@
   justify-content: space-between;
   height: 60px;
   gap: var(--space-12);
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  width: 100%;
 }
 
 .logo {
