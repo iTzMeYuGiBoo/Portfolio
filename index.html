@@ -1642,10 +1642,10 @@
         termContainer.classList.toggle('active');
         if (termContainer.classList.contains('active')) {
           termBtn.innerHTML = '✕';
-          termBtn.style.background = '#FF69B4'; // Switch to pink for close
+          termBtn.style.background = '#FF69B4'; // Pink for close
         } else {
           termBtn.innerHTML = '❯_';
-          termBtn.style.background = '#000';
+          termBtn.style.background = '#FFD700'; // Back to Yellow
         }
       });
       // Close terminal if clicking outside
@@ -1653,7 +1653,7 @@
         if (!termContainer.contains(e.target) && !termBtn.contains(e.target)) {
           termContainer.classList.remove('active');
           termBtn.innerHTML = '❯_';
-          termBtn.style.background = '#000';
+          termBtn.style.background = '#FFD700'; // Back to Yellow
         }
       });
     }
