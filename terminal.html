@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yugandhar Reddy Bana — Terminal Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #1e1e2e;
+      --surface: #181825;
+      --text: #cdd6f4;
+      --cyan: #47D3D3;
+      --yellow: #FFD700;
+      --pink: #FF69B4;
+      --green: #a6e3a1;
+      --red: #f38ba8;
+      --peach: #fab387;
+      --lavender: #b4befe;
+      --subtext: #a6adc8;
+      --overlay: #313244;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      background: var(--yellow);
+      color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #000;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .back-btn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    .back-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0px 0px 0px #000;
+    }
+
+    /* Terminal container */
+    .terminal-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 16px;
+    }
+
+    .terminal {
+      width: 100%;
+      max-width: 900px;
+      height: 90vh;
+      max-height: 700px;
+      border: 3px solid var(--cyan);
+      box-shadow: 4px 4px 0px #000;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Terminal header */
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--overlay);
+      border-bottom: 2px solid var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .traffic-lights {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.2);
+    }
+
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      color: var(--subtext);
+      font-weight: 400;
+    }
+
+    /* Terminal body */
+    .terminal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      scroll-behavior: smooth;
+    }
+
+    .terminal-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .terminal-body::-webkit-scrollbar-track {
+      background: var(--surface);
+    }
+
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: var(--overlay);
+      border-radius: 4px;
+    }
+
+    /* Output lines */
+    .output-line {
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .output-line.ascii {
+      line-height: 1.15;
+      font-size: 11px;
+      color: var(--cyan);
+    }
+
+    .cmd-echo {
+      color: var(--subtext);
+      margin-top: 12px;
+    }
+
+    .cmd-echo .prompt-symbol { color: var(--cyan); }
+    .cmd-echo .cmd-text { color: var(--text); }
+
+    /* Color classes */
+    .c-cyan { color: var(--cyan); }
+    .c-yellow { color: var(--yellow); }
+    .c-pink { color: var(--pink); }
+    .c-green { color: var(--green); }
+    .c-red { color: var(--red); }
+    .c-peach { color: var(--peach); }
+    .c-lavender { color: var(--lavender); }
+    .c-text { color: var(--text); }
+    .c-sub { color: var(--subtext); }
+    .c-bold { font-weight: 700; }
+
+    /* Input area */
+    .terminal-input-area {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-top: 2px solid var(--overlay);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+
+    .prompt {
+      color: var(--cyan);
+      font-size: 14px;
+      white-space: nowrap;
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .prompt .user { color: var(--green); }
+    .prompt .at { color: var(--text); }
+    .prompt .host { color: var(--lavender); }
+    .prompt .colon { color: var(--text); }
+    .prompt .path { color: var(--cyan); }
+    .prompt .dollar { color: var(--text); }
+
+    #cmd-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      caret-color: var(--yellow);
+    }
+
+    #cmd-input::placeholder {
+      color: var(--overlay);
+    }
+
+    /* Tab hint */
+    .tab-hint {
+      color: var(--overlay);
+      font-size: 12px;
+      margin-left: 8px;
+      white-space: nowrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .terminal-wrapper { padding: 0; }
+      .terminal {
+        max-width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        border: none;
+        box-shadow: none;
+        border-top: 3px solid var(--cyan);
+      }
+      .back-btn {
+        top: auto;
+        bottom: 70px;
+        left: 12px;
+        font-size: 12px;
+        padding: 6px 12px;
+        z-index: 200;
+      }
+      .output-line.ascii {
+        font-size: 7px;
+        line-height: 1.1;
+      }
+      .output-line { font-size: 13px; }
+      .prompt { font-size: 13px; }
+      #cmd-input { font-size: 13px; }
+      .tab-hint { display: none; }
+    }
+
+    @media (max-width: 380px) {
+      .output-line.ascii {
+        font-size: 5.5px;
+      }
+    }
+
+    /* Cursor blink */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+      color: var(--yellow);
+    }
+
+    /* Subtle glow on terminal */
+    .terminal {
+      position: relative;
+    }
+
+    .terminal::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(71,211,211,0.1), transparent, rgba(255,105,180,0.05));
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="back-btn">← Back</a>
+
+  <div class="terminal-wrapper">
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="traffic-lights">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+        </div>
+        <div class="terminal-title">yugandhar@portfolio: ~/resume</div>
+        <div style="width: 52px;"></div>
+      </div>
+
+      <div class="terminal-body" id="output"></div>
+
+      <div class="terminal-input-area">
+        <div class="prompt">
+          <span class="user">yugandhar</span><span class="at">@</span><span class="host">portfolio</span><span class="colon">:</span><span class="path">~</span><span class="dollar">$ </span>
+        </div>
+        <input type="text" id="cmd-input" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="type 'help' to get started...">
+        <span class="tab-hint">[Tab]</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function() {
+  const output = document.getElementById('output');
+  const input = document.getElementById('cmd-input');
+
+  const commandHistory = [];
+  let historyIndex = -1;
+
+  const COMMANDS = [
+    'help', 'about', 'skills', 'experience', 'education',
+    'projects', 'certifications', 'contact', 'clear', 'whoami',
+    'ls projects/', 'cat readme.md', 'sudo hire yugandhar', 'exit'
+  ];
+
+  // ── ASCII Art ──────────────────────────────────────────
+  const ASCII_ART = [
+    '╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗',
+    '║ ║║ ║║ ║║ ║║ ║║ ║║ ║║ ║║ ║║ ║',
+    '╚═╝╚═╝╚═╝╚═╝╚═╝╚═╝╚═╝╚═╝╚═╝╚═╝',
+  ];
+
+  const ASCII_BANNER = [
+    '██╗   ██╗██╗   ██╗ ██████╗  █████╗ ███╗   ██╗██████╗ ██╗  ██╗ █████╗ ██████╗ ',
+    '╚██╗ ██╔╝██║   ██║██╔════╝ ██╔══██╗████╗  ██║██╔══██╗██║  ██║██╔══██╗██╔══██╗',
+    ' ╚████╔╝ ██║   ██║██║  ███╗███████║██╔██╗ ██║██║  ██║███████║███████║██████╔╝',
+    '  ╚██╔╝  ██║   ██║██║   ██║██╔══██║██║╚██╗██║██║  ██║██╔══██║██╔══██║██╔══██╗',
+    '   ██║   ╚██████╔╝╚██████╔╝██║  ██║██║ ╚████║██████╔╝██║  ██║██║  ██║██║  ██║',
+    '   ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝',
+  ];
+
+  // ── Helpers ────────────────────────────────────────────
+  function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  function addLine(html, cls) {
+    const div = document.createElement('div');
+    div.className = 'output-line' + (cls ? ' ' + cls : '');
+    div.innerHTML = html;
+    output.appendChild(div);
+  }
+
+  function addBlank() {
+    addLine('&nbsp;');
+  }
+
+  function scrollToBottom() {
+    output.scrollTop = output.scrollHeight;
+  }
+
+  // ── Welcome ────────────────────────────────────────────
+  function showWelcome() {
+    ASCII_BANNER.forEach(line => {
+      addLine(esc(line), 'ascii');
+    });
+    addBlank();
+    addLine('<span class="c-yellow c-bold">  Interactive Terminal Resume</span>');
+    addLine('<span class="c-pink">  Full Stack Developer</span> <span class="c-sub">•</span> <span class="c-green">Dublin, Ireland</span>');
+    addBlank();
+    addLine('<span class="c-sub">  Welcome! Type </span><span class="c-cyan c-bold">help</span><span class="c-sub"> to see available commands.</span>');
+    addLine('<span class="c-sub">  Use </span><span class="c-yellow">Tab</span><span class="c-sub"> to auto-complete, </span><span class="c-yellow">↑↓</span><span class="c-sub"> for history.</span>');
+    addBlank();
+    scrollToBottom();
+  }
+
+  // ── Command Handlers ──────────────────────────────────
+  function cmdHelp() {
+    addLine('<span class="c-yellow c-bold">╔══════════════════════════════════════════════════╗</span>');
+    addLine('<span class="c-yellow c-bold">║            AVAILABLE COMMANDS                    ║</span>');
+    addLine('<span class="c-yellow c-bold">╚══════════════════════════════════════════════════╝</span>');
+    addBlank();
+    const cmds = [
+      ['help',                'Show this help menu'],
+      ['about',               'Professional summary'],
+      ['skills',              'Technical skills by category'],
+      ['experience',          'Work experience timeline'],
+      ['education',           'Education details'],
+      ['projects',            'Project descriptions'],
+      ['certifications',      'Certifications & awards'],
+      ['contact',             'Contact information'],
+      ['whoami',              'Who am I?'],
+      ['ls projects/',        'List project names'],
+      ['cat readme.md',       'Read my README'],
+      ['sudo hire yugandhar', 'Hire me!'],
+      ['clear',               'Clear terminal'],
+      ['exit',                'Exit terminal'],
+    ];
+    cmds.forEach(([cmd, desc]) => {
+      const padded = cmd.padEnd(24);
+      addLine(`  <span class="c-cyan c-bold">${esc(padded)}</span><span class="c-sub">${esc(desc)}</span>`);
+    });
+  }
+
+  function cmdAbout() {
+    addLine('<span class="c-yellow c-bold">┌─── ABOUT ME ─────────────────────────────────────┐</span>');
+    addBlank();
+    addLine('<span class="c-green">  Full Stack Developer with 3+ years of enterprise</span>');
+    addLine('<span class="c-green">  experience building scalable, high-performance</span>');
+    addLine('<span class="c-green">  web applications.</span>');
+    addBlank();
+    addLine('<span class="c-text">  Specializing in </span><span class="c-cyan">React.js</span><span class="c-text">, </span><span class="c-cyan">Next.js</span><span class="c-text">, </span><span class="c-cyan">Java/Spring Boot</span><span class="c-text">,</span>');
+    addLine('<span class="c-text">  and </span><span class="c-cyan">Node.js</span><span class="c-text"> with a passion for clean code, TDD,</span>');
+    addLine('<span class="c-text">  and delivering impactful solutions.</span>');
+    addBlank();
+    addLine('<span class="c-text">  Currently based in </span><span class="c-pink">Dublin, Ireland</span><span class="c-text"> and open</span>');
+    addLine('<span class="c-text">  to exciting opportunities.</span>');
+    addBlank();
+    addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
+  }
+
+  function cmdSkills() {
+    addLine('<span class="c-yellow c-bold">┌─── TECHNICAL SKILLS ──────────────────────────────┐</span>');
+    addBlank();
+
+    const categories = [
+      ['Frontend',  ['React.js', 'Next.js 15', 'Redux', 'Context API', 'TypeScript', 'JavaScript ES6+', 'HTML5', 'CSS3']],
+      ['Backend',   ['Java 21', 'Spring Boot 3.x', 'Spring Security', 'Node.js', 'REST APIs', 'Microservices', 'WebSockets']],
+      ['Databases', ['PostgreSQL', 'Supabase', 'MySQL', 'SQL Server', 'Hibernate JPA']],
+      ['Cloud/DevOps', ['Docker', 'CI/CD', 'Jenkins', 'GitHub Actions', 'Git']],
+      ['Tools/QA',  ['TDD', 'JUnit', 'Jest', 'SonarQube', 'Postman', 'Ollama', 'Agile/Scrum', 'JIRA']],
+    ];
+
+    categories.forEach(([cat, skills]) => {
+      addLine(`  <span class="c-pink c-bold">${esc(cat)}</span>`);
+      const skillStr = skills.map(s => `<span class="c-cyan">${esc(s)}</span>`).join('<span class="c-sub"> • </span>');
+      addLine(`    ${skillStr}`);
+      addBlank();
+    });
+
+    addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
+  }
+
+  function cmdExperience() {
+    addLine('<span class="c-yellow c-bold">┌─── WORK EXPERIENCE ─────────────────────────────┐</span>');
+    addBlank();
+
+    // Job 1
+    addLine('  <span class="c-cyan c-bold">Full Stack Software Developer</span>');
+    addLine('  <span class="c-pink">Independent</span> <span class="c-sub">|</span> <span class="c-green">Dublin, Ireland</span>');
+    addLine('  <span class="c-yellow">Apr 2024 — Present</span>');
+    addBlank();
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Built full-stack apps with React.js, Node.js, Java</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Built </span><span class="c-cyan">Cortex</span><span class="c-text"> SaaS knowledge management platform</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Integrated AI features with </span><span class="c-cyan">Ollama</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Achieved </span><span class="c-green">95%+</span><span class="c-text"> code coverage with TDD</span>');
+    addBlank();
+
+    addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
+    addBlank();
+
+    // Job 2
+    addLine('  <span class="c-cyan c-bold">Full Stack Software Developer</span>');
+    addLine('  <span class="c-pink">Incedo Technologies</span> <span class="c-sub">(Client:</span> <span class="c-lavender">Verizon</span><span class="c-sub">)</span>');
+    addLine('  <span class="c-green">Hyderabad, India</span>');
+    addLine('  <span class="c-yellow">Aug 2021 — Jan 2024</span>');
+    addBlank();
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Reduced latency by </span><span class="c-green">67%</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Reduced production defects by </span><span class="c-green">70%</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Reduced onboarding time by </span><span class="c-green">35%</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Led monolith → microservices migration</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Led team of </span><span class="c-cyan">12 developers</span>');
+    addBlank();
+
+    addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
+  }
+
+  function cmdEducation() {
+    addLine('<span class="c-yellow c-bold">┌─── EDUCATION ────────────────────────────────────┐</span>');
+    addBlank();
+
+    addLine('  <span class="c-cyan c-bold">MSc Data Analytics</span>');
+    addLine('  <span class="c-pink">National College of Ireland</span> <span class="c-sub">|</span> <span class="c-green">Dublin</span>');
+    addLine('  <span class="c-yellow">2024 — 2025</span>');
+    addLine('  <span class="c-sub">Grade:</span> <span class="c-green">2:1</span>');
+    addBlank();
+
+    addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
+    addBlank();
+
+    addLine('  <span class="c-cyan c-bold">BSc Computer Science & Engineering</span>');
+    addLine('  <span class="c-pink">SASTRA University</span> <span class="c-sub">|</span> <span class="c-green">India</span>');
+    addLine('  <span class="c-yellow">2017 — 2021</span>');
+    addLine('  <span class="c-sub">Grade:</span> <span class="c-green">7.49/10</span>');
+    addBlank();
+
+    addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
+  }
+
+  function cmdProjects() {
+    addLine('<span class="c-yellow c-bold">┌─── PROJECTS ─────────────────────────────────────┐</span>');
+    addBlank();
+
+    addLine('  <span class="c-cyan c-bold">01. Cortex</span>');
+    addLine('  <span class="c-pink">SaaS Knowledge Management Platform</span>');
+    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">Next.js 15 + Spring Boot + Ollama AI</span>');
+    addBlank();
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Full-stack SaaS for intelligent document management</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">AI-powered search and summarization with Ollama</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Real-time collaboration with WebSockets</span>');
+    addBlank();
+
+    addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
+    addBlank();
+
+    addLine('  <span class="c-cyan c-bold">02. AI-Powered Test Generator</span>');
+    addLine('  <span class="c-pink">Automated Testing Tool</span>');
+    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">Java + TypeScript + OpenAI API</span>');
+    addBlank();
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Generates unit tests automatically using AI</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Supports Java and TypeScript codebases</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Integrates with existing CI/CD pipelines</span>');
+    addBlank();
+
+    addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
+  }
+
+  function cmdCertifications() {
+    addLine('<span class="c-yellow c-bold">┌─── CERTIFICATIONS & AWARDS ──────────────────────┐</span>');
+    addBlank();
+
+    addLine('  <span class="c-green">✔</span> <span class="c-cyan c-bold">Google Prompting Essentials</span>');
+    addBlank();
+    addLine('  <span class="c-yellow">◷</span> <span class="c-cyan c-bold">IBM RAG & Agentic AI</span>');
+    addLine('    <span class="c-sub">Expected June 2026</span>');
+    addBlank();
+    addLine('  <span class="c-yellow">◷</span> <span class="c-cyan c-bold">AWS Cloud Practitioner</span>');
+    addLine('    <span class="c-sub">Expected May 2026</span>');
+    addBlank();
+
+    addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
+    addBlank();
+
+    addLine('  <span class="c-pink c-bold">AWARDS</span>');
+    addLine('  <span class="c-green">★</span> <span class="c-text">Made a Difference Award</span> <span class="c-yellow">×3</span>');
+    addBlank();
+
+    addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
+  }
+
+  function cmdContact() {
+    addLine('<span class="c-yellow c-bold">┌─── CONTACT ───────────────────────────────────────┐</span>');
+    addBlank();
+    addLine('  <span class="c-pink">📧  Email</span>     <span class="c-green">yugandharreddybana@outlook.com</span>');
+    addLine('  <span class="c-pink">📱  Phone</span>     <span class="c-green">+353 89 485 1413</span>');
+    addLine('  <span class="c-pink">💼  LinkedIn</span>  <span class="c-cyan">linkedin.com/in/yugandharreddybana</span>');
+    addLine('  <span class="c-pink">🐙  GitHub</span>    <span class="c-cyan">github.com/yugandharreddybana</span>');
+    addLine('  <span class="c-pink">📍  Location</span>  <span class="c-green">Dublin, Ireland</span>');
+    addBlank();
+    addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
+  }
+
+  function cmdWhoami() {
+    addBlank();
+    addLine('<span class="c-cyan c-bold">yugandhar</span> <span class="c-sub">—</span> <span class="c-text">Full Stack Developer, coffee enthusiast, and code craftsman</span>');
+    addBlank();
+  }
+
+  function cmdLsProjects() {
+    addBlank();
+    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">cortex/</span>');
+    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">ai-test-generator/</span>');
+    addBlank();
+    addLine('<span class="c-sub">2 directories — type </span><span class="c-cyan">projects</span><span class="c-sub"> for details</span>');
+    addBlank();
+  }
+
+  function cmdCatReadme() {
+    addBlank();
+    addLine('<span class="c-yellow c-bold"># README.md</span>');
+    addBlank();
+    addLine('<span class="c-green">## Hey there! 👋</span>');
+    addBlank();
+    addLine('<span class="c-text">I\'m Yugandhar — a developer who believes that great</span>');
+    addLine('<span class="c-text">software is built with clean code, strong coffee, and</span>');
+    addLine('<span class="c-text">a healthy obsession with developer experience.</span>');
+    addBlank();
+    addLine('<span class="c-text">When I\'m not shipping features, you\'ll find me</span>');
+    addLine('<span class="c-text">exploring AI integrations, writing tests (yes, really),</span>');
+    addLine('<span class="c-text">or turning monoliths into microservices.</span>');
+    addBlank();
+    addLine('<span class="c-pink c-bold">Fun facts:</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-text">I reduced latency by 67% at Verizon</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-text">I led a team of 12 developers</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-text">I maintain 95%+ test coverage because bugs fear me</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-text">I won the "Made a Difference" award 3 times</span>');
+    addBlank();
+    addLine('<span class="c-sub">---</span>');
+    addLine('<span class="c-lavender">⭐ Star this human on LinkedIn if you liked what you saw!</span>');
+    addBlank();
+  }
+
+  function cmdSudoHire() {
+    addBlank();
+    addLine('<span class="c-green">[sudo] password for recruiter: ********</span>');
+    addLine('<span class="c-green">✓ Authentication successful.</span>');
+    addBlank();
+    addLine('<span class="c-yellow c-bold">🎉 EXCELLENT DECISION!</span>');
+    addBlank();
+    addLine('<span class="c-text">Yugandhar has been added to your team.</span>');
+    addLine('<span class="c-text">Expected improvements:</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-green">+67%</span> <span class="c-text">performance optimization</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-green">-70%</span> <span class="c-text">production defects</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-green">+95%</span> <span class="c-text">code coverage</span>');
+    addLine('<span class="c-sub">  ▸</span> <span class="c-green">+∞</span>  <span class="c-text">team morale</span>');
+    addBlank();
+    addLine('<span class="c-cyan">📧 Reach out:</span> <span class="c-green">yugandharreddybana@outlook.com</span>');
+    addBlank();
+  }
+
+  function cmdExit() {
+    addBlank();
+    addLine('<span class="c-yellow">Thanks for visiting! Redirecting to portfolio...</span>');
+    addBlank();
+    input.disabled = true;
+    setTimeout(() => {
+      window.location.href = './index.html';
+    }, 2000);
+  }
+
+  function cmdNotFound(cmd) {
+    addLine(`<span class="c-red">Command not found: ${esc(cmd)}</span>`);
+    addLine('<span class="c-sub">Type </span><span class="c-cyan">help</span><span class="c-sub"> to see available commands.</span>');
+  }
+
+  // ── Command Router ────────────────────────────────────
+  function executeCommand(raw) {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+
+    // Echo the command
+    addLine(
+      `<span class="cmd-echo"><span class="prompt-symbol"><span class="c-green">yugandhar</span>@<span class="c-lavender">portfolio</span>:<span class="c-cyan">~</span>$ </span><span class="cmd-text">${esc(raw.trim())}</span></span>`
+    );
+
+    // Store in history
+    commandHistory.push(raw.trim());
+    historyIndex = commandHistory.length;
+
+    switch (cmd) {
+      case 'help':                cmdHelp(); break;
+      case 'about':               cmdAbout(); break;
+      case 'skills':              cmdSkills(); break;
+      case 'experience':          cmdExperience(); break;
+      case 'education':           cmdEducation(); break;
+      case 'projects':            cmdProjects(); break;
+      case 'certifications':      cmdCertifications(); break;
+      case 'certs':               cmdCertifications(); break;
+      case 'contact':             cmdContact(); break;
+      case 'whoami':              cmdWhoami(); break;
+      case 'ls projects/':        cmdLsProjects(); break;
+      case 'ls projects':         cmdLsProjects(); break;
+      case 'cat readme.md':       cmdCatReadme(); break;
+      case 'cat readme':          cmdCatReadme(); break;
+      case 'sudo hire yugandhar': cmdSudoHire(); break;
+      case 'clear':
+        output.innerHTML = '';
+        break;
+      case 'exit':                cmdExit(); break;
+      default:                    cmdNotFound(raw.trim()); break;
+    }
+
+    addBlank();
+    scrollToBottom();
+  }
+
+  // ── Tab Completion ────────────────────────────────────
+  function tabComplete(partial) {
+    if (!partial) return null;
+    const lower = partial.toLowerCase();
+    const matches = COMMANDS.filter(c => c.toLowerCase().startsWith(lower));
+    if (matches.length === 1) return matches[0];
+    if (matches.length > 1) {
+      // Show options
+      addLine(
+        `<span class="cmd-echo"><span class="prompt-symbol"><span class="c-green">yugandhar</span>@<span class="c-lavender">portfolio</span>:<span class="c-cyan">~</span>$ </span><span class="cmd-text">${esc(partial)}</span></span>`
+      );
+      addLine('<span class="c-sub">' + matches.map(m => `<span class="c-cyan">${esc(m)}</span>`).join('  ') + '</span>');
+      addBlank();
+      scrollToBottom();
+      // Return longest common prefix
+      let prefix = matches[0];
+      for (let i = 1; i < matches.length; i++) {
+        while (!matches[i].toLowerCase().startsWith(prefix.toLowerCase())) {
+          prefix = prefix.slice(0, -1);
+        }
+      }
+      return prefix;
+    }
+    return null;
+  }
+
+  // ── Input Handling ────────────────────────────────────
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const val = input.value;
+      input.value = '';
+      executeCommand(val);
+    }
+
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const result = tabComplete(input.value);
+      if (result) {
+        input.value = result;
+      }
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (commandHistory.length > 0 && historyIndex > 0) {
+        historyIndex--;
+        input.value = commandHistory[historyIndex];
+      }
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex < commandHistory.length - 1) {
+        historyIndex++;
+        input.value = commandHistory[historyIndex];
+      } else {
+        historyIndex = commandHistory.length;
+        input.value = '';
+      }
+    }
+
+    // Ctrl+L to clear
+    if (e.key === 'l' && e.ctrlKey) {
+      e.preventDefault();
+      output.innerHTML = '';
+    }
+  });
+
+  // Focus input on click anywhere
+  document.addEventListener('click', function(e) {
+    if (e.target.tagName !== 'A') {
+      input.focus();
+    }
+  });
+
+  // ── Boot ──────────────────────────────────────────────
+  showWelcome();
+  input.focus();
+})();
+</script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>
