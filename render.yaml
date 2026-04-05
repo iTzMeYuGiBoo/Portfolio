@@ -1,0 +1,9 @@
+services:
+  - type: static
+    name: yugandhar-portfolio
+    env: static
+    buildCommand: null # No build needed for static HTML
+    publishPath: .    # Deploy the root directory
+    envVars:
+      - key: NODE_VERSION
+        value: 20
