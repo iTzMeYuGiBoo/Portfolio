@@ -672,6 +672,7 @@
       case 'sudo hire yugandhar': cmdSudoHire(); break;
       case 'clear':
         output.innerHTML = '';
+        showWelcome();
         break;
       case 'exit':                cmdExit(); break;
       default:                    cmdNotFound(raw.trim()); break;
@@ -747,6 +748,7 @@
     if (e.key === 'l' && e.ctrlKey) {
       e.preventDefault();
       output.innerHTML = '';
+      showWelcome();
     }
   });
 
