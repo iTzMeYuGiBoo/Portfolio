@@ -18,7 +18,7 @@
   <meta name="twitter:description" content="Full Stack Developer in Dublin. React, TypeScript, Java Spring Boot, microservices & AI.">
   <meta name="twitter:image" content="hero.jpg">
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2347D3D3'/><rect x='4' y='4' width='92' height='92' rx='8' fill='none' stroke='%23000' stroke-width='6'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='52' fill='%23000'>YB</text></svg>">
+  <link rel="icon" href="hero.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
@@ -67,7 +67,7 @@
       background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
       background-size: 20px 20px;
       line-height: 1.6;
-      overflow-x: hidden;
+      /* overflow-x: hidden; */
     }
 
     .main-content { opacity: 0; transition: opacity 0.6s ease; }
@@ -144,7 +144,7 @@
     [data-theme="dark"] .nav { border-color: #000; box-shadow: 4px 4px 0px #000; }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 20px; max-width: 1200px; margin: 0 auto;
+      padding: 12px 20px; max-width: 1200px; margin: 0 auto; background-color: #FFD700;
     }
     .nav-logo {
       width: 44px; height: 44px; background: var(--cyan); border: 3px solid #000; border-radius: var(--radius);
@@ -767,9 +767,321 @@
     html[data-theme] .edu-card,
     html[data-theme] .cert-item,
     html[data-theme] .social-btn,
-    html[data-theme] .hero-tag {
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  /* ============ RECOMMENDATIONS — COMIC CREW LOG ============ */
+
+  .recommendations { position: relative; }
+  [data-theme="dark"] .recommendations { background: #1a1a2e; }
+
+  /* Section badge override for this section */
+  .rec-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--yellow);
+    border: var(--border);
+    padding: 10px 28px;
+    font-family: 'Bangers', cursive;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: #000;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+  }
+
+  /* Scroll controls */
+  .rec-scroll-ctl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .rec-nav-btn {
+    width: 44px; height: 44px;
+    background: var(--yellow);
+    border: var(--border);
+    border-radius: var(--radius);
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.1s, box-shadow 0.1s;
+    color: #000;
+  }
+  .rec-nav-btn:hover { transform: translate(-1px, -1px); box-shadow: var(--shadow-hover); }
+  .rec-nav-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #000; }
+  .rec-panel-ctr {
+    font-family: 'Bangers', cursive;
+    font-size: 22px;
+    letter-spacing: 2px;
+    min-width: 72px;
+    text-align: center;
+    color: var(--text);
+  }
+
+  /* Viewport + track */
+  .rec-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border: var(--border);
+    box-shadow: 6px 6px 0 #000;
+    border-radius: var(--radius);
+  }
+  [data-theme="dark"] .rec-viewport { box-shadow: 6px 6px 0 var(--text); }
+  .rec-viewport::-webkit-scrollbar { display: none; }
+  .rec-track {
+    display: flex;
+    width: 100%;
+  }
+
+  /* Individual panel */
+  .rec-panel {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+    width: 100%;
+    min-height: 440px;
+    border-right: var(--border);
+    position: relative;
+    padding: 40px;
+    background: var(--yellow);
+    background-image: radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
+    background-size: 10px 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .rec-panel:last-child { border-right: none; }
+  .rec-panel.rp-cyan { background-color: var(--cyan); }
+  .rec-panel.rp-pink { background-color: var(--pink); }
+  .rec-panel.rp-yellow { background-color: var(--yellow); }
+
+  /* New Split Layout Classes */
+  .rec-content-split {
+    display: flex;
+    gap: 40px;
+    height: 100%;
+    align-items: center;
+    justify-content: center
+  }
+  .rec-side-info {
+    flex-basis: 20.5%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .rec-side-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .rec-pnum {
+    position: absolute;
+    top: 6px; right: 10px;
+    font-family: 'Bangers', cursive;
+    font-size: 42px;
+    color: rgba(0,0,0,0.1);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* Character row adaptations for split info section */
+  .rec-side-info .rec-avi {
+    width: 100px; height: 100px;
+    border: 4px solid #000;
+    border-radius: 50%;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 4px 4px 0 #000;
+  }
+  .rec-side-info .rec-char-name {
+    font-family: 'Bangers', cursive;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    color: #000;
+    line-height: 1;
+    margin-top: 5px;
+  }
+  .rec-side-info .rec-char-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #000;
+    opacity: 0.8;
+  }
+  .rec-side-info .rec-stars {
+    color: #000;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  /* Speed lines SVG overlay */
+  .rec-speed {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    opacity: 0.05;
+  }
+
+  /* Speech bubble — adapted for split text section */
+  .rec-bubble {
+    background: #fff;
+    border: 4px solid #000;
+    border-radius: 24px;
+    padding: 24px 28px;
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #000;
+    position: relative;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+    max-height: 280px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #000 transparent;
+  }
+  .rec-bubble::-webkit-scrollbar { width: 6px; }
+  .rec-bubble::-webkit-scrollbar-thumb { background: #000; border-radius: 3px; }
+
+  /* Tail is now a side tail for the split layout */
+  .rec-bubble::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: -20px;
+    width: 25px; height: 25px;
+    background: #fff;
+    border-left: 4px solid #000;
+    border-bottom: 4px solid #000;
+    transform: rotate(45deg);
+  }
+
+  /* Shout bubble (yellow bg) */
+  .rec-bubble.rb-shout {
+    background: var(--yellow);
+    border-radius: 8px;
+  }
+  .rec-bubble.rb-shout::after { background: var(--yellow); }
+
+  /* Quote decoration */
+  .rec-bubble .rq {
+    font-size: 42px;
+    line-height: 0.4;
+    color: rgba(0,0,0,0.15);
+    font-family: Georgia, serif;
+    display: inline-block;
+    margin-right: 2px;
+    vertical-align: top;
+  }
+
+  /* Responsive Stacking */
+  @media (max-width: 850px) {
+    .rec-content-split {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
     }
+    .rec-side-info {
+      flex-basis: auto;
+    }
+    .rec-bubble::after {
+      top: -15px;
+      left: 50%;
+      margin-left: -12px;
+      transform: rotate(135deg);
+    }
+  }
+
+  /* Action word — shows on hover in a non-overlapping corner */
+  .rec-action {
+    position: absolute;
+    top: 60px; right: 80px;
+    transform: scale(0) rotate(15deg);
+    font-family: 'Bangers', cursive;
+    font-size: 64px;
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+    opacity: 0;
+    z-index: 10;
+    white-space: nowrap;
+  }
+  .rec-panel:hover .rec-action {
+    transform: scale(1) rotate(-5deg);
+    opacity: 1;
+  }
+
+  /* THE END panel */
+  .rec-end-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    opacity: 0.06;
+  }
+  .rec-end-body {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+  }
+  .rec-end-star { font-size: 40px; margin-bottom: 12px; }
+  .rec-end-title {
+    font-family: 'Bangers', cursive;
+    font-size: 54px;
+    letter-spacing: 4px;
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 rgba(255,255,255,0.1);
+    line-height: 1;
+  }
+  .rec-end-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,215,0,0.5);
+    margin-top: 10px;
+    letter-spacing: 3px;
+  }
+  .rec-end-count {
+    margin-top: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,215,0,0.35);
+    letter-spacing: 2px;
+  }
+
+  /* Dot navigation */
+  .rec-dot-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .rec-dot {
+    width: 12px; height: 12px;
+    border: 2px solid var(--text);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.15s;
+    padding: 0;
+  }
+  .rec-dot.active { background: var(--text); }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .rec-panel { width: 88vw; }
+  }
 
   </style>
 </head>
@@ -788,9 +1100,7 @@
     <div class="loader-progress-wrap"><div class="loader-progress-bar"></div></div>
   </div>
 
-  <div class="main-content" id="mainContent" role="main">
-
-  <!-- NAVIGATION -->
+  <!-- NAV -->
   <div class="nav-wrapper">
   <div class="nav-top-dots">
     <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
@@ -819,6 +1129,8 @@
   </nav>
   </div>
 
+  <div class="main-content" id="mainContent" role="main">
+
   <!-- HERO -->
   <section class="hero full-section" id="hero">
     <div class="container">
@@ -833,7 +1145,7 @@
             Based in Dublin, Ireland.
           </p>
           <div class="hero-social">
-            <a href="https://github.com/iTzMeYuGiBoo" target="_blank" class="social-btn" aria-label="GitHub">
+            <a href="https://github.com/yugandharreddybana" target="_blank" class="social-btn" aria-label="GitHub">
               <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>
             <a href="https://linkedin.com/in/bana-yugandhar-reddy" target="_blank" class="social-btn" aria-label="LinkedIn">
@@ -842,12 +1154,6 @@
           </div>
           <div class="hero-cta-row">
             <a href="#contact" class="btn-cta">Get in Touch!</a>
-            <div class="coffee-btn-wrap">
-              <svg class="coffee-starburst" viewBox="0 0 140 80" fill="none">
-                <polygon points="70,0 82,25 110,10 90,35 140,40 90,45 110,70 82,55 70,80 58,55 30,70 50,45 0,40 50,35 30,10 58,25" fill="#FF69B4" opacity="0.25"/>
-              </svg>
-              <a href="https://www.buymeacoffee.com/yugandharreddybana" target="_blank" class="coffee-btn">Buy me a coffee ☕</a>
-            </div>
           </div>
           <div class="hero-tags">
             <span class="hero-tag">⚛️ React.js</span>
@@ -895,13 +1201,14 @@
       <div class="about-grid">
         <div class="about-card fade-in">
           <p style="font-size:13px;text-transform:uppercase;letter-spacing:2px;font-weight:700;color:var(--cyan);margin-bottom:12px;">Who I Am</p>
-          <p>Highly experienced Full Stack Developer with <span class="highlight highlight-cyan">3+ years</span> of professional experience. I've worked at <span class="highlight highlight-yellow">Incedo Technologies (Client: Verizon)</span> in India and now based in <span class="highlight highlight-pink">Dublin, Ireland</span>.</p>
+          <p>Full Stack Developer with <span class="highlight highlight-cyan">3+ years</span> of professional experience building enterprise-scale systems. Previously at <span class="highlight highlight-yellow">Incedo Technologies</span> on the <span class="highlight highlight-yellow">Verizon</span> account in India, now based in <span class="highlight highlight-pink">Dublin, Ireland</span>.</p>
           <br>
           <p>I specialise in designing <span class="highlight highlight-cyan">microservices for distributed systems</span>, implementing <span class="highlight highlight-yellow">CI/CD pipelines</span>, and building <span class="highlight highlight-pink">end-to-end full-stack applications</span>.</p>
         </div>
         <div class="about-card fade-in">
           <p style="font-size:13px;text-transform:uppercase;letter-spacing:2px;font-weight:700;color:var(--pink);margin-bottom:12px;">What Drives Me</p>
-          <p>My passion for <span class="highlight highlight-cyan">continuous learning</span> keeps me at the forefront of tech. I bring a unique blend of <span class="highlight highlight-pink">technical expertise</span> and <span class="highlight highlight-yellow">leadership</span>, thriving on building <span class="highlight highlight-cyan">impactful software</span> that solves real problems.</p>
+          <p>My passion for <span class="highlight highlight-cyan">continuous learning</span> keeps me at the forefront of tech. I bring a unique blend of <span class="highlight highlight-pink">technical expertise</span> and <span class="highlight highlight-yellow">leadership</span>, thriving on building <span class="highlight highlight-cyan">impactful software</span> that solves real problems.
+          </p>
           <br>
           <p>I focus on <span class="highlight highlight-yellow">system architecture</span> and <span class="highlight highlight-pink">clean code</span>, ensuring scalability and performance across the entire stack—from database design to frontend optimization.</p>
         </div>
@@ -912,7 +1219,7 @@
             <div class="about-stat"><div class="about-stat-num">95%</div><div class="about-stat-label">Code Coverage</div></div>
             <div class="about-stat"><div class="about-stat-num">67%</div><div class="about-stat-label">Latency Reduced</div></div>
             <div class="about-stat" style="background:var(--cyan)"><div class="about-stat-num">Full</div><div class="about-stat-label">Stack Depth</div></div>
-          </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1174,14 +1481,14 @@
           <p class="project-desc">A SaaS knowledge management platform built with Next.js 15, Spring Boot & AI.</p>
           <p class="project-details">Cortex captures, organises, shares, and analyses web content and AI conversations. It features an intelligent Chrome extension, AI-powered analysis using locally hosted Ollama, and microservices architecture with PostgreSQL.</p>
           <div class="project-btns">
-            <a href="https://github.com/iTzMeYuGiBoo/Cortex" class="btn-check">
+            <a href="https://github.com/yugandharreddybana/Cortex" class="btn-check">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               GitHub
             </a>
             <span class="btn-live btn-disabled">🌐 Coming Soon</span>
           </div>
         </div>
-        <div class="project-card fade-in">
+        <!-- <div class="project-card fade-in">
           <div class="project-icon">⚡</div>
           <h3>AI Test Generator</h3>
           <p class="project-desc">An automated QA tool for API testing built with Java & TypeScript.</p>
@@ -1192,6 +1499,19 @@
               GitHub
             </span>
             <span class="btn-live btn-disabled">🌐 Coming Soon</span>
+          </div>
+        </div> -->
+        <div class="project-card fade-in" style="background:var(--yellow)">
+          <div class="project-icon">💰</div>
+          <h3>Finance Tracker</h3>
+          <p class="project-desc">AI-powered financial management platform built with Next.js, Spring Boot & Gemini AI.</p>
+          <p class="project-details">A production-ready platform for tracking income, credit cards, loans, and recurring payments. Features intelligent budgeting, multi-currency support, and an AI Financial Advisor providing real-time personalized insights.</p>
+          <div class="project-btns">
+            <a href="https://github.com/yugandharreddybana/Financial-Tracker" target="_blank" class="btn-check">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://financial-tracker-tau-jet.vercel.app/" target="_blank" class="btn-live">🌐 Live Demo</a>
           </div>
         </div>
       </div>
@@ -1239,6 +1559,144 @@
     </svg>
   </div>
 
+  <!-- RECOMMENDATIONS -->
+  <section class="recommendations full-section" id="recommendations">
+    <div class="container">
+
+      <div class="section-header">
+        <div class="rec-section-badge fade-in">📋 CREW LOG</div>
+      </div>
+
+      <!-- Scroll controls -->
+      <div class="rec-scroll-ctl fade-in">
+        <button class="rec-nav-btn" id="recPrev" aria-label="Previous testimonial">&#8592;</button>
+        <span class="rec-panel-ctr" id="recCtr" aria-live="polite">01 / 04</span>
+        <button class="rec-nav-btn" id="recNext" aria-label="Next testimonial">&#8594;</button>
+      </div>
+
+      <!-- Comic viewport -->
+      <div class="rec-viewport fade-in" id="recViewport" role="region" aria-label="Testimonials carousel">
+        <div class="rec-track" id="recTrack">
+
+          <!-- PANEL 1 — Captain Prasanth -->
+          <div class="rec-panel" style="background-color:var(--yellow);" role="article" aria-label="Testimonial from Prasanth, Technical Lead">
+            <svg class="rec-speed" viewBox="0 0 360 440" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="320" y1="220" x2="0" y2="44" stroke="#000" stroke-width="1"/>
+              <line x1="320" y1="220" x2="0" y2="120" stroke="#000" stroke-width="1.5"/>
+              <line x1="320" y1="220" x2="0" y2="220" stroke="#000" stroke-width="2"/>
+              <line x1="320" y1="220" x2="0" y2="320" stroke="#000" stroke-width="1.5"/>
+              <line x1="320" y1="220" x2="0" y2="396" stroke="#000" stroke-width="1"/>
+            </svg>
+            <div class="rec-content-split">
+              <div class="rec-side-info">
+                <div class="rec-avi" style="background:var(--yellow); overflow:hidden;">
+                  <img src="assets/captain_comic.png" alt="Captain Prasanth" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="rec-char-name">Captain Prasanth</div>
+                <div class="rec-char-role">Technical Lead</div>
+                <div class="rec-stars">★★★★★</div>
+              </div>
+              <div class="rec-side-text">
+                <div class="rec-bubble">
+                  <span class="rq">"</span>Working with Yugandhar has been a standout experience. He brings deep expertise in front-end development, React.js, and Node.js, paired with sharp logical thinking that allows him to tackle complex problems with confidence and clarity. What truly sets him apart is his end-to-end ownership mindset — he takes full responsibility for understanding requirements, driving implementation, and delivering high-quality results without ever needing to be chased. Beyond his technical ability, he's a natural collaborator who communicates clearly, contributes positively to team dynamics, and is always ready to step up when needed. His combination of technical strength, reliability, and professionalism makes him an exceptional asset to any organisation, and I wholeheartedly recommend him for any role that demands strong engineering skills and true ownership.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 2 — Navigator Sreekanth -->
+          <div class="rec-panel" style="background-color:var(--yellow);" role="article" aria-label="Testimonial from Sreekanth, Software Engineer">
+            <svg class="rec-speed" viewBox="0 0 360 440" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="40" y1="220" x2="360" y2="44" stroke="#000" stroke-width="1"/>
+              <line x1="40" y1="220" x2="360" y2="130" stroke="#000" stroke-width="1.5"/>
+              <line x1="40" y1="220" x2="360" y2="220" stroke="#000" stroke-width="2"/>
+              <line x1="40" y1="220" x2="360" y2="310" stroke="#000" stroke-width="1.5"/>
+              <line x1="40" y1="220" x2="360" y2="396" stroke="#000" stroke-width="1"/>
+            </svg>
+            <div class="rec-content-split">
+              <div class="rec-side-info">
+                <div class="rec-avi" style="background:var(--yellow); overflow:hidden;">
+                  <img src="assets/navigator_comic.png" alt="Navigator Sreekanth" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="rec-char-name">Navigator Sreekanth</div>
+                <div class="rec-char-role">Software Engineer</div>
+                <div class="rec-stars">★★★★★</div>
+              </div>
+              <div class="rec-side-text">
+                <div class="rec-bubble">
+                  <span class="rq">"</span>Having worked closely with Yugandhar, I can attest that he is an <strong>exceptionally dependable and technically sharp</strong> engineer. He has a remarkable ability to decompose complex system requirements into clear, methodical solutions. What stood out most was how <strong>rapidly he ramped up</strong>, taking full ownership of new responsibilities with minimal supervision. His focus on <strong>code robustness and expanding RTL test coverage</strong> significantly improved our product's stability. Yugandhar is thorough, produces sustainable code, and maintains remarkable composure in high-pressure environments. He is a seamless collaborator who consistently delivers quality results, and I <strong>strongly recommend him</strong> for any role requiring technical depth and true reliability.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 3 — Architect Gowtham -->
+          <div class="rec-panel rp-pink" role="article" aria-label="Testimonial from Gowtham, Senior SDE at PayPal">
+            <svg class="rec-speed" viewBox="0 0 360 440" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="180" y1="440" x2="0" y2="100" stroke="#000" stroke-width="1"/>
+              <line x1="180" y1="440" x2="90" y2="0" stroke="#000" stroke-width="1.5"/>
+              <line x1="180" y1="440" x2="180" y2="0" stroke="#000" stroke-width="2"/>
+              <line x1="180" y1="440" x2="270" y2="0" stroke="#000" stroke-width="1.5"/>
+              <line x1="180" y1="440" x2="360" y2="100" stroke="#000" stroke-width="1"/>
+            </svg>
+            <div class="rec-content-split">
+              <div class="rec-side-info">
+                <div class="rec-avi" style="background:var(--pink); overflow:hidden;">
+                  <img src="assets/architect_comic.png" alt="Architect Gowtham" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="rec-char-name">Architect Gowtham</div>
+                <div class="rec-char-role">Senior SDE @ PayPal</div>
+                <div class="rec-stars">★★★★★</div>
+              </div>
+              <div class="rec-side-text">
+                <div class="rec-bubble rp-pink">
+                  <span class="rq">"</span>I’ve had the pleasure of working with Yugandhar, a <strong>highly skilled Full Stack Developer</strong> with profound expertise in React.js and Java. He possesses exceptional logical thinking and problem-solving abilities, consistently making <strong>sound technical decisions</strong> by balancing performance with maintainability. Yugandhar adapts in real-time to new technologies, handles complex challenges with ease, and delivers <strong>clean, production-ready code</strong>. He is a dependable team player with a deep sense of ownership who communicates with clarity and purpose. I highly recommend him for any engineering team seeking a <strong>highly capable and thoughtful</strong> technical leader.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 4 — Specialist Yashita -->
+          <div class="rec-panel rp-yellow" role="article" aria-label="Testimonial from Yashita, Full Stack Developer">
+            <svg class="rec-speed" viewBox="0 0 360 440" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="180" y1="0" x2="0" y2="340" stroke="#000" stroke-width="1"/>
+              <line x1="180" y1="0" x2="90" y2="440" stroke="#000" stroke-width="1.5"/>
+              <line x1="180" y1="0" x2="180" y2="440" stroke="#000" stroke-width="2"/>
+              <line x1="180" y1="0" x2="270" y2="440" stroke="#000" stroke-width="1.5"/>
+              <line x1="180" y1="0" x2="360" y2="340" stroke="#000" stroke-width="1"/>
+            </svg>
+            <div class="rec-content-split">
+              <div class="rec-side-info">
+                <div class="rec-avi" style="background-color:var(--yellow); overflow:hidden;">
+                  <img src="assets/specialist_comic.png" alt="Specialist Yashita" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="rec-char-name">Specialist Yashita</div>
+                <div class="rec-char-role">Full Stack Developer</div>
+                <div class="rec-stars">★★★★★</div>
+              </div>
+              <div class="rec-side-text">
+                <div class="rec-bubble">
+                  <span class="rq">"</span>Working with Yugandhar, I found him to be a <strong>highly capable and reliable engineer</strong> with a phenomenal grasp of complex technical concepts. He approaches problems in a structured and logical way, demonstrating a <strong>remarkable learning curve</strong> and the ability to take full ownership with minimal guidance. His meaningful contributions to improving code quality and increasing <strong>RTL test coverage</strong> were pivotal in enhancing the stability and reliability of our deliverables. Yugandhar is detail-oriented, produces clean, maintainable code, and <strong>excels under pressure</strong>. He is a collaborative team member who delivers consistency at every stage, and I confidently recommend him for any high-level technical role.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /rec-track -->
+      </div><!-- /rec-viewport -->
+
+      <!-- Dot navigation -->
+      <div class="rec-dot-row" role="tablist" aria-label="Testimonial navigation">
+        <button class="rec-dot active" role="tab" aria-selected="true" aria-label="Panel 1"></button>
+        <button class="rec-dot" role="tab" aria-selected="false" aria-label="Panel 2"></button>
+        <button class="rec-dot" role="tab" aria-selected="false" aria-label="Panel 3"></button>
+        <button class="rec-dot" role="tab" aria-selected="false" aria-label="Panel 4"></button>
+      </div>
+
+    </div>
+  </section>
+  
+
   <!-- CONTACT -->
   <section class="contact full-section" id="contact">
     <div class="container">
@@ -1251,7 +1709,7 @@
           </span>
           <span class="sticky-label">LinkedIn</span>
         </a>
-        <a href="https://github.com/iTzMeYuGiBoo" target="_blank" class="sticky-note yellow-note">
+        <a href="https://github.com/yugandharreddybana" target="_blank" class="sticky-note yellow-note">
           <span class="sticky-icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="#000"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           </span>
@@ -1301,9 +1759,6 @@
       <div class="footer-divider"></div>
       <div class="footer-bottom">
         <span class="footer-copy">© 2026 Yugandhar Reddy Bana</span>
-        <a href="./terminal.html" class="btn-terminal">
-          <span style="font-family:'JetBrains Mono',monospace;">❯_</span> Terminal
-        </a>
       </div>
     </div>
   </footer>
@@ -1311,9 +1766,18 @@
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  </div>
   <script>
     // ---- ALWAYS START AT HOME ON REFRESH ----
     (function() {
+      var nav = document.getElementById('navbar');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
       }
@@ -1697,6 +2161,62 @@
         }
       });
     }
+    // ---- RECOMMENDATIONS CAROUSEL (Crew Log) ----
+    (function(){
+      var vp = document.getElementById('recViewport');
+      var ctr = document.getElementById('recCtr');
+      var dots = document.querySelectorAll('.rec-dot');
+      var cur = 0;
+
+      function getPanels() { return document.querySelectorAll('.rec-panel'); }
+      function getPanelWidth() { 
+        var p = getPanels()[0]; 
+        if (!p) return 363;
+        // Include border/gap logic matching the CSS width + border
+        return p.offsetWidth; 
+      }
+
+      function recGo(i) {
+        var panels = getPanels();
+        var pw = getPanelWidth();
+        cur = Math.max(0, Math.min(panels.length - 1, i));
+        vp.scrollTo({ left: cur * pw, behavior: 'smooth' });
+        dots.forEach(function(d, j) {
+          d.classList.toggle('active', j === cur);
+          d.setAttribute('aria-selected', j === cur ? 'true' : 'false');
+        });
+        ctr.textContent = String(cur + 1).padStart(2, '0') + ' / 04';
+      }
+
+      var prevBtn = document.getElementById('recPrev');
+      var nextBtn = document.getElementById('recNext');
+
+      if (prevBtn) prevBtn.addEventListener('click', function() { recGo(cur - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { recGo(cur + 1); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function() { recGo(i); }); });
+
+      if (vp) {
+        vp.addEventListener('scroll', function() {
+          var i = Math.round(vp.scrollLeft / getPanelWidth());
+          var panels = getPanels();
+          if (i !== cur && i >= 0 && i < panels.length) {
+            cur = i;
+            dots.forEach(function(d, j) {
+              d.classList.toggle('active', j === cur);
+              d.setAttribute('aria-selected', j === cur ? 'true' : 'false');
+            });
+            ctr.textContent = String(cur + 1).padStart(2, '0') + ' / 04';
+          }
+        });
+
+        // Keyboard navigation (left/right arrows)
+        vp.setAttribute('tabindex', '0');
+        vp.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowRight') recGo(cur + 1);
+          if (e.key === 'ArrowLeft') recGo(cur - 1);
+        });
+      }
+    })();
   </script>
 </body>
 </html>
