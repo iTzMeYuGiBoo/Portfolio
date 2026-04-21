@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yugandhar Reddy Bana | Duolingo Style Portfolio</title>
+  <meta name="description" content="Portfolio of Yugandhar Reddy Bana, Full Stack Developer, in Duolingo Design System style.">
+  
+  <!-- Google Fonts: Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Feather Bold Font Import */
+    @font-face {
+      font-family: 'Feather Bold';
+      src: url('https://db.onlinewebfonts.com/t/14936bb7a4b6575fd2eee80a3ab52cc2.eot');
+      src: url('https://db.onlinewebfonts.com/t/14936bb7a4b6575fd2eee80a3ab52cc2.eot?#iefix') format('embedded-opentype'),
+           url('https://db.onlinewebfonts.com/t/14936bb7a4b6575fd2eee80a3ab52cc2.woff2') format('woff2'),
+           url('https://db.onlinewebfonts.com/t/14936bb7a4b6575fd2eee80a3ab52cc2.woff') format('woff'),
+           url('https://db.onlinewebfonts.com/t/14936bb7a4b6575fd2eee80a3ab52cc2.ttf') format('truetype'),
+           url('https://db.onlinewebfonts.com/t/14936bb7a4b6575fd2eee80a3ab52cc2.svg#Feather Bold') format('svg');
+    }
+
+    :root {
+      --green: rgb(88, 204, 2);
+      --green-hover: rgb(75, 178, 0);
+      --green-shadow: #61B800;
+      --dark-blue: rgb(16, 15, 62);
+      --blue: rgb(28, 176, 246);
+      --gray-text: rgb(75, 75, 75);
+      --gray-light: rgb(119, 119, 119);
+      --border-color: rgb(229, 229, 229);
+      --nav-text: rgb(175, 175, 175);
+      --footer-green: #4EC604;
+      --red: #FF4B4B;
+      --orange: #FF9600;
+      --golden: #FFC800;
+      --white: #ffffff;
+      
+      --font-primary: 'Nunito', 'DIN Round Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Feather Bold', 'Nunito', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--white);
+      color: var(--gray-text);
+      line-height: 1.5;
+    }
+
+    /* Fixed Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: var(--white);
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1440px;
+      height: 100%;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      height: 33px;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border-color);
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--nav-text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--nav-text);
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--green);
+      background: rgba(88, 204, 2, 0.08);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 40px 40px;
+      background: linear-gradient(to bottom, #e3f8cf 0%, var(--white) 100%);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: 52px;
+      color: var(--green);
+      margin-bottom: 16px;
+      text-transform: lowercase;
+    }
+
+    .hero-description {
+      font-size: 17px;
+      color: var(--gray-light);
+      max-width: 520px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+    }
+
+    /* Generic Button Styles */
+    .btn {
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s ease;
+      border: none;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 4px 0 var(--green-shadow);
+    }
+
+    .btn-primary:active {
+      transform: translateY(4px);
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      border: 2px solid var(--border-color);
+      color: var(--blue);
+      box-shadow: 0 4px 0 var(--border-color);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(4px);
+      box-shadow: none;
+    }
+
+    .btn-danger {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: 0 4px 0 #CC3C3C;
+    }
+
+    .btn-danger:active {
+      transform: translateY(4px);
+      box-shadow: none;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--green);
+      box-shadow: none;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(88, 204, 2, 0.08);
+    }
+
+    .btn-small {
+      height: 36px;
+      padding: 0 16px;
+      font-size: 13px;
+      border-radius: 10px;
+    }
+
+    .btn-disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    /* Main Grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1440px;
+      margin: 0 auto;
+      border-top: 2px solid var(--border-color);
+    }
+
+    .panel {
+      padding: 36px 40px;
+      border-bottom: 2px solid var(--border-color);
+      border-right: 2px solid var(--border-color);
+      position: relative;
+    }
+
+    .panel:nth-child(even) {
+      border-right: none;
+    }
+
+    .panel-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .panel-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+      margin-left: 16px;
+    }
+
+    /* Panel 1: Color Palette style */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 12px;
+    }
+
+    .swatch-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .swatch-box {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.2s ease;
+    }
+
+    .swatch-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-text);
+    }
+
+    .swatch-hex {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gray-light);
+    }
+
+    /* Panel 2: Typography Style */
+    .typo-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .typo-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+
+    .typo-meta {
+      width: 80px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .typo-size {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    .typo-weight {
+      font-size: 10px;
+      color: var(--nav-text);
+    }
+
+    /* Panel 5: Cards Style */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tag-green { color: var(--green); background: rgba(88, 204, 2, 0.1); }
+    .tag-blue { color: var(--blue); background: rgba(28, 176, 246, 0.1); }
+    .tag-orange { color: var(--orange); background: rgba(255, 150, 0, 0.1); }
+    .tag-golden { color: var(--golden); background: rgba(255, 200, 0, 0.1); }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gray-text);
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--gray-light);
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--border-color);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--nav-text);
+    }
+
+    .footer-right {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .footer-right:hover {
+      opacity: 0.7;
+    }
+
+    /* Dark Theme Panels */
+    .panel-dark {
+      background: var(--dark-blue);
+      color: var(--white);
+    }
+
+    .panel-dark .panel-label {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .panel-dark .panel-label::after {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .panel-dark .card {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .panel-dark .card-title { color: var(--white); }
+    .panel-dark .card-desc { color: rgba(255, 255, 255, 0.5); }
+    .panel-dark .card-footer { border-color: rgba(255, 255, 255, 0.08); }
+    .panel-dark .footer-left { color: rgba(255, 255, 255, 0.3); }
+
+    /* Components Panel */
+    .comp-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .comp-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comp-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--nav-text);
+    }
+
+    .badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge-pill {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    /* Input Style */
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .input-field {
+      flex: 1;
+      height: 48px;
+      padding: 0 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      outline: none;
+      background: var(--white);
+    }
+
+    .input-field:focus {
+      border-color: var(--blue);
+    }
+
+    .input-field::placeholder {
+      color: var(--nav-text);
+      font-weight: 500;
+    }
+
+    /* Toggle Style */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .toggle {
+      width: 48px;
+      height: 28px;
+      background: var(--border-color);
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-thumb {
+      width: 22px;
+      height: 22px;
+      background: var(--white);
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+    }
+
+    .toggle.checked {
+      background: var(--green);
+    }
+
+    .toggle.checked .toggle-thumb {
+      left: 23px;
+    }
+
+    .toggle-text {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Progress Style */
+    .progress-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 12px;
+      background: var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.6s ease;
+    }
+
+    .progress-val {
+      font-size: 12px;
+      font-weight: 800;
+      width: 32px;
+      text-align: right;
+    }
+
+    /* Tooltip */
+    .tooltip-trigger {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--green);
+      background: rgba(88, 204, 2, 0.08);
+      padding: 8px 16px;
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .tooltip-bubble {
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark-blue);
+      color: var(--white);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .tooltip-bubble::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border: 5px solid transparent;
+      border-top-color: var(--dark-blue);
+    }
+
+    .tooltip-trigger:hover .tooltip-bubble {
+      opacity: 1;
+      visibility: visible;
+      bottom: 130%;
+    }
+
+    /* Streak */
+    .streak-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255, 150, 0, 0.1);
+      border-radius: 20px;
+    }
+
+    .streak-icon { font-size: 18px; }
+    .streak-val { font-size: 16px; font-weight: 900; color: var(--orange); }
+
+    /* Language Pills (Dark) */
+    .pill-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 2px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pill-dark.active {
+      border-color: var(--green);
+      background: rgba(88, 204, 2, 0.08);
+      color: var(--white);
+    }
+
+    .pill-dark:hover {
+      border-color: var(--green);
+      background: rgba(88, 204, 2, 0.08);
+    }
+
+    .pill-flag {
+      width: 24px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    /* Avatar Group */
+    .avatar-group-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar-stack {
+      display: flex;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      margin-left: -8px;
+      object-fit: cover;
+    }
+
+    .avatar:first-child { margin-left: 0; }
+
+    .avatar-count {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      color: var(--gray-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      margin-left: -8px;
+      border: 2px solid var(--white);
+    }
+
+    .avatar-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 900px) {
+      .main-grid { grid-template-columns: 1fr; }
+      .panel { border-right: none; }
+      .hero-headline { font-size: 36px; }
+      .nav-links { display: none; }
+      .hero-buttons { flex-direction: column; width: 100%; max-width: 280px; }
+      .hero-buttons .btn { width: 100%; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 80px 20px 32px; }
+      .hero-headline { font-size: 28px; }
+      .panel { padding: 28px 20px; }
+      .stack-grid { grid-template-columns: repeat(3, 1fr); }
+      .typo-meta { display: none; }
+      .display-sample { font-size: 32px !important; }
+      .comp-label { display: none; }
+      .input-row { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="https://d35aaqx5ub95lt.cloudfront.net/images/splash/f92d5f2f7d56636846861c458c0d0b6c.svg" alt="Logo" class="nav-logo">
+        <div class="nav-divider"></div>
+        <span class="nav-label">PORTFOLIO</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#components">UI</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <h1 class="hero-headline">yugandhar bana</h1>
+    <p class="hero-description">
+      A comprehensive visual reference for the Duolingo design system covering colors, typography, button variants, cards, and UI components—reimagined as a developer portfolio.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">GET STARTED</a>
+      <a href="Yugandhar Reddy Bana.pdf" download class="btn btn-secondary">DOWNLOAD CV</a>
+    </div>
+  </header>
+
+  <main class="main-grid">
+    
+    <!-- Panel 1: Tech Stack (Color Palette Style) -->
+    <section class="panel" id="colors">
+      <div class="panel-label">Tech Stack</div>
+      <div class="stack-grid">
+        <!-- Java -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #E82C2A;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Java 21</span>
+            <span class="swatch-hex">Backend</span>
+          </div>
+        </div>
+        <!-- Spring -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #6DB33F;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Spring Boot</span>
+            <span class="swatch-hex">Microservices</span>
+          </div>
+        </div>
+        <!-- React -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #61DAFB;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">React.js</span>
+            <span class="swatch-hex">Frontend</span>
+          </div>
+        </div>
+        <!-- Next.js -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #000000;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Next.js 15</span>
+            <span class="swatch-hex">Framework</span>
+          </div>
+        </div>
+        <!-- TypeScript -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #3178C6;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">TypeScript</span>
+            <span class="swatch-hex">Static Type</span>
+          </div>
+        </div>
+        <!-- Node.js -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #339933;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Node.js</span>
+            <span class="swatch-hex">Runtime</span>
+          </div>
+        </div>
+        <!-- PostgreSQL -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #336791;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">PostgreSQL</span>
+            <span class="swatch-hex">Database</span>
+          </div>
+        </div>
+        <!-- Docker -->
+        <div class="swatch-card">
+          <div class="swatch-box" style="background: #2496ED;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Docker</span>
+            <span class="swatch-hex">Cloud</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel 2: Typography Style -->
+    <section class="panel" id="type">
+      <div class="panel-label">Expertise</div>
+      <div class="typo-stack">
+        <div class="typo-row">
+          <div class="typo-meta">
+            <div class="typo-size">48px</div>
+            <div class="typo-weight">Feather Bold</div>
+          </div>
+          <div class="display-sample" style="font-family: var(--font-display); font-size: 48px; color: var(--green);">Full Stack</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta">
+            <div class="typo-size">32px</div>
+            <div class="typo-weight">Bold 700</div>
+          </div>
+          <div style="font-size: 32px; font-weight: 700; color: var(--gray-text);">Backend Architect</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta">
+            <div class="typo-size">28px</div>
+            <div class="typo-weight">Feather Bold</div>
+          </div>
+          <div style="font-family: var(--font-display); font-size: 28px; color: var(--green); text-transform: lowercase;">data analytics</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta">
+            <div class="typo-size">18px</div>
+            <div class="typo-weight">Medium 500</div>
+          </div>
+          <div style="font-size: 18px; font-weight: 500; color: var(--gray-light); line-height: 1.6;">
+            Specializing in scalable microservices, modern frontend frameworks, and AI-powered applications. Based in Dublin, Ireland.
+          </div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta">
+            <div class="typo-size">14px</div>
+            <div class="typo-weight">Bold 700</div>
+          </div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--nav-text); text-transform: uppercase; letter-spacing: 0.5px;">SYSTEM DESIGN & TDD</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel 3: Button Variants Style -->
+    <section class="panel" id="buttons">
+      <div class="panel-label">Actionable Skills</div>
+      <div class="comp-stack">
+        <div class="comp-group">
+          <span class="comp-label">Cloud Deployment</span>
+          <div class="badges-row">
+            <button class="btn btn-primary">AWS CLOUD</button>
+            <button class="btn btn-primary btn-small">DOCKER</button>
+            <button class="btn btn-primary btn-disabled">JENKINS</button>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label">Frontend Frameworks</span>
+          <div class="badges-row">
+            <button class="btn btn-secondary">NEXT.JS 15</button>
+            <button class="btn btn-secondary btn-small">REACT</button>
+            <button class="btn btn-secondary btn-disabled">TAILWIND</button>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label">Core Logic</span>
+          <div class="badges-row">
+            <button class="btn btn-danger">JAVA 21</button>
+            <button class="btn btn-danger btn-small">PYTHON</button>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label">Others</span>
+          <div class="badges-row">
+            <button class="btn btn-ghost">VIEW ALL SKILLS</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel 4: Experience (Dark Theme) -->
+    <section class="panel panel-dark" id="experience">
+      <div class="panel-label">Professional Experience</div>
+      <div class="comp-stack">
+        <div class="comp-group">
+          <span class="comp-label" style="color: rgba(255,255,255,0.3);">Verizon Account (Incedo)</span>
+          <div class="badges-row">
+            <button class="btn" style="background: var(--white); color: var(--dark-blue); box-shadow: 0 4px 0 #88879F;">SR. DEVELOPER</button>
+            <button class="btn btn-small" style="background: #c8f040; color: var(--dark-blue); box-shadow: 0 3px 0 #a0c433;">2021 — 2024</button>
+          </div>
+        </div>
+        <div class="comp-group" style="margin-top: 16px;">
+          <span class="comp-label" style="color: rgba(255,255,255,0.3);">Independent SaaS</span>
+          <div class="badges-row">
+            <button class="btn" style="background: var(--white); color: var(--dark-blue); box-shadow: 0 4px 0 #88879F;">FULL STACK ARCHITECT</button>
+            <button class="btn btn-small" style="background: #c8f040; color: var(--dark-blue); box-shadow: 0 3px 0 #a0c433;">2024 — PRESENT</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel 5: Projects (Card Style) -->
+    <section class="panel" id="projects">
+      <div class="panel-label">Featured Projects</div>
+      <div class="card-grid">
+        <!-- Card 1: Cortex -->
+        <article class="card">
+          <img src="https://images.pexels.com/photos/4145354/pexels-photo-4145354.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop" alt="Cortex" class="card-img">
+          <div class="card-body">
+            <span class="card-tag tag-green">AI PLATFORM</span>
+            <h3 class="card-title">Cortex SaaS</h3>
+            <p class="card-desc">Knowledge management platform with Next.js 15, Spring Boot & Ollama AI.</p>
+          </div>
+          <footer class="card-footer">
+            <span class="footer-left">95% COVERAGE</span>
+            <a href="https://github.com/yugandharreddybana/Cortex" target="_blank" class="footer-right">VIEW CODE</a>
+          </footer>
+        </article>
+        <!-- Card 2: Finance Tracker -->
+        <article class="card">
+          <img src="https://images.pexels.com/photos/267669/pexels-photo-267669.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop" alt="Finance Tracker" class="card-img">
+          <div class="card-body">
+            <span class="card-tag tag-blue">FINTECH</span>
+            <h3 class="card-title">Finance Tracker</h3>
+            <p class="card-desc">AI-powered tracking for income, cards, and multi-currency budgeting.</p>
+          </div>
+          <footer class="card-footer">
+            <span class="footer-left">ACTIVE USERS</span>
+            <a href="https://github.com/yugandharreddybana/FinanceTracker" target="_blank" class="footer-right">LIVE DEMO</a>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- Panel 6: Education (Dark Theme Cards) -->
+    <section class="panel panel-dark" id="education">
+      <div class="panel-label">Education</div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="card-tag" style="color: var(--golden); background: rgba(255, 200, 0, 0.15);">MASTERS</span>
+            <h3 class="card-title">MSc Data Analytics</h3>
+            <p class="card-desc">National College of Ireland, Dublin. Grade 2:1.</p>
+          </div>
+          <footer class="card-footer">
+            <span class="footer-left">2024 — 2025</span>
+            <span class="footer-right" style="color: rgba(255,255,255,0.3);">COMPLETED</span>
+          </footer>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <span class="card-tag" style="color: var(--orange); background: rgba(255, 150, 0, 0.15);">BACHELORS</span>
+            <h3 class="card-title">BTech CSE</h3>
+            <p class="card-desc">SASTRA University, India. Foundation in Algorithms & DS.</p>
+          </div>
+          <footer class="card-footer">
+            <span class="footer-left">2017 — 2021</span>
+            <span class="footer-right" style="color: rgba(255,255,255,0.3);">DISTINCTION</span>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- Panel 7: Stats & Components -->
+    <section class="panel" id="components">
+      <div class="panel-label">System Stats</div>
+      <div class="comp-stack">
+        <div class="comp-group">
+          <span class="comp-label">Project Status</span>
+          <div class="badges-row">
+            <span class="badge-pill" style="color: var(--green); background: rgba(88, 204, 2, 0.12);">COMPLETED</span>
+            <span class="badge-pill" style="color: var(--blue); background: rgba(28, 176, 246, 0.12);">IN PROGRESS</span>
+            <span class="badge-pill" style="color: var(--orange); background: rgba(255, 150, 0, 0.12);">STREAK</span>
+            <span class="badge-pill" style="color: #b8920f; background: rgba(255, 200, 0, 0.15);">PREMIUM</span>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label">Newsletter</span>
+          <div class="input-row">
+            <input type="text" class="input-field" placeholder="Email address">
+            <button class="btn btn-primary">SUBSCRIBE</button>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label">Preferences</span>
+          <div class="toggle-row">
+            <div class="toggle checked" onclick="this.classList.toggle('checked')"><div class="toggle-thumb"></div></div>
+            <span class="toggle-text">Dark Mode Support</span>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label">Language Fluency</span>
+          <div class="progress-col">
+            <div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="width: 95%; background: var(--green);"></div></div>
+              <span class="progress-val">95%</span>
+            </div>
+            <div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="width: 80%; background: var(--blue);"></div></div>
+              <span class="progress-val">80%</span>
+            </div>
+            <div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="width: 35%; background: var(--orange);"></div></div>
+              <span class="progress-val">35%</span>
+            </div>
+          </div>
+        </div>
+        <div class="comp-group">
+          <div style="display: flex; gap: 16px; align-items: center;">
+            <div class="tooltip-trigger">Hover for Secret
+              <div class="tooltip-bubble">I love building microservices! 🚀</div>
+            </div>
+            <div class="streak-badge">
+              <span class="streak-icon">🔥</span>
+              <span class="streak-val">42</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel 8: Languages & Community (Dark) -->
+    <section class="panel panel-dark" id="community">
+      <div class="panel-label">Languages & Community</div>
+      <div class="comp-stack">
+        <div class="comp-group">
+          <span class="comp-label" style="color: rgba(255,255,255,0.3);">Communication</span>
+          <div class="badges-row">
+            <div class="pill-dark active">
+              <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/59a90a2cedd48b751a8fd22014768fd7.svg" alt="English" class="pill-flag">
+              English
+            </div>
+            <div class="pill-dark">
+              <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/edea4fa18ff3e7d8c0282de3f102aaed.svg" alt="Japanese" class="pill-flag">
+              Telugu
+            </div>
+            <div class="pill-dark">
+              <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/482fda142ee4abd728ebf4ccce5d3307.svg" alt="French" class="pill-flag">
+              Hindi
+            </div>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label" style="color: rgba(255,255,255,0.3);">Collaborators</span>
+          <div class="avatar-group-wrap">
+            <div class="avatar-stack">
+              <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="User" class="avatar">
+              <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="User" class="avatar">
+              <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="User" class="avatar">
+              <div class="avatar-count">+8</div>
+            </div>
+            <span class="avatar-label">8 active learners</span>
+          </div>
+        </div>
+        <div class="comp-group">
+          <span class="comp-label" style="color: rgba(255,255,255,0.3);">Expertise Level</span>
+          <div class="progress-col">
+            <div class="progress-row">
+              <div class="progress-track" style="background: rgba(255,255,255,0.08);"><div class="progress-fill" style="width: 72%; background: var(--golden);"></div></div>
+              <span class="progress-val" style="color: rgba(255,255,255,0.6);">72%</span>
+            </div>
+            <div class="progress-row">
+              <div class="progress-track" style="background: rgba(255,255,255,0.08);"><div class="progress-fill" style="width: 45%; background: var(--green);"></div></div>
+              <span class="progress-val" style="color: rgba(255,255,255,0.6);">45%</span>
+            </div>
+          </div>
+        </div>
+        <div class="comp-group">
+          <div class="badges-row">
+            <span class="badge-pill" style="background: rgba(88, 204, 2, 0.15); color: #7ADB2E;">MASTERED</span>
+            <span class="badge-pill" style="background: rgba(28, 176, 246, 0.15); color: #4DC4F8;">REVIEW</span>
+            <span class="badge-pill" style="background: rgba(255, 200, 0, 0.15); color: #FFC800;">CROWN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="padding: 60px 40px; text-align: center; border-top: 2px solid var(--border-color); color: var(--gray-light); font-size: 14px; font-weight: 700;">
+    <img src="https://d35aaqx5ub95lt.cloudfront.net/images/splash/f92d5f2f7d56636846861c458c0d0b6c.svg" alt="Logo" style="height: 24px; margin-bottom: 12px; filter: grayscale(1); opacity: 0.5;">
+    <p>&copy; 2026 YUGANDHAR REDDY BANA. DESIGNED WITH DUOLINGO SYSTEM.</p>
+  </footer>
+
+  <script>
+    // Simple Active Nav Tracking
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 100)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Toggle button logic
+    document.querySelectorAll('.toggle').forEach(t => {
+      t.addEventListener('click', () => {
+        t.classList.toggle('checked');
+      });
+    });
+  </script>
+</body>
+
+</html>
