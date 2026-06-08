@@ -697,19 +697,25 @@
 
   const AI_DATABASE = [
     {
+      keywords: ['yugandhar', 'about', 'yourself', 'who', 'profile', 'bio', 'introduce', 'introduction', 'resume', 'cv', 'summary', 'bana', 'background', 'name'],
+      response: 'Yugandhar Reddy Bana is a Full Stack Developer based in Dublin, Ireland, with <span class="c-green c-bold">4+ years</span> of professional experience.<br>' +
+                'He specializes in designing scalable microservices, CI/CD pipelines, and integrating AI into web applications.<br>' +
+                'Type <span class="c-cyan c-bold">projects</span> to see his works, <span class="c-cyan c-bold">skills</span> to see his tech stack, or ask specific questions like "what is Cortex?" or "tell me about your education".'
+    },
+    {
       keywords: ['experience', 'years', 'how long', 'work', 'history', 'job', 'employer', 'career', 'incedo', 'verizon', 'freelance'],
       response: 'Yugandhar has <span class="c-green c-bold">over 4 years</span> of professional experience as a Full Stack Software Developer:<br>' +
                 '  <span class="c-pink c-bold">• Freelance Developer</span> (April 2024 - Present): Building full-stack web applications, integrating AI (Gemini, NVIDIA APIs), and implementing Stripe SaaS billing.<br>' +
                 '  <span class="c-pink c-bold">• Software Engineer at Incedo</span> (August 2021 - January 2024): Worked on Verizon\'s telecom platform, optimized query latencies by 67%, migrated monoliths to Spring Boot microservices, and led team frontend test coverage to 90%.'
     },
     {
-      keywords: ['education', 'college', 'university', 'degree', 'msc', 'btech', 'sastra', 'national college', 'nci', 'masters', 'bachelors', 'graduat'],
+      keywords: ['education', 'college', 'university', 'degree', 'msc', 'btech', 'sastra', 'national college', 'nci', 'masters', 'bachelors', 'graduat', 'study', 'qualification', 'thesis', 'capstone'],
       response: 'Yugandhar\'s academic background includes:<br>' +
                 '  <span class="c-pink c-bold">• M.Sc. in Data Analytics (2:1)</span> — National College of Ireland (Jan 2024 - Jan 2025). Focus on pipelines, ML, and analytics engineering. Thesis: <i>ensemble methods on real-world housing market in Ireland</i>.<br>' +
                 '  <span class="c-pink c-bold">• B.Tech in CSE (7.49/10)</span> — SASTRA Deemed University, India (June 2017- Aug 2021). Capstone: <i>Auto image caption generation</i>.'
     },
     {
-      keywords: ['project', 'cortex', 'finance', 'task', 'career', 'aria', 'portfolio', 'built', 'worked on'],
+      keywords: ['project', 'projects', 'built', 'worked on', 'portfolio'],
       response: 'Yugandhar has built several production-grade projects:<br>' +
                 '  <span class="c-cyan c-bold">• Cortex:</span> SaaS knowledge platform featuring AI-powered search (Next.js, TypeScript, Gemini API).<br>' +
                 '  <span class="c-cyan c-bold">• Personal Finance Tracker:</span> Expense manager with NVIDIA voice input, Spring Boot, and PostgreSQL.<br>' +
@@ -717,6 +723,31 @@
                 '  <span class="c-cyan c-bold">• Career-Ops:</span> Job intelligence portal with AI-matching agents and Kanban tracking.<br>' +
                 '  <span class="c-cyan c-bold">• ARIA:</span> Virtual business platform with 70+ specialized orchestrating AI agents.<br>' +
                 'Type <span class="c-yellow c-bold">projects</span> for a complete breakdown of each!'
+    },
+    {
+      keywords: ['cortex'],
+      response: '<span class="c-cyan c-bold">Cortex</span> is a SaaS Knowledge Management Platform built using Next.js, React.js, TypeScript, Node.js, Java, PostgreSQL, Docker, and Google Gemini API.<br>' +
+                'It enables users to capture, organise, search, and revisit research highlights and knowledge assets in shared collaborative workspaces.'
+    },
+    {
+      keywords: ['finance', 'tracker', 'expense', 'spending', 'budget'],
+      response: '<span class="c-cyan c-bold">Personal Finance Tracker</span> is an AI-powered finance management platform built using React.js, TypeScript, Node.js, Java, Spring Boot, and PostgreSQL.<br>' +
+                'It features an integrated NVIDIA voice API to automatically log transactions and expenses through natural voice prompts.'
+    },
+    {
+      keywords: ['task', 'tasks', 'management', 'schedule', 'todo'],
+      response: '<span class="c-cyan c-bold">Task Management Application</span> is an AI-assisted task scheduling platform built using React.js, TypeScript, Node.js, Java, Spring Boot, and Redis.<br>' +
+                'It parses natural language tasks and automatically handles task categorization, scheduling, and prioritization.'
+    },
+    {
+      keywords: ['career-ops', 'career', 'job', 'matching', 'kanban'],
+      response: '<span class="c-cyan c-bold">Career-Ops</span> is an AI-powered career intelligence platform built with React.js, TypeScript, Node.js, Java, Spring Boot, and Redis.<br>' +
+                'It uses LLM agents to match job descriptions against user profiles and tracks job applications in a Kanban-style pipeline.'
+    },
+    {
+      keywords: ['aria'],
+      response: '<span class="c-cyan c-bold">ARIA</span> is an AI-powered Virtual Business Execution Platform using multi-agent orchestration and LLMs.<br>' +
+                'It orchestrates a workflow of 70+ specialized AI agents representing corporate roles to automate requirements gathering, design, development, and QA.'
     },
     {
       keywords: ['skills', 'tech', 'stack', 'languages', 'react', 'typescript', 'javascript', 'java', 'spring', 'node', 'postgres', 'docker', 'redis', 'kafka', 'git', 'ci/cd', 'css', 'html', 'next.js', 'gemini', 'nvidia'],
@@ -750,23 +781,31 @@
     const cleanQuery = query.toLowerCase().trim();
     if (!cleanQuery) return 'Please type a question about Yugandhar\'s background, projects, or experience.';
 
+    // Tokenize query to check for exact word matching
+    const queryWords = cleanQuery.split(/[^a-z0-9#\-\+]+/);
+
     let bestMatch = null;
-    let maxMatchCount = 0;
+    let maxScore = 0;
 
     for (const entry of AI_DATABASE) {
-      let matchCount = 0;
+      let score = 0;
       for (const kw of entry.keywords) {
+        // Substring match gets score proportional to its length
         if (cleanQuery.includes(kw)) {
-          matchCount++;
+          score += kw.length;
+        }
+        // Exact word match gets extra weight
+        if (queryWords.includes(kw)) {
+          score += 5;
         }
       }
-      if (matchCount > maxMatchCount) {
-        maxMatchCount = matchCount;
+      if (score > maxScore) {
+        maxScore = score;
         bestMatch = entry;
       }
     }
 
-    if (bestMatch && maxMatchCount > 0) {
+    if (bestMatch && maxScore >= 4) {
       return bestMatch.response;
     }
 
