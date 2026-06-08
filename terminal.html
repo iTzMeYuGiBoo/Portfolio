@@ -506,25 +506,66 @@
     addLine('<span class="c-yellow c-bold">┌─── PROJECTS ─────────────────────────────────────┐</span>');
     addBlank();
 
+    // Cortex
     addLine('  <span class="c-cyan c-bold">01. Cortex</span>');
     addLine('  <span class="c-pink">SaaS Knowledge Management Platform</span>');
-    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">Next.js 15 + Spring Boot + Ollama AI</span>');
+    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">Next.js • React.js • TypeScript • Node.js • Java • PostgreSQL • Docker • Gemini API</span>');
     addBlank();
-    addLine('  <span class="c-sub">▸</span> <span class="c-text">Full-stack SaaS for intelligent document management</span>');
-    addLine('  <span class="c-sub">▸</span> <span class="c-text">AI-powered search and summarization with Ollama</span>');
-    addLine('  <span class="c-sub">▸</span> <span class="c-text">Real-time collaboration with WebSockets</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Full-stack platform for organising research highlights and knowledge assets</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">AI-powered search and retrieval for quick information lookup</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Collaborative workspaces, comments, and role-based permissions</span>');
     addBlank();
 
     addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
     addBlank();
 
-    addLine('  <span class="c-cyan c-bold">02. AI-Powered Test Generator</span>');
-    addLine('  <span class="c-pink">Automated Testing Tool</span>');
-    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">Java + TypeScript + OpenAI API</span>');
+    // Finance Tracker
+    addLine('  <span class="c-cyan c-bold">02. Personal Finance Tracker with AI</span>');
+    addLine('  <span class="c-pink">AI-Powered Finance Management Platform</span>');
+    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">React.js • TypeScript • Node.js • Java • Spring Boot • NVIDIA API</span>');
     addBlank();
-    addLine('  <span class="c-sub">▸</span> <span class="c-text">Generates unit tests automatically using AI</span>');
-    addLine('  <span class="c-sub">▸</span> <span class="c-text">Supports Java and TypeScript codebases</span>');
-    addLine('  <span class="c-sub">▸</span> <span class="c-text">Integrates with existing CI/CD pipelines</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Tracks expenses, loans, budgets, savings goals, and financial activities</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Integrated AI-powered voice input for rapid transaction recording</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Analytics dashboards and insights identifying spending trends</span>');
+    addBlank();
+
+    addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
+    addBlank();
+
+    // Task Management
+    addLine('  <span class="c-cyan c-bold">03. AI-Powered Task Management Application</span>');
+    addLine('  <span class="c-pink">AI-Assisted Task Organization Platform</span>');
+    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">React.js • TypeScript • Node.js • Java • Spring Boot • Redis • NVIDIA API</span>');
+    addBlank();
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Create and organise tasks through natural language interactions</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Backend services for task generation, categorisation, and prioritisation</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Responsive user interfaces for tracking and productivity</span>');
+    addBlank();
+
+    addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
+    addBlank();
+
+    // Career-Ops
+    addLine('  <span class="c-cyan c-bold">04. Career-Ops</span>');
+    addLine('  <span class="c-pink">AI-Powered Career Intelligence Platform</span>');
+    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">React.js • TypeScript • Node.js • Java • Spring Boot • Redis • AI Agents • LLMs</span>');
+    addBlank();
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Intelligent job-matching using profile & job description analysis</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Kanban-style tracking system for managing job opportunities progress</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Redis-based rate limiting and platform security controls</span>');
+    addBlank();
+
+    addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
+    addBlank();
+
+    // ARIA
+    addLine('  <span class="c-cyan c-bold">05. ARIA</span>');
+    addLine('  <span class="c-pink">AI-Powered Virtual Business Execution Platform</span>');
+    addLine('  <span class="c-sub">Stack:</span> <span class="c-green">AI Agents • Multi-Agent Orchestration • LLMs</span>');
+    addBlank();
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Multi-agent architecture consisting of 70+ specialised agents</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Orchestration workflows representing executive & engineering roles</span>');
+    addLine('  <span class="c-sub">▸</span> <span class="c-text">Automated requirements gathering, design, dev, and QA workflows</span>');
     addBlank();
 
     addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
@@ -574,9 +615,12 @@
   function cmdLsProjects() {
     addBlank();
     addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">cortex/</span>');
-    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">ai-test-generator/</span>');
+    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">finance-tracker/</span>');
+    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">task-management/</span>');
+    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">career-ops/</span>');
+    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">aria/</span>');
     addBlank();
-    addLine('<span class="c-sub">2 directories — type </span><span class="c-cyan">projects</span><span class="c-sub"> for details</span>');
+    addLine('<span class="c-sub">5 directories — type </span><span class="c-cyan">projects</span><span class="c-sub"> for details</span>');
     addBlank();
   }
 
