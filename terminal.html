@@ -816,6 +816,28 @@
            '  <span class="c-pink c-bold">• LinkedIn:</span> <a href="https://linkedin.com/in/bana-yugandhar-reddy" target="_blank" class="c-cyan">linkedin.com/in/bana-yugandhar-reddy</a>';
   }
 
+  function getAiScore(query) {
+    const cleanQuery = query.toLowerCase().trim();
+    if (!cleanQuery) return 0;
+    const queryWords = cleanQuery.split(/[^a-z0-9#\-\+]+/);
+    let maxScore = 0;
+    for (const entry of AI_DATABASE) {
+      let score = 0;
+      for (const kw of entry.keywords) {
+        if (cleanQuery.includes(kw)) {
+          score += kw.length;
+        }
+        if (queryWords.includes(kw)) {
+          score += 5;
+        }
+      }
+      if (score > maxScore) {
+        maxScore = score;
+      }
+    }
+    return maxScore;
+  }
+
   function processAiInput(query) {
     addBlank();
     const loaderId = 'ai-loader-' + Date.now();
@@ -926,7 +948,7 @@
         break;
       case 'exit':                cmdExit(); break;
       default:
-        if (isQuestion) {
+        if (isQuestion || getAiScore(trimmed) >= 4) {
           processAiInput(trimmed);
         } else {
           cmdNotFound(trimmed);
