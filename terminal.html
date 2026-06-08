@@ -323,7 +323,7 @@
   const COMMANDS = [
     'help', 'about', 'skills', 'experience', 'education',
     'projects', 'certifications', 'contact', 'clear', 'whoami',
-    'ls projects/', 'cat readme.md', 'sudo hire yugandhar', 'exit'
+    'ls', 'ls projects/', 'cat readme.md', 'sudo hire yugandhar', 'ai', 'ask', 'exit'
   ];
 
   // ── ASCII Art ──────────────────────────────────────────
@@ -395,9 +395,11 @@
       ['certifications',      'Certifications & awards'],
       ['contact',             'Contact information'],
       ['whoami',              'Who am I?'],
-      ['ls projects/',        'List project names'],
+      ['ls',                  'List files in directory'],
+      ['ls projects/',        'List project folder names'],
       ['cat readme.md',       'Read my README'],
       ['sudo hire yugandhar', 'Hire me!'],
+      ['ai [question]',       'Query AI assistant about my background'],
       ['clear',               'Clear terminal'],
       ['exit',                'Exit terminal'],
     ];
@@ -410,9 +412,9 @@
   function cmdAbout() {
     addLine('<span class="c-yellow c-bold">┌─── ABOUT ME ─────────────────────────────────────┐</span>');
     addBlank();
-    addLine('<span class="c-green">  Full Stack Developer with 3+ years of enterprise</span>');
-    addLine('<span class="c-green">  experience building scalable, high-performance</span>');
-    addLine('<span class="c-green">  web applications.</span>');
+    addLine('<span class="c-green">  Full Stack Developer with 4+ years of experience</span>');
+    addLine('<span class="c-green">  building scalable, high-performance web</span>');
+    addLine('<span class="c-green">  applications in enterprise and freelance roles.</span>');
     addBlank();
     addLine('<span class="c-text">  Specializing in </span><span class="c-cyan">React.js</span><span class="c-text">, </span><span class="c-cyan">Next.js</span><span class="c-text">, </span><span class="c-cyan">Java/Spring Boot</span><span class="c-text">,</span>');
     addLine('<span class="c-text">  and </span><span class="c-cyan">Node.js</span><span class="c-text"> with a passion for clean code, TDD,</span>');
@@ -484,19 +486,21 @@
     addLine('<span class="c-yellow c-bold">┌─── EDUCATION ────────────────────────────────────┐</span>');
     addBlank();
 
-    addLine('  <span class="c-cyan c-bold">MSc Data Analytics</span>');
-    addLine('  <span class="c-pink">National College of Ireland</span> <span class="c-sub">|</span> <span class="c-green">Dublin</span>');
-    addLine('  <span class="c-yellow">2024 — 2025</span>');
-    addLine('  <span class="c-sub">Grade:</span> <span class="c-green">2:1</span>');
+    addLine('  <span class="c-cyan c-bold">M.Sc. in Data Analytics (2:1)</span>');
+    addLine('  <span class="c-pink">National College of Ireland</span> <span class="c-sub">|</span> <span class="c-green">Dublin, Ireland</span>');
+    addLine('  <span class="c-yellow">Jan 2024 - Jan 2025</span>');
+    addLine('  <span class="c-sub">Skills:</span> <span class="c-green">+Databases, +Analytics, +AI.</span>');
+    addLine('  <span class="c-sub">Thesis:</span> <span class="c-text">Predictive analytics using ensemble methods on real-world housing market in Ireland.</span>');
     addBlank();
 
     addLine('  <span class="c-sub">─────────────────────────────────────────</span>');
     addBlank();
 
-    addLine('  <span class="c-cyan c-bold">BSc Computer Science & Engineering</span>');
-    addLine('  <span class="c-pink">SASTRA University</span> <span class="c-sub">|</span> <span class="c-green">India</span>');
-    addLine('  <span class="c-yellow">2017 — 2021</span>');
-    addLine('  <span class="c-sub">Grade:</span> <span class="c-green">7.49/10</span>');
+    addLine('  <span class="c-cyan c-bold">B.Tech in Computer Science and Engineering | 7.49/10</span>');
+    addLine('  <span class="c-pink">SASTRA Deemed University</span> <span class="c-sub">|</span> <span class="c-green">India</span>');
+    addLine('  <span class="c-yellow">June 2017- Aug 2021</span>');
+    addLine('  <span class="c-sub">Skills:</span> <span class="c-green">+Java, +JavaScript, +SDLC, +HTML, +CSS, +Data Structures, +SQL</span>');
+    addLine('  <span class="c-sub">Capstone:</span> <span class="c-text">Auto image caption generation.</span>');
     addBlank();
 
     addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
@@ -599,8 +603,8 @@
     addBlank();
     addLine('  <span class="c-pink">📧  Email</span>     <span class="c-green">yugandharreddybana@outlook.com</span>');
     addLine('  <span class="c-pink">📱  Phone</span>     <span class="c-green">+353 89 485 1413</span>');
-    addLine('  <span class="c-pink">💼  LinkedIn</span>  <span class="c-cyan">linkedin.com/in/yugandharreddybana</span>');
-    addLine('  <span class="c-pink">🐙  GitHub</span>    <span class="c-cyan">github.com/yugandharreddybana</span>');
+    addLine('  <span class="c-pink">💼  LinkedIn</span>  <span class="c-cyan"><a href="https://linkedin.com/in/bana-yugandhar-reddy" target="_blank" class="c-cyan">linkedin.com/in/bana-yugandhar-reddy</a></span>');
+    addLine('  <span class="c-pink">🐙  GitHub</span>    <span class="c-cyan"><a href="https://github.com/yugandharreddybana" target="_blank" class="c-cyan">github.com/yugandharreddybana</a></span>');
     addLine('  <span class="c-pink">📍  Location</span>  <span class="c-green">Dublin, Ireland</span>');
     addBlank();
     addLine('<span class="c-yellow c-bold">└──────────────────────────────────────────────────┘</span>');
@@ -677,24 +681,188 @@
     }, 2000);
   }
 
+  let isAiMode = false;
+  const promptContainer = document.querySelector('.prompt');
+
+  function setAiMode(enabled) {
+    isAiMode = enabled;
+    if (enabled) {
+      promptContainer.innerHTML = '<span class="c-yellow c-bold">yugandhar-ai</span><span class="c-pink c-bold">&gt;</span> ';
+      input.placeholder = "ask me anything (e.g. 'skills', 'experience', 'projects')...";
+    } else {
+      promptContainer.innerHTML = '<span class="user">yugandhar</span><span class="at">@</span><span class="host">portfolio</span><span class="colon">:</span><span class="path">~</span><span class="dollar">$ </span>';
+      input.placeholder = "type 'help' to get started...";
+    }
+  }
+
+  const AI_DATABASE = [
+    {
+      keywords: ['experience', 'years', 'how long', 'work', 'history', 'job', 'employer', 'career', 'incedo', 'verizon', 'freelance'],
+      response: 'Yugandhar has <span class="c-green c-bold">over 4 years</span> of professional experience as a Full Stack Software Developer:<br>' +
+                '  <span class="c-pink c-bold">• Freelance Developer</span> (April 2024 - Present): Building full-stack web applications, integrating AI (Gemini, NVIDIA APIs), and implementing Stripe SaaS billing.<br>' +
+                '  <span class="c-pink c-bold">• Software Engineer at Incedo</span> (August 2021 - January 2024): Worked on Verizon\'s telecom platform, optimized query latencies by 67%, migrated monoliths to Spring Boot microservices, and led team frontend test coverage to 90%.'
+    },
+    {
+      keywords: ['education', 'college', 'university', 'degree', 'msc', 'btech', 'sastra', 'national college', 'nci', 'masters', 'bachelors', 'graduat'],
+      response: 'Yugandhar\'s academic background includes:<br>' +
+                '  <span class="c-pink c-bold">• M.Sc. in Data Analytics (2:1)</span> — National College of Ireland (Jan 2024 - Jan 2025). Focus on pipelines, ML, and analytics engineering. Thesis: <i>ensemble methods on real-world housing market in Ireland</i>.<br>' +
+                '  <span class="c-pink c-bold">• B.Tech in CSE (7.49/10)</span> — SASTRA Deemed University, India (June 2017- Aug 2021). Capstone: <i>Auto image caption generation</i>.'
+    },
+    {
+      keywords: ['project', 'cortex', 'finance', 'task', 'career', 'aria', 'portfolio', 'built', 'worked on'],
+      response: 'Yugandhar has built several production-grade projects:<br>' +
+                '  <span class="c-cyan c-bold">• Cortex:</span> SaaS knowledge platform featuring AI-powered search (Next.js, TypeScript, Gemini API).<br>' +
+                '  <span class="c-cyan c-bold">• Personal Finance Tracker:</span> Expense manager with NVIDIA voice input, Spring Boot, and PostgreSQL.<br>' +
+                '  <span class="c-cyan c-bold">• Task Management:</span> AI-assisted NL scheduling tool using Redis and Java Spring Boot.<br>' +
+                '  <span class="c-cyan c-bold">• Career-Ops:</span> Job intelligence portal with AI-matching agents and Kanban tracking.<br>' +
+                '  <span class="c-cyan c-bold">• ARIA:</span> Virtual business platform with 70+ specialized orchestrating AI agents.<br>' +
+                'Type <span class="c-yellow c-bold">projects</span> for a complete breakdown of each!'
+    },
+    {
+      keywords: ['skills', 'tech', 'stack', 'languages', 'react', 'typescript', 'javascript', 'java', 'spring', 'node', 'postgres', 'docker', 'redis', 'kafka', 'git', 'ci/cd', 'css', 'html', 'next.js', 'gemini', 'nvidia'],
+      response: 'Yugandhar\'s core technical expertise spans:<br>' +
+                '  <span class="c-pink c-bold">• Frontend:</span> React.js, Next.js, TypeScript, Redux, HTML5, CSS3, Responsive Design.<br>' +
+                '  <span class="c-pink c-bold">• Backend:</span> Node.js, Java, Spring Boot, Spring WebFlux, Microservices, REST APIs, WebSockets.<br>' +
+                '  <span class="c-pink c-bold">• Infrastructure & DBs:</span> PostgreSQL, Redis, Kafka, Docker, CI/CD pipelines, Git.<br>' +
+                '  <span class="c-pink c-bold">• AI Integrations:</span> Google Gemini API, NVIDIA Voice API, MCP Servers.<br>' +
+                'Type <span class="c-yellow c-bold">skills</span> to see the categorised skill matrix.'
+    },
+    {
+      keywords: ['contact', 'hire', 'email', 'phone', 'linkedin', 'github', 'reach out', 'address', 'location', 'live', 'dublin', 'ireland', 'based', 'call', 'message'],
+      response: 'You can contact Yugandhar directly through any of the following channels:<br>' +
+                '  <span class="c-pink c-bold">• Email:</span> <span class="c-green">yugandharreddybana@outlook.com</span><br>' +
+                '  <span class="c-pink c-bold">• Phone:</span> <span class="c-green">+353 89 485 1413</span><br>' +
+                '  <span class="c-pink c-bold">• LinkedIn:</span> <a href="https://linkedin.com/in/bana-yugandhar-reddy" target="_blank" class="c-cyan">linkedin.com/in/bana-yugandhar-reddy</a><br>' +
+                '  <span class="c-pink c-bold">• GitHub:</span> <a href="https://github.com/yugandharreddybana" target="_blank" class="c-cyan">github.com/yugandharreddybana</a><br>' +
+                '  <span class="c-pink c-bold">• Location:</span> <span class="c-green">Dublin, Ireland (Open to local, hybrid, & remote roles)</span>'
+    },
+    {
+      keywords: ['certifications', 'certs', 'awards', 'award', 'essentials', 'rag', 'aws', 'prompting', 'ibm'],
+      response: 'Yugandhar holds the following credentials:<br>' +
+                '  <span class="c-pink c-bold">• Google Prompting Essentials</span> Certification<br>' +
+                '  <span class="c-pink c-bold">• IBM RAG & Agentic AI</span> Developer Badge<br>' +
+                '  <span class="c-pink c-bold">• AWS Cloud Practitioner</span> Certification<br>' +
+                '  <span class="c-pink c-bold">• Made a Difference Award (×3)</span> received during his tenure at Incedo/Verizon.'
+    }
+  ];
+
+  function askAi(query) {
+    const cleanQuery = query.toLowerCase().trim();
+    if (!cleanQuery) return 'Please type a question about Yugandhar\'s background, projects, or experience.';
+
+    let bestMatch = null;
+    let maxMatchCount = 0;
+
+    for (const entry of AI_DATABASE) {
+      let matchCount = 0;
+      for (const kw of entry.keywords) {
+        if (cleanQuery.includes(kw)) {
+          matchCount++;
+        }
+      }
+      if (matchCount > maxMatchCount) {
+        maxMatchCount = matchCount;
+        bestMatch = entry;
+      }
+    }
+
+    if (bestMatch && maxMatchCount > 0) {
+      return bestMatch.response;
+    }
+
+    return 'I don\'t have that specific detail in my local profile database.<br>' +
+           'Please contact Yugandhar directly to discuss this! You can reach him via:<br>' +
+           '  <span class="c-pink c-bold">• Email:</span> <span class="c-green">yugandharreddybana@outlook.com</span><br>' +
+           '  <span class="c-pink c-bold">• Phone:</span> <span class="c-green">+353 89 485 1413</span><br>' +
+           '  <span class="c-pink c-bold">• LinkedIn:</span> <a href="https://linkedin.com/in/bana-yugandhar-reddy" target="_blank" class="c-cyan">linkedin.com/in/bana-yugandhar-reddy</a>';
+  }
+
+  function processAiInput(query) {
+    addBlank();
+    const loaderId = 'ai-loader-' + Date.now();
+    addLine(`<span class="c-pink c-bold">[ai]</span> <span class="c-sub" id="${loaderId}">Thinking...</span>`);
+    scrollToBottom();
+    input.disabled = true;
+
+    setTimeout(() => {
+      const loaderEl = document.getElementById(loaderId);
+      if (loaderEl) {
+        loaderEl.parentElement.remove();
+      }
+      const answer = askAi(query);
+      addLine(`<span class="c-pink c-bold">[ai] Assistant:</span>`);
+      addLine(`  <span class="c-text">${answer}</span>`);
+      addBlank();
+      input.disabled = false;
+      input.focus();
+      scrollToBottom();
+    }, 600 + Math.random() * 400);
+  }
+
   function cmdNotFound(cmd) {
     addLine(`<span class="c-red">Command not found: ${esc(cmd)}</span>`);
-    addLine('<span class="c-sub">Type </span><span class="c-cyan">help</span><span class="c-sub"> to see available commands.</span>');
+    addLine('<span class="c-sub">Type </span><span class="c-cyan">help</span><span class="c-sub"> to see available commands, or ask a question directly!</span>');
+  }
+
+  function cmdLs() {
+    addBlank();
+    addLine('<span class="c-sub">drwxr-xr-x  </span><span class="c-cyan c-bold">projects/</span>');
+    addLine('<span class="c-sub">-rw-r--r--  </span><span class="c-text">readme.md</span>');
+    addBlank();
   }
 
   // ── Command Router ────────────────────────────────────
   function executeCommand(raw) {
-    const cmd = raw.trim().toLowerCase();
-    if (!cmd) return;
+    const trimmed = raw.trim();
+    if (!trimmed) return;
 
-    // Echo the command
-    addLine(
-      `<span class="cmd-echo"><span class="prompt-symbol"><span class="c-green">yugandhar</span>@<span class="c-lavender">portfolio</span>:<span class="c-cyan">~</span>$ </span><span class="cmd-text">${esc(raw.trim())}</span></span>`
-    );
+    if (isAiMode) {
+      addLine(
+        `<span class="cmd-echo"><span class="prompt-symbol"><span class="c-yellow c-bold">yugandhar-ai</span><span class="c-pink c-bold">&gt;</span> </span><span class="cmd-text">${esc(trimmed)}</span></span>`
+      );
+    } else {
+      addLine(
+        `<span class="cmd-echo"><span class="prompt-symbol"><span class="c-green">yugandhar</span>@<span class="c-lavender">portfolio</span>:<span class="c-cyan">~</span>$ </span><span class="cmd-text">${esc(trimmed)}</span></span>`
+      );
+    }
 
-    // Store in history
-    commandHistory.push(raw.trim());
+    commandHistory.push(trimmed);
     historyIndex = commandHistory.length;
+
+    const cmd = trimmed.toLowerCase();
+
+    if (isAiMode) {
+      if (cmd === 'exit' || cmd === 'quit') {
+        addBlank();
+        addLine('<span class="c-yellow">Exiting AI Assistant mode...</span>');
+        setAiMode(false);
+        addBlank();
+        scrollToBottom();
+        return;
+      }
+      processAiInput(trimmed);
+      return;
+    }
+
+    if (cmd === 'ai' || cmd === 'ask') {
+      addBlank();
+      addLine('<span class="c-yellow c-bold">🤖 Yugandhar\'s Interactive AI Assistant Mode Activated</span>');
+      addLine('<span class="c-text">Ask me any question about Yugandhar\'s projects, experience, skills, or background.</span>');
+      addLine('<span class="c-sub">Type </span><span class="c-pink c-bold">exit</span><span class="c-sub"> to return to regular shell.</span>');
+      addBlank();
+      setAiMode(true);
+      scrollToBottom();
+      return;
+    }
+
+    if (cmd.startsWith('ai ') || cmd.startsWith('ask ')) {
+      const query = trimmed.substring(cmd.startsWith('ai ') ? 3 : 4);
+      processAiInput(query);
+      return;
+    }
+
+    const isQuestion = cmd.endsWith('?') || 
+                     /\b(who|what|where|how|why|when|can|is|are|do|does|tell|hire|work)\b/.test(cmd);
 
     switch (cmd) {
       case 'help':                cmdHelp(); break;
@@ -707,6 +875,7 @@
       case 'certs':               cmdCertifications(); break;
       case 'contact':             cmdContact(); break;
       case 'whoami':              cmdWhoami(); break;
+      case 'ls':                  cmdLs(); break;
       case 'ls projects/':        cmdLsProjects(); break;
       case 'ls projects':         cmdLsProjects(); break;
       case 'cat readme.md':       cmdCatReadme(); break;
@@ -717,7 +886,13 @@
         showWelcome();
         break;
       case 'exit':                cmdExit(); break;
-      default:                    cmdNotFound(raw.trim()); break;
+      default:
+        if (isQuestion) {
+          processAiInput(trimmed);
+        } else {
+          cmdNotFound(trimmed);
+        }
+        break;
     }
 
     addBlank();
